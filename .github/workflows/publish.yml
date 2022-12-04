@@ -1,0 +1,49 @@
+name: Publish
+permissions: write-all
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: opensuse/tumbleweed:latest
+    env:
+      TOKEN: ${{ secrets.TOKEN }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Install dependencies and Rust
+      run: |
+        zypper --non-interactive in zola just cargo openssl-devel clang git
+    - name: Install openring-rs
+      run: |
+        export CC=clang
+        cargo install --git https://github.com/lukehsiao/openring-rs
+    - name: Generate openring
+      run: |
+        export PATH="${PATH}:${HOME}/.cargo/bin"
+        just webring
+    - name: Generate static site
+      run: |
+        rm -rf themes/
+        mkdir -p themes/
+        pushd themes/
+        git clone --depth 1 https://codeberg.org/uncomfyhalomacro/gruvbox-v
+        popd
+        just build
+    - name: Publish static site
+      run: |
+        export CI_COMMIT_SHA="$(git rev-parse HEAD)"
+        cp LICENSE public/LICENCE
+        pushd public
+        touch .nojekyll
+        echo "uncomfyhalomacro.pl" >> CNAME
+        git init
+        git branch -m gh-pages
+        git config --global user.email "contact@uncomfyhalomacro.pl"
+        git config --global user.name "uncomfyhalomacro"
+        git remote add origin "https://uncomfyhalomacro:$TOKEN@github.com/uncomfyhalomacro/uncomfyhalomacro.github.io.git"
+        git add -A
+        git commit -m "update site page for ${CI_COMMIT_SHA}"
+        git push --force -u origin gh-pages
+
+

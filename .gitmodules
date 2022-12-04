@@ -1,0 +1,3 @@
+[submodule "themes/gruvbox-v"]
+	path = themes/gruvbox-v
+	url = https://codeberg.org/uncomfyhalomacro/gruvbox-v.git

@@ -1,0 +1,22 @@
+labels:
+  platform: linux/amd64
+
+when:
+  event: push
+  branch:
+    - main
+
+steps:
+  publish:
+    image: opensuse/tumbleweed:latest
+    commands:
+      - zypper --non-interactive install just zola git rsync openssh
+      - git config --global init.defaultBranch main
+      - git config --global user.name "${CI_REPO_OWNER}"
+      - git config --global user.email "${MAIL}"
+      - mkdir -p ~/.ssh
+      - install -m 600 -D /dev/null ~/.ssh/id_private
+      - echo "$${HASHES}" > ~/.ssh/id_private
+      - ssh-keyscan -H "$${TARGET_SOURCE}" > ~/.ssh/known_hosts
+      - just publish
+    secrets: [ target_source, mail, hashes, pages_access_token]

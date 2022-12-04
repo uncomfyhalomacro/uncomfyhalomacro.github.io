@@ -1,0 +1,72 @@
+title = "uncomfy"
+description = "uh... i have a website?"
+
+# The URL the site will be built for
+base_url = "https://uncomfyhalomacro.pl"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+minify_html = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+theme = "gruvbox-v"
+
+generate_feeds = true
+
+ignored_content = ["*/**/*.zk/*"]
+
+taxonomies = [
+  {name = "tags", render = true, feed = true}
+]
+
+
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+render_emoji = true
+
+extra_syntaxes_and_themes = ["static/assets/highlighting/gruvbox/"]
+
+highlight_theme = "css"
+
+bottom_footnotes = true
+
+highlight_themes_css = [
+  { theme = "gruvbox-dark", filename = "syntax-theme-dark.css" },
+  { theme = "gruvbox-light", filename = "syntax-theme-light.css" },
+]
+
+[extra]
+# Put all your custom variables here
+
+favicon = "favicon.png"
+
+theme_color = "auto"
+
+author = "uncomfyhalomacro"
+
+masto_url = "fosstodon.org"
+
+masto_username = "uncomfyhalomacro"
+
+show_masto_social = true
+
+show_site_attribution = true
+
+site_attribution_link = "https://creativecommons.org/licenses/by-sa/4.0/"
+site_attribution_title = "CC-BY-4.0"
+
+show_external_links = true
+
+external_links = [
+  { name="microbio cv", description = "microbiology cv/resume", permalink = "/microbio-cv.pdf" },
+  { name="tech cv", description = "technology cv/resume", permalink = "/tech-cv.pdf" },
+  { name = "gpg keys", permalink = "/public.txt" },
+]
+

@@ -1,0 +1,30 @@
+{% macro sections (s) %}
+{% if section.pages %}
+{% for page in section.pages %}
+<div class="bottom">
+	<a href="{{ page.permalink | safe }}">
+		<h2>{{ page.title }}</h2>
+	</a>
+	<div class="info">
+		<p>Written on: {{ page.date | safe }}</p><br /><br />
+		{% if page.updated %}
+		<p>Updated on: {{ page.updated | safe }}</p>
+		{% else %}
+		<!-- empty updated date -->
+		{% endif %}
+	</div>
+	{% if page.description %}
+	<blockquote>
+		<p>{{ page.description }}</p>
+	</blockquote>
+	{% elif page.summary %}
+	<blockquote>
+		<p>{{ page.summary | striptags | truncate(length=200) }}</p>
+	</blockquote>
+	{% else %}
+	{% endif %}
+	<div class="readmore"><a href="{{ page.permalink }}#continue-reading">{{ page.reading_time }} min. read...</a></div>
+</div>
+{% endfor %}
+{% endif %}
+{% endmacro %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block content %}
+<div class="sub-grid">
+  <div class="content-grid">
+    <!-- If you are using pagination, section.pages will be empty. You need to use the paginator object -->
+    <h1 style="text-align: center">
+      {{ section.title | safe }}
+    </h1>
+    <blockquote style="text-align:center;">{{ section.description | safe }}</blockquote>
+    {{ section.content | safe}}
+    {{ footer::footer() }}
+  </div>
+</div>
+{% endblock content %}
+
