@@ -67,5 +67,6 @@ show_external_links = true
 external_links = [
   { name="microbio cv", description = "microbiology cv/resume", permalink = "/microbio-cv.pdf" },
   { name="tech cv", description = "technology cv/resume", permalink = "/tech-cv.pdf" },
+  { name = "gpg keys", permalink = "/public.txt" },
 ]
 
