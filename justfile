@@ -1,5 +1,8 @@
 #!/usr/bin/just
 
+new-blog:
+    kak content/blog/$(date +%Y%m%H%M%S).md
+
 update-theme:
     git submodule update --recursive --remote --init
     git add themes/jera
