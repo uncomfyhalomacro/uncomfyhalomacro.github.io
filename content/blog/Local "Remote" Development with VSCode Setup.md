@@ -5,7 +5,7 @@ description = "a small short guide on how to setup VSCodium Flatpak on an immuta
 date = 2024-09-12
 draft = false
 [taxonomies]
-  tags = ["editors"]
+  tags = ["editor"]
 +++
 
 This is just a note for someone who really is unfamiliar with how SSH works. 
