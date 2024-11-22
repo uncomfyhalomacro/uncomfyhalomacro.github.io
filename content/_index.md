@@ -6,12 +6,9 @@ insert_anchor_links = "right"
 template = "index.html"
 +++
 
-# ⏫ Soc Virnyl S. Estela
-
-I have a passion for technology and biology, hoping to build a career in
-software engineering in various fields.
-
-I am a proud member of the openSUSE community, where I maintain 22+ packages
+I have a passion for technology and biology, hoping to build a career in<img src="./me.png" style="width:130px;border: solid black 1px;border-radius:360px;float:left;margin-right:10px;margin-top:10px;">
+</img> 
+software engineering in various fields. I am a proud member of the openSUSE community, where I maintain 22+ packages
 that include tools for my organization. I have been involved in open source
 software development since 2020, starting with Debian as my first Linux
 distribution. I believe in the spirit of open source and its potential to
