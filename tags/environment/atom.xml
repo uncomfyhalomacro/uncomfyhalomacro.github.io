@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - environment</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/environment/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-12-19T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/environment/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Opinion: Sustainable development is unsustainable</title>
+        <published>2023-12-19T00:00:00+00:00</published>
+        <updated>2023-12-19T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/sustainable-development-is-unsustainable/"/>
+        <id>https://uncomfyhalomacro.pl/blog/sustainable-development-is-unsustainable/</id>
+        
+        <summary type="html">&lt;p&gt;How come that the most sought after solution to our problems in sustainability
+is actually &lt;em&gt;NOT REAL&lt;&#x2F;em&gt;?&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+</feed>

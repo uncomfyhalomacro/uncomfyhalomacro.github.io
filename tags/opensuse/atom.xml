@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - opensuse</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/opensuse/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-11-10T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/opensuse/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Exploring Efficient Ways To Package Rust Software in openSUSE</title>
+        <published>2024-08-22T00:00:00+00:00</published>
+        <updated>2024-11-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/exploring-efficient-ways-to-package-rust-software-in-opensuse/"/>
+        <id>https://uncomfyhalomacro.pl/blog/exploring-efficient-ways-to-package-rust-software-in-opensuse/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/exploring-efficient-ways-to-package-rust-software-in-opensuse/">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;&#x2F;strong&gt;
+I am moving over some logic as another package called
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;roast&quot;&gt;roast&lt;&#x2F;a&gt;. This
+is to prepare this vendoring alternative called
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo-vendor-home-registry&quot;&gt;obs-service-cargo-vendor-home-registry&lt;&#x2F;a&gt;.
+The project is still worked on during my free time.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I have re-investigated possible solutions for confusing packaging in Rust. Currently,
+we are using &lt;code&gt;cargo vendor&lt;&#x2F;code&gt; to vendor package dependencies. This comes at a cost.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Back and forth copying of &lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt; for possible projects that use monorepo
+configurations i.e. workspace and real monorepos.
+&lt;ul&gt;
+&lt;li&gt;Examples of these are: zellij, wezterm and python-tokenizers&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;We always want to ensure &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; and I doubt the solution will not avoid this
+since lockfiles are always essential when building software with Rust.&lt;&#x2F;li&gt;
+&lt;li&gt;Existing &lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt; from projects will be overridden with our generated
+&lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The first solution I thought of is a global &lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt; for projects. This
+has been done with &lt;strong&gt;python-tokenizers&lt;&#x2F;strong&gt; in openSUSE because it is possible to use
+&lt;code&gt;--manifest-path&lt;&#x2F;code&gt; to specify a manifest &lt;code&gt;Cargo.toml&lt;&#x2F;code&gt; file in the specfile for cargo
+invocations.&lt;&#x2F;p&gt;
+&lt;p&gt;Seeing this, I realised, why not just use the &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt; since we are pointing at a global cache anyway? This blog is about tracking my future project
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;obs-service-cargo-vendor-home-registry&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;obs-service-cargo-vendor-home-registry&lt;&#x2F;a&gt; of which I plan to integrate into &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Firstyear&#x2F;obs-service-cargo&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;Firstyear&#x2F;obs-service-cargo&lt;&#x2F;a&gt; as an alternative vendor generating utility for Open Build Service or OBS.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;storage-size-eaten-by-cargo-home-vs-cargo-vendor-comparison&quot;&gt;Storage size eaten by &lt;code&gt;CARGO_HOME&lt;&#x2F;code&gt; vs &lt;code&gt;cargo vendor&lt;&#x2F;code&gt; comparison&lt;a class=&quot;zola-anchor&quot; href=&quot;#storage-size-eaten-by-cargo-home-vs-cargo-vendor-comparison&quot; aria-label=&quot;Anchor link for: storage-size-eaten-by-cargo-home-vs-cargo-vendor-comparison&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;&#x2F;strong&gt;
+&lt;code&gt;cargo fetch&lt;&#x2F;code&gt;, &lt;code&gt;cargo vendor&lt;&#x2F;code&gt;, &lt;code&gt;cargo build&lt;&#x2F;code&gt;, and &lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt; all update the &lt;code&gt;CARGO_HOME&lt;&#x2F;code&gt; or what we call the cargo home registry or just cargo home. We use &lt;code&gt;cargo fetch&lt;&#x2F;code&gt; here because it&#x27;s designed to update the registry cache instead of other commands.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;WARNING&lt;&#x2F;strong&gt; Behaviours between &lt;code&gt;cargo fetch&lt;&#x2F;code&gt; and &lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt;
+&lt;code&gt;cargo fetch&lt;&#x2F;code&gt; updates the registry to latest version of crates and also regenerates &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; to reflect the versions unless &lt;code&gt;--locked&lt;&#x2F;code&gt; flag is passed where it tries to respect the versions of the crates from the existing &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; despite this &lt;em&gt;contradicting&lt;&#x2F;em&gt; description in the manpage that
+If a Cargo.lock file is available, this command will ensure that all of the git dependencies and&#x2F;or registry dependencies are downloaded and locally available. Subsequent Cargo commands will be able to run offline after a cargo fetch unless the lock file changes.&lt;&#x2F;p&gt;
+&lt;p&gt;However, &lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt; updates the registry + updates the &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; which in my opinion is just a duplication of the other cargo sub-command &lt;code&gt;cargo update&lt;&#x2F;code&gt;. Why? Both do the same behaviour. Even the part where you pass &lt;code&gt;--locked&lt;&#x2F;code&gt; will give you the same error &quot;&lt;strong&gt;error: the lock file &#x2F;run&#x2F;host&#x2F;tmp&#x2F;jay-1.4.0&#x2F;Cargo.lock needs to be updated but --locked&lt;&#x2F;strong&gt;&quot;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Here are the zstd compressed tarballs for the following after running the cargo commands&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;wezterm&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;: 1.1GB&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;: 1.3GB&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;jay&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;: 24MB&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;: 76MB&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;zellij&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;: 66MB&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;: 133MB&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Why does it seem like &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; duplicates the contents in the tarball? Because it really does. The registry contains the following directory structure&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;└── registry
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── cache
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   └── index.crates.io-6f17d22bba15001f
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── index
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   └── index.crates.io-6f17d22bba15001f
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    └── src
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;        └── index.crates.io-6f17d22bba15001f
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;8 directories, 0 files
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;One can remove the &lt;code&gt;.cargo&#x2F;registry&#x2F;src&lt;&#x2F;code&gt; directory as that contains the extracted crates and then create a &lt;code&gt;tar.zst&lt;&#x2F;code&gt; file using the following commands&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Assuming $CARGO_HOME is set to $PWD&#x2F;.cargo&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;pushd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; .cargo&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;rm&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;rfv&lt;&#x2F;span&gt; registry&#x2F;src&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;popd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;tar&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;zstd&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;cvf&lt;&#x2F;span&gt; vendor.tar.zst .cargo&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;how-to-get-cache-from-cargo-home&quot;&gt;How to get cache from &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#how-to-get-cache-from-cargo-home&quot; aria-label=&quot;Anchor link for: how-to-get-cache-from-cargo-home&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Any of these commands will generate the cargo home registry cache&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;build&lt;&#x2F;li&gt;
+&lt;li&gt;generate-lockfile&lt;&#x2F;li&gt;
+&lt;li&gt;vendor&lt;&#x2F;li&gt;
+&lt;li&gt;fetch&lt;&#x2F;li&gt;
+&lt;li&gt;update&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;del&gt;Some commands are duplication of the other commands i.e. update and
+generate-lockfile. It&#x27;s just that the former prefetches the latest crate versions
+while the latter doesn&#x27;t.&lt;&#x2F;del&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;To update the registry cache, one must either go with &lt;code&gt;cargo fetch&lt;&#x2F;code&gt; or even &lt;code&gt;cargo vendor&lt;&#x2F;code&gt; to avoid building or updating (unless update is set).&lt;&#x2F;p&gt;
+&lt;p&gt;All commands try to regenerate the &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; with the latest compatible MSRV. If
+&lt;code&gt;--locked&lt;&#x2F;code&gt; is passed, it will try to attempt to respect the versions in the &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt;.
+However, if the version of a dependency in &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; got yanked and there is a
+newer version, then an operation with &lt;code&gt;--locked&lt;&#x2F;code&gt; will fail. Also, passing &lt;code&gt;--locked&lt;&#x2F;code&gt; to
+&lt;code&gt;cargo-update&lt;&#x2F;code&gt; is ambiguous as it will always almost fail since it tries to update the
+&lt;code&gt;Cargo.lock&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-not-go-with-cargo-vendor-sync&quot;&gt;Why not go with &lt;code&gt;cargo vendor --sync&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-not-go-with-cargo-vendor-sync&quot; aria-label=&quot;Anchor link for: why-not-go-with-cargo-vendor-sync&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Reason? Uncertainty of how that command respect &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; for each crate. I would
+rather have do&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;cargo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; fetch&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;locked&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;manifest-path&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-option z-shell&quot;&gt;=&lt;&#x2F;span&gt;path&#x2F;to&#x2F;Cargo.toml&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;for each manifest found since one can flexibly turn &lt;code&gt;--locked&lt;&#x2F;code&gt; on and off.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;building-now-with-cargo-home&quot;&gt;Building now with &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#building-now-with-cargo-home&quot; aria-label=&quot;Anchor link for: building-now-with-cargo-home&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;It&#x27;s always has been possible to use &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;, specifically, &lt;code&gt;$CARGO_HOME&#x2F;registry&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;There was an attempt in this repository, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo-vendor-home-registry&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo-vendor-home-registry&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Now, that project has been merged into &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;You can see this working in &lt;a href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;editors&#x2F;kak-lsp&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;editors&#x2F;kak-lsp&lt;&#x2F;a&gt;. But we lied a bit here.
+We will explain that in the later sections.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;path-dependencies-in-cargo-toml-needs-to-be-revisited&quot;&gt;Path dependencies in &lt;code&gt;Cargo.toml&lt;&#x2F;code&gt; needs to be revisited&lt;a class=&quot;zola-anchor&quot; href=&quot;#path-dependencies-in-cargo-toml-needs-to-be-revisited&quot; aria-label=&quot;Anchor link for: path-dependencies-in-cargo-toml-needs-to-be-revisited&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Membered crates (in workspace configurations) and local crates (both are local and in path actually)
+should also be taken consideration when vendoring dependencies.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, &lt;a href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;science:machinelearning&#x2F;python-tokenizers&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;science:machinelearning&#x2F;python-tokenizers&lt;&#x2F;a&gt; have
+two different dependencies that are actually related to each other.&lt;&#x2F;p&gt;
+&lt;p&gt;The solution to this is to eagerly check their manifest and lockfiles. Hence, either with multiple vendor
+tarballs or a vendored &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lockfiles-are-always-inconsistent&quot;&gt;Lockfiles are always inconsistent&lt;a class=&quot;zola-anchor&quot; href=&quot;#lockfiles-are-always-inconsistent&quot; aria-label=&quot;Anchor link for: lockfiles-are-always-inconsistent&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;See &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169&lt;&#x2F;a&gt;. This is a glaring issue
+and not just for &lt;code&gt;cargo install&lt;&#x2F;code&gt; but almost all cargo commands such as &lt;code&gt;cargo fetch&lt;&#x2F;code&gt;. That&#x27;s why in openSUSE, we try to include the lockfile as much as
+possible even if passing &lt;code&gt;--locked&lt;&#x2F;code&gt;. I think I would agree to this comment
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169#issuecomment-539226733&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169#issuecomment-539226733&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Observation&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo fetch --locked&lt;&#x2F;code&gt; does not work because it tries to keep the registry cache updated&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo vendor --locked&lt;&#x2F;code&gt; works because I don&#x27;t know why???&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Now is the use of &lt;code&gt;--sync&lt;&#x2F;code&gt; idea thrown out the window?&lt;&#x2F;p&gt;
+&lt;p&gt;For crates that don&#x27;t ship with a lockfile, we will run either&lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt;
+or &lt;code&gt;cargo update&lt;&#x2F;code&gt;, former is more semantically correct to do as opposed to &lt;code&gt;cargo update&lt;&#x2F;code&gt;. But &lt;code&gt;update&lt;&#x2F;code&gt; makes sense the most because we are going to add update options
+on the new project anyway.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cargo-fetch-vs-cargo-update&quot;&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; vs &lt;code&gt;cargo-update&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#cargo-fetch-vs-cargo-update&quot; aria-label=&quot;Anchor link for: cargo-fetch-vs-cargo-update&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Two days ago as of writing, I filed a bug report regarding inconsistencies
+between &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; and &lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;. Link to bug report
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;14795&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;14795&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The inconsistency specifically is the way the two handle dependencies differently
+especially when it comes to &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;&#x27;s &lt;code&gt;--target&lt;&#x2F;code&gt; flag.&lt;&#x2F;p&gt;
+&lt;p&gt;I had high hopes that by default&lt;sup class=&quot;footnote-reference&quot; id=&quot;fr-but not really-1&quot;&gt;&lt;a href=&quot;#fn-but not really&quot;&gt;[1]&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, it gets &lt;strong&gt;all&lt;&#x2F;strong&gt; target architectures. But I was
+met with failed builds on &lt;del&gt;not so commonly used&lt;&#x2F;del&gt; architectures whereas vendored
+dependencies from &lt;code&gt;cargo-vendor&lt;&#x2F;code&gt; compiles. They fail because they cannot find their
+dependencies fetched from &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I will just have to wait for a feedback regarding how &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; behaves as compared
+to &lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;. I believe though that both should be at least similar in almost
+all aspects.&lt;&#x2F;p&gt;
+&lt;hr&gt;&lt;ol class=&quot;footnotes-list&quot;&gt;
+&lt;li id=&quot;fn-but not really&quot;&gt;
+&lt;p&gt;This is still not a &lt;em&gt;&lt;strong&gt;loss&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; yet for me since most of the software I used in openSUSE
+are used by people who either use x86_64 and aarch64. I don&#x27;t believe that the other
+architectures are used commonly so I have removed support. &lt;a href=&quot;#fr-but not really-1&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Packaging Crystal Software for openSUSE</title>
+        <published>2023-07-31T00:00:00+00:00</published>
+        <updated>2023-07-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/how-to-package-crystal-software-in-opensuse/"/>
+        <id>https://uncomfyhalomacro.pl/blog/how-to-package-crystal-software-in-opensuse/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/how-to-package-crystal-software-in-opensuse/">&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;a class=&quot;zola-anchor&quot; href=&quot;#prerequisites&quot; aria-label=&quot;Anchor link for: prerequisites&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;You will need the following:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;osc&lt;&#x2F;code&gt; and &lt;code&gt;obs-service-download_files&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;your editor of choice e.g. emacs, helix&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;tar&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;familiarity of how to use &lt;a href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;&lt;&#x2F;a&gt;. See &lt;a href=&quot;https:&#x2F;&#x2F;en.opensuse.org&#x2F;Portal:Packaging&quot;&gt;https:&#x2F;&#x2F;en.opensuse.org&#x2F;Portal:Packaging&lt;&#x2F;a&gt; for guides. Fedora has one too, see &lt;a href=&quot;https:&#x2F;&#x2F;docs.fedoraproject.org&#x2F;en-US&#x2F;packaging-guidelines&quot;&gt;https:&#x2F;&#x2F;docs.fedoraproject.org&#x2F;en-US&#x2F;packaging-guidelines&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;crystal&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Check with zypper if &lt;code&gt;osc&lt;&#x2F;code&gt; is installed.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Tip&lt;&#x2F;strong&gt;: Use the &lt;code&gt;cnf&lt;&#x2F;code&gt; command to check which package &lt;code&gt;osc&lt;&#x2F;code&gt; comes from.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;cnf&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; osc&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;recipe&quot;&gt;Recipe&lt;a class=&quot;zola-anchor&quot; href=&quot;#recipe&quot; aria-label=&quot;Anchor link for: recipe&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The following subtopics explain how to package crystal software step-by-step. Adjust accordingly based on your setup.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;create-a-new-package&quot;&gt;Create a new package&lt;a class=&quot;zola-anchor&quot; href=&quot;#create-a-new-package&quot; aria-label=&quot;Anchor link for: create-a-new-package&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;You can do it at &lt;a href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;&lt;&#x2F;a&gt; but if you prefer the commandline,
+you can do for example&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;osc&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; mkpac blahaj&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; blahaj&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this tutorial, we will try to package &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&quot;&gt;BLAHAJ&lt;&#x2F;a&gt; using the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;crystal-lang&#x2F;shards&quot;&gt;shards&lt;&#x2F;a&gt; project and dependency manager for
+&lt;a href=&quot;https:&#x2F;&#x2F;crystal-lang.org&quot;&gt;Crystal&lt;&#x2F;a&gt; and &lt;code&gt;tar&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;package-without-a-dependency&quot;&gt;Package without a dependency&lt;a class=&quot;zola-anchor&quot; href=&quot;#package-without-a-dependency&quot; aria-label=&quot;Anchor link for: package-without-a-dependency&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;write-the-specfile&quot;&gt;Write the specfile&lt;a class=&quot;zola-anchor&quot; href=&quot;#write-the-specfile&quot; aria-label=&quot;Anchor link for: write-the-specfile&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Using your preferred editor, create a file named &lt;code&gt;blahaj.spec&lt;&#x2F;code&gt;. The following prelude should be enough for the specfile:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;txt&quot; class=&quot;language-txt z-code&quot;&gt;&lt;code class=&quot;language-txt&quot; data-lang=&quot;txt&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Name: blahaj
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Version: 2.1.0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;License: BSD-2-Clause
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Summary: Gay sharks at your local terminal
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Url: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Source0: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&#x2F;archive&#x2F;refs&#x2F;tags&#x2F;v2.1.0.tar.gz#&#x2F;%{name}-%{version}.tar.gz
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Source1: vendor.tar.zst
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;BuildRequires: crystal
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;BuildRequires: shards
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;BuildRequires: make
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;How do I have &lt;code&gt;shards&lt;&#x2F;code&gt; and &lt;code&gt;crystal&lt;&#x2F;code&gt;?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;You can branch packages from my home project at Open Build Service - &lt;a href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;project&#x2F;show&#x2F;home:uncomfyhalomacro&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;project&#x2F;show&#x2F;home:uncomfyhalomacro&lt;&#x2F;a&gt;. Or even just add an repository
+image of that project. I have &lt;code&gt;shards&lt;&#x2F;code&gt; and &lt;code&gt;crystal&lt;&#x2F;code&gt; there. The latter can also be found at &lt;a href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;devel:languages:crystal&#x2F;crystal&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;devel:languages:crystal&#x2F;crystal&lt;&#x2F;a&gt; if
+you want that too.&lt;&#x2F;p&gt;
+&lt;p&gt;For the sake of simplicity, we will assume that we are going to use &lt;code&gt;crystal&lt;&#x2F;code&gt;, &lt;code&gt;shards&lt;&#x2F;code&gt;, and &lt;code&gt;make&lt;&#x2F;code&gt; at your home project in Open Build Service.&lt;&#x2F;p&gt;
+&lt;p&gt;Add the following sections: description, prep, build, install, files and changelog section.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;txt&quot; class=&quot;language-txt z-code&quot;&gt;&lt;code class=&quot;language-txt&quot; data-lang=&quot;txt&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Name: blahaj
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Version: 2.1.0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Release: 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;License: BSD-2-Clause
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Summary: Colorize your terminal with gay sharks
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Url: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Source0: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&#x2F;archive&#x2F;refs&#x2F;tags&#x2F;v2.1.0.tar.gz#&#x2F;%{name}-%{version}.tar.gz
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;BuildRequires: crystal
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;BuildRequires: shards
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;BuildRequires: make
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%description
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Apart from a cute cuddly shark plushie from IKEA, BLÅHAJ is a lolcat-like CLI tool
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;that colorizes your input, shows flags and prints colorful sharks!
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;It has a wide variety of flags&#x2F;colors to choose from and many options from flag size
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;to whether to colorize by line, word or character.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%prep
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%build
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%install
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%files
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%changelog
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;At the root of your project package e.g. &lt;code&gt;home:yourusername&#x2F;blahaj&lt;&#x2F;code&gt;, run &lt;code&gt;osc service localrun download_files&lt;&#x2F;code&gt;. You will get a file called &lt;code&gt;blahaj-2.1.0.tar.gz&lt;&#x2F;code&gt;.
+Extracting the file gets us the directory &lt;code&gt;BLAHAJ-2.1.0&#x2F;&lt;&#x2F;code&gt;. This means that in our &lt;code&gt;%prep&lt;&#x2F;code&gt; section, we need to add &lt;code&gt;%setup -qa1 -n BLAHAJ-%{version}&lt;&#x2F;code&gt;. This is to
+redirect the rpm macros that building should be at &lt;code&gt;RPM_BUILDDIR&#x2F;BLAHAJ-2.1.0&#x2F;&lt;&#x2F;code&gt; since by default, it is &lt;code&gt;RPM_BUILDDIR&#x2F;nameofpackage-version&#x2F;&lt;&#x2F;code&gt;
+based on the &lt;code&gt;Name:&lt;&#x2F;code&gt; and &lt;code&gt;Version:&lt;&#x2F;code&gt; RPM specfile prelude.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;building-and-installing-the-package&quot;&gt;Building and Installing the package&lt;a class=&quot;zola-anchor&quot; href=&quot;#building-and-installing-the-package&quot; aria-label=&quot;Anchor link for: building-and-installing-the-package&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;The following sections should be easy here since &lt;code&gt;make&lt;&#x2F;code&gt; as build dependency has convenient macros such as &lt;code&gt;%make_build&lt;&#x2F;code&gt; and &lt;code&gt;%make_install&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;txt&quot; class=&quot;language-txt z-code&quot;&gt;&lt;code class=&quot;language-txt&quot; data-lang=&quot;txt&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Name: blahaj
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Version: 2.1.0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Release: 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Summary: Colorize your terminal with gay sharks
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;License: BSD-2-Clause
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Url: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Source0: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&#x2F;archive&#x2F;refs&#x2F;tags&#x2F;v2.1.0.tar.gz#&#x2F;%{name}-%{version}.tar.gz
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;BuildRequires: crystal
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;BuildRequires: shards
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;BuildRequires: make
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%description
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Apart from a cute cuddly shark plushie from IKEA, BLÅHAJ is a lolcat-like CLI tool
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;that colorizes your input, shows flags and prints colorful sharks!
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;It has a wide variety of flags&#x2F;colors to choose from and many options from flag size
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;to whether to colorize by line, word or character.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%prep
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%setup -q -n BLAHAJ-%{version}
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%build
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%make_build
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%install
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%make_install
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%files
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%{_bindir}&#x2F;blahaj
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%doc README.md CODE_OF_CONDUCT.md
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%license LICENSE
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;%changelog
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As for &lt;code&gt;%files&lt;&#x2F;code&gt;, you can just do a &quot;best guess&quot; or &quot;best observation&quot; approach. Here, we based it from the &lt;code&gt;Makefile&lt;&#x2F;code&gt; and for documentation and license, those are
+self-explanatory.&lt;&#x2F;p&gt;
+&lt;p&gt;Changelog can be left as is since we are not Fedora 😘. We use &lt;code&gt;blahaj.changes&lt;&#x2F;code&gt; for that generated with &lt;code&gt;osc vc&lt;&#x2F;code&gt;. It creates a temporary file you can edit
+from like below&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;txt&quot; class=&quot;language-txt z-code&quot;&gt;&lt;code class=&quot;language-txt&quot; data-lang=&quot;txt&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;-------------------------------------------------------------------
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Mon Jul 31 12:34:07 UTC 2023 - Your Name &amp;lt;youremail@example.com&amp;gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;- Initial spec for blahaj 2.1.0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;add-the-files&quot;&gt;Add the files&lt;a class=&quot;zola-anchor&quot; href=&quot;#add-the-files&quot; aria-label=&quot;Anchor link for: add-the-files&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Add the files by running the command&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;osc&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; add blahaj.spec blahaj-2.1.0.tar.gz blahaj.changes&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And then push it to your home project at Open Build Service with &lt;code&gt;osc ci&lt;&#x2F;code&gt;, which allows you to check the diff and see what was changed based from the
+&lt;code&gt;blahaj.changes&lt;&#x2F;code&gt; file.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;check-if-it-builds-correctly&quot;&gt;Check if it builds correctly&lt;a class=&quot;zola-anchor&quot; href=&quot;#check-if-it-builds-correctly&quot; aria-label=&quot;Anchor link for: check-if-it-builds-correctly&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Now check your new blahaj package at your home project. If it fails, investigate what went wrong! Check mine at
+&lt;a href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;home:uncomfyhalomacro&#x2F;blahaj&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;home:uncomfyhalomacro&#x2F;blahaj&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;&#x2F;strong&gt;
+It seems at the time of writing, I missed some dependencies or optional dependencies for
+crystal! Anyway, &lt;em&gt;I am confident&lt;&#x2F;em&gt; it will build this correctly after that&#x27;s fixed.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;package-with-dependencies&quot;&gt;Package With dependencies&lt;a class=&quot;zola-anchor&quot; href=&quot;#package-with-dependencies&quot; aria-label=&quot;Anchor link for: package-with-dependencies&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;This is where &lt;code&gt;tar&lt;&#x2F;code&gt; and &lt;code&gt;shards&lt;&#x2F;code&gt; comes in. An example of this is &lt;code&gt;shards&lt;&#x2F;code&gt; itself. See &lt;a href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;home:uncomfyhalomacro&#x2F;shards&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;home:uncomfyhalomacro&#x2F;shards&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;What I did here is at the root of the project e.g. home:yourname&#x2F;shards, I extracted the shards source tarball, &lt;code&gt;tar xvf shards-0.17.3.tar.gz&lt;&#x2F;code&gt;. Changed directory
+to the extracted directory, &lt;code&gt;shards-0.17.3&#x2F;&lt;&#x2F;code&gt; and then ran &lt;code&gt;shards check&lt;&#x2F;code&gt; and &lt;code&gt;shards install&lt;&#x2F;code&gt;. You will get a new directory called &lt;code&gt;lib&#x2F;&lt;&#x2F;code&gt;. This is where you
+&lt;em&gt;vendor&lt;&#x2F;em&gt; your dependencies like how Rust and Go do.&lt;&#x2F;p&gt;
+&lt;p&gt;To &lt;em&gt;vendor&lt;&#x2F;em&gt; it, it&#x27;s simple. Just run&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;tar&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;zstd&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;cvf&lt;&#x2F;span&gt; vendor.tar.zst lib&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Copy &lt;code&gt;vendor.tar.zst&lt;&#x2F;code&gt; to the root of the project package folder. Add it to one of the sources of your project and adjust your &lt;code&gt;%setup&lt;&#x2F;code&gt; with flags &lt;code&gt;-qa1&lt;&#x2F;code&gt;
+which &lt;code&gt;a1&lt;&#x2F;code&gt; means extract &lt;code&gt;Source1: vendor.tar.zst&lt;&#x2F;code&gt; to the root of &lt;code&gt;RPM_BUILDDIR&#x2F;shards-0.17.3&lt;&#x2F;code&gt; including the root folder of the archive &lt;code&gt;lib&#x2F;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This will create a new directory called &lt;code&gt;lib&#x2F;&lt;&#x2F;code&gt;, and contains other crystal packages that are dependencies of that project.&lt;&#x2F;p&gt;
+&lt;p&gt;Then I just used &lt;code&gt;crystal&lt;&#x2F;code&gt; to build &lt;code&gt;shards&lt;&#x2F;code&gt; as seen from the build section and do a manual install with &lt;code&gt;install&lt;&#x2F;code&gt; command at the install section.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;other-possibilities&quot;&gt;Other possibilities&lt;a class=&quot;zola-anchor&quot; href=&quot;#other-possibilities&quot; aria-label=&quot;Anchor link for: other-possibilities&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;You can also remove &lt;code&gt;make&lt;&#x2F;code&gt; or &lt;code&gt;shards&lt;&#x2F;code&gt; as well if you prefer just using &lt;code&gt;crystal&lt;&#x2F;code&gt; on the build section.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
