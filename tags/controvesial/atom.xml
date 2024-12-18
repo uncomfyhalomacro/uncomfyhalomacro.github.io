@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - controvesial</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/controvesial/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-02-12T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/controvesial/atom.xml</id>
+    <entry xml:lang="en">
+        <title>The problem with today&#x27;s research and academic writing</title>
+        <published>2024-02-12T00:00:00+00:00</published>
+        <updated>2024-02-12T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/the-problem-with-research-and-academic-writing/"/>
+        <id>https://uncomfyhalomacro.pl/blog/the-problem-with-research-and-academic-writing/</id>
+        
+        <summary type="html">&lt;p&gt;A &lt;a href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2402.04607.pdf&quot;&gt;recent study&lt;&#x2F;a&gt; about how citations
+are manipulatable have caused controversy in the integrity and honesty of
+those in academia.&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+</feed>

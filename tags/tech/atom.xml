@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - tech</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/tech/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-02-20T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/tech/atom.xml</id>
+    <entry xml:lang="en">
+        <title>I will say this again &quot;Science is not the issue, intent is&quot;</title>
+        <published>2024-02-20T00:00:00+00:00</published>
+        <updated>2024-02-20T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/i-will-say-this-again-science-is-not-an-issue-intent-is/"/>
+        <id>https://uncomfyhalomacro.pl/blog/i-will-say-this-again-science-is-not-an-issue-intent-is/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/i-will-say-this-again-science-is-not-an-issue-intent-is/">&lt;p&gt;As a child, I was always into the field of science. Always curious, always
+wanting to explore things to find an answer to all my questions.&lt;&#x2F;p&gt;
+&lt;p&gt;Now as an adult, that intensity is now a small candle rather than a roaring
+flame. It is not because I do not love science anymore. But it is because
+of how the world changed a lot. Or to be more accurate, I have finally
+noticed what the real world is like. Living as a child was living in a bliss
+of ignorance.&lt;&#x2F;p&gt;
+&lt;p&gt;Priorities change when you become an adult. Fortunately, science is always
+progressing, and technology is always innovating and that brings excitement
+or disappointment not because science and technology is a bad thing. But
+because science can be also used for nefarious purposes. That&#x27;s not new.
+I already know that. I am just not happy with the state of the world right now.&lt;&#x2F;p&gt;
+&lt;p&gt;In my generation, of whom are born around the year 1990s and 2000s,
+we have finally reached the peak of &lt;strong&gt;enshittification&lt;&#x2F;strong&gt;.  From our
+internet and social networks, to the full-blown browser trackers
+or spyware and advertisements that do not even make sense at all,
+to the low-quality service and the not-stealing-stealing from many
+subscription based media companies — we can see the world is now full of
+nightmare-cocaine-fuel-dopamine-addicting-technology-to-false-science things.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Change of plans and priorities</title>
+        <published>2023-09-26T00:00:00+00:00</published>
+        <updated>2023-09-26T17:10:39+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/change-of-plans-and-priorities/"/>
+        <id>https://uncomfyhalomacro.pl/blog/change-of-plans-and-priorities/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/change-of-plans-and-priorities/">&lt;p&gt;As my selection of what to learn grows, I think there will be a change of
+plans and priorities. It&#x27;s time to narrow down what is essential.&lt;&#x2F;p&gt;
+&lt;p&gt;Currently, I am learning Rust, and will do some Go. This added more and more of
+my to-do list of learning things.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;and-it-became-unproductive&quot;&gt;And it became unproductive&lt;a class=&quot;zola-anchor&quot; href=&quot;#and-it-became-unproductive&quot; aria-label=&quot;Anchor link for: and-it-became-unproductive&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;My attention span on learning stuff were getting lower and lower to a point,
+I need to reassess which and which are not to learn.&lt;&#x2F;p&gt;
+&lt;p&gt;Here are the list of things I need to do&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Setting aside System Administration&lt;&#x2F;li&gt;
+&lt;li&gt;Setting aside Kanidm&lt;&#x2F;li&gt;
+&lt;li&gt;Setting aside Crystal&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;They&#x27;re really not set aside. I can go back to them in the future if I have the time.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;crystal-is-good-why-not-keep-it&quot;&gt;Crystal is good, why not keep it?&lt;a class=&quot;zola-anchor&quot; href=&quot;#crystal-is-good-why-not-keep-it&quot; aria-label=&quot;Anchor link for: crystal-is-good-why-not-keep-it&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Sadly, only a few companies I know use Crystal. 😥 Even though it&#x27;s actually a more
+useful language to learn and can replace Go.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;now-what-should-i-learn&quot;&gt;Now what should I learn&lt;a class=&quot;zola-anchor&quot; href=&quot;#now-what-should-i-learn&quot; aria-label=&quot;Anchor link for: now-what-should-i-learn&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Rust will always stay. Erlang will stay. Go is added. Python will be revisited. And one database?
+I&#x27;m planning to at least learn one but never got the chance to. Possibly, Postgres or MySQL.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-erlang&quot;&gt;Why Erlang?&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-erlang&quot; aria-label=&quot;Anchor link for: why-erlang&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Concurrency. Also, some of Go&#x27;s ideas are taken from Erlang so I also need to check those as well.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-python&quot;&gt;Why Python?&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-python&quot; aria-label=&quot;Anchor link for: why-python&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;It&#x27;s not hard to relearn. I just need to revisit it. It&#x27;s good for scripts and prototyping.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-rust&quot;&gt;Why Rust?&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-rust&quot; aria-label=&quot;Anchor link for: why-rust&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Because blazingly 🚀🚀🚀 fast 😜&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;what-now&quot;&gt;What now?&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-now&quot; aria-label=&quot;Anchor link for: what-now&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Yes. I am going to watch Learn Go in 3 hours from a Humble Bundle I got last year. And then
+read Thorsten Ball&#x27;s Writing an Interpreter in Go. I will check out Erlang&#x27;s language reference
+too ☺️&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

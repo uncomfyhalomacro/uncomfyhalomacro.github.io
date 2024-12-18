@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - education</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/education/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-02-12T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/education/atom.xml</id>
+    <entry xml:lang="en">
+        <title>The problem with today&#x27;s research and academic writing</title>
+        <published>2024-02-12T00:00:00+00:00</published>
+        <updated>2024-02-12T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/the-problem-with-research-and-academic-writing/"/>
+        <id>https://uncomfyhalomacro.pl/blog/the-problem-with-research-and-academic-writing/</id>
+        
+        <summary type="html">&lt;p&gt;A &lt;a href=&quot;https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2402.04607.pdf&quot;&gt;recent study&lt;&#x2F;a&gt; about how citations
+are manipulatable have caused controversy in the integrity and honesty of
+those in academia.&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Why Philippine Institutions Should Use FOSS</title>
+        <published>2023-10-01T00:00:00+00:00</published>
+        <updated>2023-10-11T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/why-ph-institutions-should-use-foss/"/>
+        <id>https://uncomfyhalomacro.pl/blog/why-ph-institutions-should-use-foss/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/why-ph-institutions-should-use-foss/">&lt;h1 id=&quot;background&quot;&gt;Background&lt;a class=&quot;zola-anchor&quot; href=&quot;#background&quot; aria-label=&quot;Anchor link for: background&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;For a very long time, the Philippines is no stranger for the problems of
+science and tech illiteracy, especially when it comes to the usage of their
+own computers. From controversial topics such as privacy and security,
+and also from the ethical and moral perspectives of using software such as
+piracy and scams.&lt;&#x2F;p&gt;
+&lt;p&gt;Most Filipinos do not even know the term &quot;Open Source&quot; nor any software that
+are actually Free and Open Source Software.&lt;&#x2F;p&gt;
+&lt;p&gt;Hence, I am advocating the idea of raising awareness of Free and Open Source
+Software or FOSS so multiple institutions in the country would reconsider
+using FOSS alternatives over proprietary ones. With this, I hope that we
+learn its importance and how it will shape our lives for the better.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;so-what-is-open-source-software-oss&quot;&gt;So what is Open Source Software (OSS)?&lt;a class=&quot;zola-anchor&quot; href=&quot;#so-what-is-open-source-software-oss&quot; aria-label=&quot;Anchor link for: so-what-is-open-source-software-oss&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Basically, &lt;em&gt;open source&lt;&#x2F;em&gt; is a philosophy. It is a belief that open code
+collaboration is vital for the improvement and innovation of technology and
+software. Open means, the code is accessible by or for everyone. Think of it
+as a &lt;em&gt;humanitarian&lt;&#x2F;em&gt; mission to &lt;strong&gt;&lt;strong&gt;improve the livelihood of many people&lt;&#x2F;strong&gt;&lt;&#x2F;strong&gt;,
+&lt;em&gt;&lt;strong&gt;not just developers&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;, in many areas such as education, and research.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;so-what-is-free&quot;&gt;So what is &quot;Free&quot;?&lt;a class=&quot;zola-anchor&quot; href=&quot;#so-what-is-free&quot; aria-label=&quot;Anchor link for: so-what-is-free&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;So there is also another philosophy in the tech space called FOSS or
+&lt;em&gt;&lt;strong&gt;Free and Open Source Software&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;. It is a belief that everything in
+software &lt;em&gt;should&lt;&#x2F;em&gt; be free and free as in free beer &lt;em&gt;&lt;strong&gt;and&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; it should be
+accessible for everyone (therefore, freedom). However, please do note that
+FOSS and OSS should compensated for the &lt;em&gt;free time&lt;&#x2F;em&gt; they used for creating wonderful
+software. You can help by donating to them and helping out their issues,
+not just technically, but socially and emotionally as well.&lt;&#x2F;p&gt;
+&lt;p&gt;After this, what we refer as &quot;Open Source Software&quot; will either mean FOSS or OSS.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;there-is-x-proprietary-software-why-use-some-free-software&quot;&gt;&quot;There is X proprietary software, why use some free software?&quot;&lt;a class=&quot;zola-anchor&quot; href=&quot;#there-is-x-proprietary-software-why-use-some-free-software&quot; aria-label=&quot;Anchor link for: there-is-x-proprietary-software-why-use-some-free-software&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;There is nothing wrong in using proprietary software. It always comes down
+to &lt;strong&gt;tolerance&lt;&#x2F;strong&gt;—what you can allow and what you cannot allow. These
+kind of &quot;tolerances&quot; can be in terms of &quot;security&quot;, &quot;trust&quot;, and &quot;privacy&quot;
+or whatever you can come up with.&lt;&#x2F;p&gt;
+&lt;p&gt;However, proprietary software is usually a &lt;em&gt;&lt;strong&gt;blackbox&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;, which means that
+you really cannot check the source if there is something malicious going
+on unlike Open Source Software. This is &lt;em&gt;&lt;strong&gt;partially true&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; though because
+OSS can still end up being malicious, it&#x27;s just more &lt;em&gt;transparent&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;There are many reasons Philippines should use OSS over proprietary. These usually
+comes from some of the following factors:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Finances&lt;&#x2F;li&gt;
+&lt;li&gt;Transparency&lt;&#x2F;li&gt;
+&lt;li&gt;Privacy&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;There are many others but we will focus on these for now.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;finances&quot;&gt;Finances&lt;a class=&quot;zola-anchor&quot; href=&quot;#finances&quot; aria-label=&quot;Anchor link for: finances&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Philippines is a poverty-stricken country (or corrupt-stricken?) and buying
+proprietary software will cost you a lot of your salary. Because of the
+culture that people should use proprietary software such productivity suites,
+Filipinos are forced to find &quot;cracked&quot; or &quot;hacked&quot; forms of these proprietary
+software for &quot;free&quot; usage ending up getting malicious programs without their
+knowledge in the process such as viruses and trojans, lessening the lifespan
+of their machines or even losing their files and data.&lt;&#x2F;p&gt;
+&lt;p&gt;To avoid that, Filipinos should install OSS alternatives for productivity.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.libreoffice.org&#x2F;&quot;&gt;Libreoffice&lt;&#x2F;a&gt; for office suites.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;joplinapp.org&#x2F;&quot;&gt;Joplin&lt;&#x2F;a&gt; for note taking.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;jitsi.org&quot;&gt;Jitsi&lt;&#x2F;a&gt; for video conferences and meetings.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.thunderbird.net&#x2F;&quot;&gt;Thunderbird Mail&lt;&#x2F;a&gt; for local mail client on the desktop.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;signal.org&#x2F;&quot;&gt;Signal&lt;&#x2F;a&gt; for E2E private messaging.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;educational-institutions-benefit-more&quot;&gt;Educational Institutions Benefit More&lt;a class=&quot;zola-anchor&quot; href=&quot;#educational-institutions-benefit-more&quot; aria-label=&quot;Anchor link for: educational-institutions-benefit-more&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;The Department of Education, and the Commission on Higher Education can
+encourage the usage of OSS. By using OSS, they can focus more of their finances
+on infrastructure rather than buying proprietary software subscriptions.&lt;&#x2F;p&gt;
+&lt;p&gt;Filipino students do not actually need to pay when they just want to write
+documents and create presentations. I mean, if they have the money, they can
+still buy and use proprietary alternatives. But using OSS empowers students
+to finish school and use OSS confidently without having issues of money
+and finances, especially those that do not have the means to pay.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;transparency&quot;&gt;Transparency&lt;a class=&quot;zola-anchor&quot; href=&quot;#transparency&quot; aria-label=&quot;Anchor link for: transparency&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Open source is &lt;strong&gt;more&lt;&#x2F;strong&gt; transparent. Institutions can have a look at the
+source of the software and see what is going to be removed or added in the
+future or if there were new leadership or maintainers of said software. They
+are also encouraged to donate because they rely on OSS.&lt;&#x2F;p&gt;
+&lt;p&gt;This transparency equates to increased trust of using software and allow
+Filipinos to use the software with the necessary trust they can offer to
+that software.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;privacy&quot;&gt;Privacy&lt;a class=&quot;zola-anchor&quot; href=&quot;#privacy&quot; aria-label=&quot;Anchor link for: privacy&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Because of the introduction of OSS to the masses, curiousity for why this
+software exists will allow Filipinos to define their privacy choices of
+their usage of software.&lt;&#x2F;p&gt;
+&lt;p&gt;There are many privacy-oriented alternatives against &lt;strong&gt;unethical data collection&lt;&#x2F;strong&gt;
+of popular software such as Zoom, and Instagram. With the presence of OSS software
+which promotes freedom and frowns on such practices, people are more likely
+to have more understanding what privacy is, and how important it is
+to respect someone&#x27;s privacy.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;are-there-things-you-would-like-to-add-to-this-post&quot;&gt;Are there things you would like to add to this post?&lt;a class=&quot;zola-anchor&quot; href=&quot;#are-there-things-you-would-like-to-add-to-this-post&quot; aria-label=&quot;Anchor link for: are-there-things-you-would-like-to-add-to-this-post&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;If you have more to add, please email me at &lt;a href=&quot;mailto:uncomfy@uncomfyhalomacro.pl&quot;&gt;uncomfy@uncomfyhalomacro.pl&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
