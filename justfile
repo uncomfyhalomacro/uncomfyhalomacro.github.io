@@ -30,7 +30,7 @@ publish: update-theme build
 webring:
     mkdir -p templates/macros/
     echo "{% macro openring() %}" | tee templates/macros/in.html > /dev/null
-    openring --verbose -n 16 -S webring-list -t in.html | tee -a templates/macros/in.html > /dev/null
+    openring --verbose -n 18 -S webring-list -t in.html | tee -a templates/macros/in.html > /dev/null
     echo "{% endmacro %}" | tee -a templates/macros/in.html > /dev/null
 
 local-publish: update-theme build
