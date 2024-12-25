@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - science</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/science/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-05-27T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/science/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Introduction to Epidemiology</title>
+        <published>2023-05-27T00:00:00+00:00</published>
+        <updated>2023-05-27T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/lecture/mc1-epidemiology/"/>
+        <id>https://uncomfyhalomacro.pl/lecture/mc1-epidemiology/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/lecture/mc1-epidemiology/">&lt;h1 id=&quot;epidemiology&quot;&gt;Epidemiology&lt;a class=&quot;zola-anchor&quot; href=&quot;#epidemiology&quot; aria-label=&quot;Anchor link for: epidemiology&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;It is the study of &lt;em&gt;disease dynamics&lt;&#x2F;em&gt;. Epidemiology covers the topic of epidemics and pandemics, immunization,
+and &lt;em&gt;spillovers&lt;&#x2F;em&gt; (an event where pathogen&#x27;s host jump over one species to another).&lt;&#x2F;p&gt;
+&lt;p&gt;It may be defined as the study of distribution of health and disease in &lt;em&gt;groups of people&lt;&#x2F;em&gt; as
+described by &quot;Biostatistics and Epidemiology&quot; from Sylvia Wassertheil-Smoller and Jordan Smoller.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;definition-of-disease&quot;&gt;Definition of Disease&lt;a class=&quot;zola-anchor&quot; href=&quot;#definition-of-disease&quot; aria-label=&quot;Anchor link for: definition-of-disease&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;A &lt;em&gt;disease&lt;&#x2F;em&gt; are actually a combination of two words: dis, and ease. This means that a &lt;em&gt;disease&lt;&#x2F;em&gt; in its
+true meaning is discomfort or the feeling of uneasiness.&lt;&#x2F;p&gt;
+&lt;p&gt;Diseases exist because of many factors. This may include body&#x27;s health in terms of nutrient intake, or the existence
+of pathogens that wreak havoc within their host&#x27;s body. A disease may be obesity, &lt;strong&gt;a physical condition&lt;&#x2F;strong&gt;, or
+pneumonia, an &lt;strong&gt;infection&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In epidemiology, understanding the &quot;what&quot;, the &quot;why&quot;, and the &quot;how&quot; in diseases is helpful in health care planning,
+emergence of patterns, formation of hypothesis, and formulation standards in medical practice.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;mortality-and-morbidity&quot;&gt;Mortality and Morbidity&lt;a class=&quot;zola-anchor&quot; href=&quot;#mortality-and-morbidity&quot; aria-label=&quot;Anchor link for: mortality-and-morbidity&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;These two terms are sometimes confused with each other. But in epidemiology, there are some differences.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Mortality is about the &lt;strong&gt;incidence&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;. Incidence is the number of new cases at a specific period of time. Whereas,
+morbidity is expressed as &lt;em&gt;incidence&lt;&#x2F;em&gt; or &lt;em&gt;prevalence&lt;&#x2F;em&gt;. Prevalence is the number of &lt;em&gt;&lt;strong&gt;existing&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; cases over a specific
+period of time, and thay may also include new cases as well.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;So if someone talks about &lt;em&gt;mortality rate&lt;&#x2F;em&gt;, they are talking about &lt;em&gt;incidence&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In reality, doing a survey or consensus for disease prevalence is easier because you will just need a sample of a population
+for counting the cases of disease on that specific period of time. Incidence is hard because you will have to observe
+a sample of &lt;em&gt;healthy&lt;&#x2F;em&gt; individuals until they manifest the disease.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;epidemic-pandemic-and-endemic&quot;&gt;Epidemic, Pandemic, and Endemic&lt;a class=&quot;zola-anchor&quot; href=&quot;#epidemic-pandemic-and-endemic&quot; aria-label=&quot;Anchor link for: epidemic-pandemic-and-endemic&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;An epidemic is a significant number of cases of a disease over a localized area in a period of time. A pandemic is just an
+epidemic but all over the globe. An endemic happens all over the world as well. There is a difference though. Both
+pandemic and epidemic threatens the health of many people and the chance to recover from that disease or may even cause
+significant amount of deaths. Whereas, an endemic disease can happen over a lifetime with predictable number
+of infections. An endemic disease may evolve further into either an epidemic or a pandemic depending on the evolution
+of the pathogen that causes the disease.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;infectious-diseases&quot;&gt;Infectious Diseases&lt;a class=&quot;zola-anchor&quot; href=&quot;#infectious-diseases&quot; aria-label=&quot;Anchor link for: infectious-diseases&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Diseases caused by organisms such as bacteria, parasites, and viruses are called &lt;em&gt;infectious diseases&lt;&#x2F;em&gt; or &lt;em&gt;communicable diseases&lt;&#x2F;em&gt;.
+These disease-causing organisms are also called &lt;em&gt;&lt;strong&gt;pathogens&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;. Our body has an internal environment suitable for
+microbial growth, thereby, making us prime targets for &lt;em&gt;infectious diseases&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;pathogens-or-infectious-agents&quot;&gt;Pathogens or Infectious Agents&lt;a class=&quot;zola-anchor&quot; href=&quot;#pathogens-or-infectious-agents&quot; aria-label=&quot;Anchor link for: pathogens-or-infectious-agents&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;A pathogen is a disease-causing organism. Its goal is to invade, multiply, and overwhelm their host. The host may experience
+physiological, behavioral, and even genetic changes which may lead to evident outside change or effects called symptoms. Some
+pathogens do not exhibit symptoms for their hosts are so called &lt;em&gt;asymptomatic&lt;&#x2F;em&gt;. Pathogen types are of the following:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;lecture&#x2F;mc1-epidemiology&#x2F;#bacteria&quot;&gt;Bacteria&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;lecture&#x2F;mc1-epidemiology&#x2F;#fungi&quot;&gt;Fungi&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;lecture&#x2F;mc1-epidemiology&#x2F;#parasites&quot;&gt;Parasites&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;lecture&#x2F;mc1-epidemiology&#x2F;#viruses&quot;&gt;Viruses&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;bacteria&quot;&gt;Bacteria&lt;a class=&quot;zola-anchor&quot; href=&quot;#bacteria&quot; aria-label=&quot;Anchor link for: bacteria&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Bacteria (singular: bacterium) are microscopic pathogens that reproduce rapidly after entering the host.
+Bacteria are usually harmless but when they multiply inside the body, they produce toxins that can cause
+illness. Not all bacteria are pathogenic. Some are essential within the human body such as &lt;em&gt;Lactobacillus
+reuteri&lt;&#x2F;em&gt; and even &lt;em&gt;Eschirichia coli&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;fungi&quot;&gt;Fungi&lt;a class=&quot;zola-anchor&quot; href=&quot;#fungi&quot; aria-label=&quot;Anchor link for: fungi&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Fungal infections and diseases usually happen when the host&#x27;s immune system is weakened e.g
+immuno-supressed, immuno-compromised.&lt;&#x2F;p&gt;
+&lt;p&gt;Disease results when fungi accidentally penetrate host barriers or when immunologic defects or other
+debilitating conditions exist that favor fungal entry and growth.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;parasites&quot;&gt;Parasites&lt;a class=&quot;zola-anchor&quot; href=&quot;#parasites&quot; aria-label=&quot;Anchor link for: parasites&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;A parasite is an organism that lives on or in a host organism and gets its food from or at the expense of
+its host. There are three main classes of parasites that can cause disease in humans: protozoa, helminths,
+and &lt;em&gt;ectoparasites&lt;&#x2F;em&gt;. The first two are considered to be &lt;em&gt;endoparasites&lt;&#x2F;em&gt; as they live inside their hosts.
+&lt;em&gt;Ectoparasites&lt;&#x2F;em&gt; live outside their hosts. Tapeworms are endoparasites; mosquitoes and fleas are
+ectoparasites.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;viruses&quot;&gt;Viruses&lt;a class=&quot;zola-anchor&quot; href=&quot;#viruses&quot; aria-label=&quot;Anchor link for: viruses&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;A virus is an infectious particle that multiples only inside their host&#x27;s cells. They are contagious and
+can spread fast. Viruses themselves are not alive in a sense since they do not contain the necessary
+machinery and characteristic for which we define life as &quot;alive&quot;. The COVID-19 pandemic is caused
+by a coronavirus called as &lt;strong&gt;SARS-CoV-2&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;mode-of-transmission&quot;&gt;Mode of Transmission&lt;a class=&quot;zola-anchor&quot; href=&quot;#mode-of-transmission&quot; aria-label=&quot;Anchor link for: mode-of-transmission&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;There are many ways of how disease spreads.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Direct Contact&lt;&#x2F;strong&gt;. Pathogens spread through direct contact from an infected host e.g. kissing, sexual
+intercourse, coughing (as &lt;strong&gt;droplet transmission&lt;&#x2F;strong&gt;).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Indirect Contact&lt;&#x2F;strong&gt;.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fomites&lt;&#x2F;strong&gt;. Pathogens that live longer on surfaces can still infect new susceptible hosts e.g.
+door knobs, garbage cans, smartphone screens&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Vectors&lt;&#x2F;strong&gt;. Some pathogens live inside other organisms that target their hosts as well e.g. mosquitoes
+, ticks and mites.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Airborne&#x2F;Aerosol transmission&lt;&#x2F;strong&gt;. Some infectious agents stay in the air (as aerosols) for long periods of time to infect new hosts.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;disease-vectors&quot;&gt;Disease Vectors&lt;a class=&quot;zola-anchor&quot; href=&quot;#disease-vectors&quot; aria-label=&quot;Anchor link for: disease-vectors&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;A disease &lt;strong&gt;vector&lt;&#x2F;strong&gt; or just &lt;strong&gt;vector&lt;&#x2F;strong&gt; is an organism that spreads disease by infecting the
+host organism as a &lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;lecture&#x2F;mc1-epidemiology&#x2F;#parasites&quot;&gt;parasite&lt;&#x2F;a&gt; or spreading the pathogen through physical contact by picking up
+small infectious agents.&lt;&#x2F;p&gt;
+&lt;p&gt;Diseases transmitted by vectors are called &lt;strong&gt;vector-borne&lt;&#x2F;strong&gt; diseases. Many of these vector-borne disease
+are &lt;em&gt;&lt;strong&gt;zoonotic diseases&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; which are diseases that can be transmitted directly or indirectly between
+animals and humans.&lt;&#x2F;p&gt;
+&lt;p&gt;Vectors are classified based on how they spread disease. In reality, some of these modes of transmission
+are in combination, and not just one mode. For instance, a &lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;lecture&#x2F;mc1-epidemiology&#x2F;#biological-vectors&quot;&gt;biological vector&lt;&#x2F;a&gt; may
+also spread the disease just through &lt;em&gt;physical contact&lt;&#x2F;em&gt; which is what a
+&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;lecture&#x2F;mc1-epidemiology&#x2F;#mechanical-vectors&quot;&gt;mechanical vector&lt;&#x2F;a&gt; would do. There is a distinction but they are not really
+set in stone.&lt;&#x2F;p&gt;
+&lt;p&gt;The problem with vector-borne diseases is that their transmission modes can spread through vast
+distances. Even humans can be considered vectors as was seen on how COVID-19 spread with our existing
+technological marvels for travel e.g. aviation, seafaring, land vehicles.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;biological-vectors&quot;&gt;Biological Vectors&lt;a class=&quot;zola-anchor&quot; href=&quot;#biological-vectors&quot; aria-label=&quot;Anchor link for: biological-vectors&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h4&gt;
+&lt;p&gt;Biological vectors are organisms carrying pathogens within their bodies where these pathogens reside
+and multiply. Mosquitoes, ticks and mammals infected with rabies are examples of biological vectors.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;mechanical-vectors&quot;&gt;Mechanical Vectors&lt;a class=&quot;zola-anchor&quot; href=&quot;#mechanical-vectors&quot; aria-label=&quot;Anchor link for: mechanical-vectors&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h4&gt;
+&lt;p&gt;These are vectors that spread disease through physical contact. Flies may spread infectious agents from
+their surroundings to unsuspecting hosts by salivating on food, shedding skin or touching the host.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;portals-of-entry-and-exit&quot;&gt;Portals of Entry and Exit&lt;a class=&quot;zola-anchor&quot; href=&quot;#portals-of-entry-and-exit&quot; aria-label=&quot;Anchor link for: portals-of-entry-and-exit&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;The portal of entry refers to the manner in which a pathogen enters a susceptible host. The portal of entry
+must provide access to tissues in which the pathogen can multiply or a toxin can act. Often, infectious
+agents use the same portal to enter a new host that they used to exit the source host.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;host-pathogen-cycle&quot;&gt;Host-Pathogen Cycle&lt;a class=&quot;zola-anchor&quot; href=&quot;#host-pathogen-cycle&quot; aria-label=&quot;Anchor link for: host-pathogen-cycle&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;This cycle is a simplified description of how pathogens infect their host.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;transmission&quot;&gt;Transmission&lt;a class=&quot;zola-anchor&quot; href=&quot;#transmission&quot; aria-label=&quot;Anchor link for: transmission&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Pathogens can be transmitted from person to person through various routes, such as direct contact (touching, kissing, sexual contact),
+indirect contact (contaminated objects, water, food), or airborne transmission (through respiratory droplets).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;colonization&quot;&gt;Colonization&lt;a class=&quot;zola-anchor&quot; href=&quot;#colonization&quot; aria-label=&quot;Anchor link for: colonization&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Once a pathogen enters the host&#x27;s body, it must attach to and colonize the host&#x27;s tissues. Some pathogens can survive in the host&#x27;s environment
+without causing disease, while others require specific conditions to colonize.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;invasion&quot;&gt;Invasion&lt;a class=&quot;zola-anchor&quot; href=&quot;#invasion&quot; aria-label=&quot;Anchor link for: invasion&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;After colonization, the pathogen can invade host cells and tissues, causing damage and triggering an immune response. Pathogens may produce toxins
+that damage host tissues and organs or cause inflammation, leading to symptoms such as fever, pain, and swelling.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;replication&quot;&gt;Replication&lt;a class=&quot;zola-anchor&quot; href=&quot;#replication&quot; aria-label=&quot;Anchor link for: replication&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Pathogens can replicate inside host cells, producing more infectious particles that can spread to other parts of the body or be transmitted to other individuals. The host&#x27;s immune system responds to the pathogen by producing antibodies and other immune
+cells to fight off the infection. The pathogen may evolve to evade the host&#x27;s immune defenses, leading to chronic infections or recurring episodes of disease.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-pathogen-disease-progression&quot;&gt;The Pathogen-Disease Progression&lt;a class=&quot;zola-anchor&quot; href=&quot;#the-pathogen-disease-progression&quot; aria-label=&quot;Anchor link for: the-pathogen-disease-progression&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;This section explains what a pathogen does once it infects the host.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;incubation-stage&quot;&gt;Incubation stage&lt;a class=&quot;zola-anchor&quot; href=&quot;#incubation-stage&quot; aria-label=&quot;Anchor link for: incubation-stage&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;During this stage, the pathogen enters the host&#x27;s body and begins to multiply. The host does not yet show any signs or symptoms
+of the disease. The length of the incubation period can vary depending on the type of pathogen and the host&#x27;s immune system&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;prodromal-stage&quot;&gt;Prodromal stage&lt;a class=&quot;zola-anchor&quot; href=&quot;#prodromal-stage&quot; aria-label=&quot;Anchor link for: prodromal-stage&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;During this stage, the host begins to experience mild symptoms, such as fatigue, headache, or fever. These symptoms are not yet
+specific to the disease, but they may indicate that the host&#x27;s immune system is starting to respond to the pathogen&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;acute-stage&quot;&gt;Acute stage&lt;a class=&quot;zola-anchor&quot; href=&quot;#acute-stage&quot; aria-label=&quot;Anchor link for: acute-stage&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;During this stage, the disease reaches its full intensity and the host experiences the characteristic symptoms of the disease.
+The pathogen has replicated and spread throughout the host&#x27;s body, causing damage to tissues and organs. This is the stage when
+the disease is most contagious and can spread to other individuals&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;convalescent-stage&quot;&gt;Convalescent stage&lt;a class=&quot;zola-anchor&quot; href=&quot;#convalescent-stage&quot; aria-label=&quot;Anchor link for: convalescent-stage&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;During this stage, the host begins to recover from the disease. Symptoms gradually disappear, and the host&#x27;s immune system fights
+off the remaining pathogen. In some cases, the pathogen may remain dormant in the host&#x27;s body and cause a relapse of the disease at a later time.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;some-factors-that-increase-chances-of-disease-spread&quot;&gt;Some Factors that Increase Chances of Disease Spread&lt;a class=&quot;zola-anchor&quot; href=&quot;#some-factors-that-increase-chances-of-disease-spread&quot; aria-label=&quot;Anchor link for: some-factors-that-increase-chances-of-disease-spread&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Outside factors have an important role in increasing the chances of disease spread. These include the
+environment such as a hospital setting, or societal problems such as overpopulation. Here are the
+major factors that increase chances of disease spread.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;antimicrobial-resistance&quot;&gt;Antimicrobial Resistance&lt;a class=&quot;zola-anchor&quot; href=&quot;#antimicrobial-resistance&quot; aria-label=&quot;Anchor link for: antimicrobial-resistance&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The dependence on antimicrobial drugs have increased drastically within a span of five decades since the
+inception of penecillin. This is a growing problem because microorganisms can adapt faster to these
+drugs and become resistant to it. The concern for &lt;em&gt;&lt;strong&gt;superbugs&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; emerging from this day and age is a
+threat to medical care and drug manufacturers.&lt;&#x2F;p&gt;
+&lt;p&gt;Mitigations exist by focusing on improving the host&#x27;s immune system&#x27;s response to infections rather than
+attacking pathogens through chemical warfare. Soaps and other productsfor various purposes are now required
+to not put antimicrobial components into their products as they may increase the chances of emerging
+antimicrobial resistant microorganisms.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;overpopulation&quot;&gt;Overpopulation&lt;a class=&quot;zola-anchor&quot; href=&quot;#overpopulation&quot; aria-label=&quot;Anchor link for: overpopulation&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;As the human population around the world is growing at an exponential pace, the chances of infecting
+thousands and millions of individuals from various pathogens have increased as well. Not only that,
+but some pathogens have more time to evolve within subsets of populations and may become a threat
+in the future.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;habitat-destruction&quot;&gt;Habitat Destruction&lt;a class=&quot;zola-anchor&quot; href=&quot;#habitat-destruction&quot; aria-label=&quot;Anchor link for: habitat-destruction&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;As we keep on destroying the environment for more space, we are stepping closer to unknown diseases that
+where never known to infect humans.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;climate-change&quot;&gt;Climate Change&lt;a class=&quot;zola-anchor&quot; href=&quot;#climate-change&quot; aria-label=&quot;Anchor link for: climate-change&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Same as above, but happens globally. Climate change introduces changes as well on new vectors of diseases
+that are normally seen in the wild. As we invade more and more and change the global biosphere, we are
+in for ourselves for a questionable future in health and emerging diseases.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;review&quot;&gt;Review&lt;a class=&quot;zola-anchor&quot; href=&quot;#review&quot; aria-label=&quot;Anchor link for: review&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Cite an example for why it&#x27;s important to remove antimicrobial components on skin products.&lt;&#x2F;li&gt;
+&lt;li&gt;Some bacteria are normally non-pathogenic. Explain how some of these bacteria become pathogenic
+through &lt;em&gt;&lt;strong&gt;horizontal gene transfer&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;How do diseases spread? Cite an example for each mode of transmission.&lt;&#x2F;li&gt;
+&lt;li&gt;What is the study of disease dynamics?&lt;&#x2F;li&gt;
+&lt;li&gt;Why are vaccinations important? Why is acquired immunity not enough?&lt;&#x2F;li&gt;
+&lt;li&gt;Why are basic concepts of immunity flawed in our course? What is the reality about acquired immunity and vaccinations?&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h1 id=&quot;list-of-terms-and-definitions&quot;&gt;List of terms and definitions&lt;a class=&quot;zola-anchor&quot; href=&quot;#list-of-terms-and-definitions&quot; aria-label=&quot;Anchor link for: list-of-terms-and-definitions&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;epidemiology&lt;&#x2F;strong&gt;. a study of the distribution of health and disease in a population.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;pandemic&lt;&#x2F;strong&gt;. a worldwide uncontrollable spread of a disease.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;endemic&lt;&#x2F;strong&gt;. a disease that is not a threat but is consistently present.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;epidemic&lt;&#x2F;strong&gt;. an uncontrollable spread of a disease in a particular region. it may evolve into a pandemic.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;patient zero&lt;&#x2F;strong&gt;. the first contact of infection of a disease. may be known or unknown.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;shedding&lt;&#x2F;strong&gt;. a shedding of infectious particles from the host to the outside environment. it increases chance
+of infecting new hosts.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;reinfection&lt;&#x2F;strong&gt;. self-explanatory.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;susceptible&lt;&#x2F;strong&gt;. healthy hosts that are yet to be infected.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;infection&lt;&#x2F;strong&gt;. a host that is now invaded by pathogens.
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;viral infection&lt;&#x2F;strong&gt;. caused by a virus.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;fungal infection&lt;&#x2F;strong&gt;. caused by a fungus.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;parasitic infection&lt;&#x2F;strong&gt;. usually refers to worms or large parasites.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;bacterial infection&lt;&#x2F;strong&gt;. caused by bacteria.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;pathogen&lt;&#x2F;strong&gt;. a particle or organism that causes disease. &lt;em&gt;also called &lt;strong&gt;infectious agents&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;antimicrobial resistance&lt;&#x2F;strong&gt;. microorganisms that are resistant to antimicrobial treatments or drugs.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;superbug&lt;&#x2F;strong&gt;. a microorganism that is considered to be a threat because of its high resistance in various antimicrobial drugs.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;&quot;flatten the curve&quot;&lt;&#x2F;strong&gt;. a phrase used by epidemiologists
+and healthcare professionals to describe a slow and&#x2F;or low rate of infection.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;microbiota&lt;&#x2F;strong&gt;. refers to the microbial ecosystem within the human body.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;COVID-19&lt;&#x2F;strong&gt;. the disease caused by the SARS-CoV-2 coronavirus.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;Enterohemorrhagic Escherichia coli&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;. a strain of &lt;em&gt;E. coli&lt;&#x2F;em&gt; that can cause internal bleeding in the gut.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;AIDS&lt;&#x2F;strong&gt;. caused by the Human Immunodeficiency Virus or &lt;strong&gt;HIV&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;strain&lt;&#x2F;strong&gt;. a species of a microorganism that may have different traits and characteristics than the others of the same species.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;variant&lt;&#x2F;strong&gt;. not to be confused with strains. this focuses on the genetic code of the pathogen. variants may exhibit different physical properties called &lt;strong&gt;strains&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;fomites&lt;&#x2F;strong&gt;. infectious agents that are attached to surfaces that may still infect hosts through physical
+contact.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;contamination&lt;&#x2F;strong&gt;. unintentional introduction of microorganisms of another species, strain, or variant in pure culture.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;antiviral&lt;&#x2F;strong&gt;. drugs that help you fight against viral pathogens. can also be preventative e.g. vaccines&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;antibacterial&lt;&#x2F;strong&gt;. drugs that help you fight against bacterial pathogens.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;antimycotic&lt;&#x2F;strong&gt;. drugs that help you fight against fungal pathogens.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;chronic disease&lt;&#x2F;strong&gt;. diseases caused by host lifestyle e.g. obesity, heavy smoking&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;infectious disease&lt;&#x2F;strong&gt;. diseases caused by pathogens.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;non-pathogenic&lt;&#x2F;strong&gt;. describes a microorganism that is not harmful.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;disease&lt;&#x2F;strong&gt;. describes a disorder of the structure or function in a host. can be caused by lifestyle or pathogen infection.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;symptoms&lt;&#x2F;strong&gt;. a visual manifestation of the disease e.g. coughing, rashes.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;asymptomatic&lt;&#x2F;strong&gt;. no visible manifestation of an infection or disease from the host.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;herd immunity&lt;&#x2F;strong&gt;. a large number of the population becomes immune to a disease acting as a barrier to prevent further infection.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;vaccine&lt;&#x2F;strong&gt;. a substance that is used to give immunity. it may vary in formualation e.g. viral components,
+weakened live virus, fragments of antigens, or genetic material. comes from the French and Latin word
+&quot;vacca&quot; from the virus of cowpox which they call &lt;em&gt;vaccinia&lt;&#x2F;em&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;novel pathogen&lt;&#x2F;strong&gt;. used to denote a pathogen that was never before seen or just have been observed in
+medical literature e.g. &lt;em&gt;novel virus&lt;&#x2F;em&gt;, &lt;em&gt;novel bacteria&lt;&#x2F;em&gt;. The COVID-19 was caused by a novel coronavirus for example.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;zoonosis&lt;&#x2F;strong&gt;. transfer of pathogens between host animal species e.g. birds to pigs to humans.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;spillover&lt;&#x2F;strong&gt;. same as above. however, it describes more of an evolution of the disease to break host barriers infecting new kinds of hosts. also called as &lt;strong&gt;zoonotic spillover&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;acquired immunity&lt;&#x2F;strong&gt;. immunity acquired after a recovery from an infection. reinfection is less likely.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;droplets&lt;&#x2F;strong&gt;. pathogen-containing fluid droplets. usually aerosolized through coughing or sneezing.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Understanding the Immune System</title>
+        <published>2023-04-15T00:00:00+00:00</published>
+        <updated>2023-04-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/lecture/mc1-immune-system/"/>
+        <id>https://uncomfyhalomacro.pl/lecture/mc1-immune-system/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/lecture/mc1-immune-system/">&lt;p&gt;The &lt;strong&gt;immune system&lt;&#x2F;strong&gt; is a host defense system and comprises many biological
+structures ranging from white blood cells to entire organs.&lt;&#x2F;p&gt;
+&lt;p&gt;The function of the immune system is to protect the host against foreign invaders
+called &lt;em&gt;pathogens&lt;&#x2F;em&gt;. Pathogens can be anything from a virus, to a bacterium, and even
+a multicellular parasite including cancer cells.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;layered-immunity&quot;&gt;Layered Immunity&lt;a class=&quot;zola-anchor&quot; href=&quot;#layered-immunity&quot; aria-label=&quot;Anchor link for: layered-immunity&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;There are two subsystems of the immune system:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;lecture&#x2F;mc1-immune-system&#x2F;#innate-immune-system&quot;&gt;innate immune system&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;lecture&#x2F;mc1-immune-system&#x2F;#adaptive-immune-system&quot;&gt;adaptive immune system&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;These subsystems provide a &lt;em&gt;layer of defenses&lt;&#x2F;em&gt; against pathogens that keep our body
+lessen the chances of infection or further damage if otherwise.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cells-involved-in-the-immune-system&quot;&gt;Cells involved in the immune system&lt;a class=&quot;zola-anchor&quot; href=&quot;#cells-involved-in-the-immune-system&quot; aria-label=&quot;Anchor link for: cells-involved-in-the-immune-system&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The cells involved in the immune system are called &lt;em&gt;leukocytes&lt;&#x2F;em&gt; or &quot;white blood cells&quot;.
+Some of these cells are developed in the bone marrow, whereas others are further developed in
+the lymphatic system, hence, a subset of leukocytes are called &lt;em&gt;lymphocytes&lt;&#x2F;em&gt;. To destroy pathogens,
+leukocytes perform phagocytosis, thereby calling some of them as &lt;em&gt;phagocytes&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;innate-immune-system&quot;&gt;Innate Immune System&lt;a class=&quot;zola-anchor&quot; href=&quot;#innate-immune-system&quot; aria-label=&quot;Anchor link for: innate-immune-system&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The innate immune system usually begins with the physical barriers that prevents
+pathogens from entering the body. These includes our own skin barrier, mucus
+membranes and the acidity of the stomach. Cells involved in the innate immune system
+are of the following:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Eosinophil&lt;&#x2F;li&gt;
+&lt;li&gt;Basophil&lt;&#x2F;li&gt;
+&lt;li&gt;Neutrophil&lt;&#x2F;li&gt;
+&lt;li&gt;Monocyte&lt;&#x2F;li&gt;
+&lt;li&gt;Mast Cell&lt;&#x2F;li&gt;
+&lt;li&gt;Macrophage&lt;&#x2F;li&gt;
+&lt;li&gt;Dendritic Cell&lt;&#x2F;li&gt;
+&lt;li&gt;Natural killer cells&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This &lt;a href=&quot;https:&#x2F;&#x2F;bio.libretexts.org&#x2F;Bookshelves&#x2F;Human_Biology&#x2F;Human_Biology_(Wakim_and_Grewal)&#x2F;20%3A_Immune_System&#x2F;20.4%3A_Innate_Immune_System&quot;&gt;link&lt;&#x2F;a&gt; contains descriptions for each of these cells.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;inflammation-and-fever&quot;&gt;Inflammation and Fever&lt;a class=&quot;zola-anchor&quot; href=&quot;#inflammation-and-fever&quot; aria-label=&quot;Anchor link for: inflammation-and-fever&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Inflammation is the part of the response of the immune system, also called &lt;em&gt;inflammatory response&lt;&#x2F;em&gt;. The purpose of this is
+to increase blood flow to the damaged site through vasodilation. Inflammation
+is triggered by either of the two substances: &lt;strong&gt;histamine&lt;&#x2F;strong&gt;, and &lt;strong&gt;cytokine&lt;&#x2F;strong&gt;. These substances
+are released by the phagocytic cells.&lt;&#x2F;p&gt;
+&lt;p&gt;Fever is the most misunderstood immune response. But it is believed that a body temperature that is higher than normal discourages pathogen reproduction.
+A normal temperature can vary from person to person, but it is usually around 98.6 °F (37 °C). A fever is not a disease. It is usually a sign that your body is trying to fight an illness or infection.&lt;&#x2F;p&gt;
+&lt;p&gt;Infections cause most fevers. You get a fever because your body is trying to kill the virus or bacteria that caused the infection. Most of those bacteria and viruses do well when your body is at your normal temperature. But if
+you have a fever, it is harder for them to survive. Fever also activates your body&#x27;s immune system.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;adaptive-immune-system&quot;&gt;Adaptive Immune System&lt;a class=&quot;zola-anchor&quot; href=&quot;#adaptive-immune-system&quot; aria-label=&quot;Anchor link for: adaptive-immune-system&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The adaptive immune system specializes on stopping or killing pathogens using specific
+methods of attack. The difference between innate and adaptive immunity is the fact that
+the latter is &lt;em&gt;specific&lt;&#x2F;em&gt;. This means that the cells involved for this pathogen differs
+for another pathogen. Cells involved in adaptive immunity are many but these are
+the most notable in literature: B cells and T cells (both are lymphocytes).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;b-lymphocyte&quot;&gt;B Lymphocyte&lt;a class=&quot;zola-anchor&quot; href=&quot;#b-lymphocyte&quot; aria-label=&quot;Anchor link for: b-lymphocyte&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;B lymphocytes are cells in the adaptive immune system that specializes in
+the production of &lt;strong&gt;antibodies&lt;&#x2F;strong&gt;. Antibodies is a chemical substance (usually Y-shaped in structure)
+that acts as a &quot;plug&quot; or &quot;missile&quot; to kill or stop a pathogen in its tracks e.g. stopping
+metabolic functions or perforation of the pathogen&#x27;s outer membrane.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;t-lymphocyte&quot;&gt;T Lymphocyte&lt;a class=&quot;zola-anchor&quot; href=&quot;#t-lymphocyte&quot; aria-label=&quot;Anchor link for: t-lymphocyte&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;T lymphocytes are cells in the adaptive immune system that are specialized to kill
+a specific pathogen. Each T lymphocyte are unique from each other and finding the &lt;em&gt;right&lt;&#x2F;em&gt;
+T lymphocyte may take longer during the symptomatic phase of the infection. While these
+cells also kill and engulf pathogens, they also revive macrophages and natural killer cells
+to kill pathogens again.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;memory-cells&quot;&gt;&quot;Memory&quot; Cells&lt;a class=&quot;zola-anchor&quot; href=&quot;#memory-cells&quot; aria-label=&quot;Anchor link for: memory-cells&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;After the immune system finally finishes off the last remaining invader, the remnant T and B cells
+become &quot;memory&quot; cells. &quot;Memory&quot; cells are so called because they are used to &quot;remember&quot;
+what to do when such a pathogen that was encountered before invades again. This reduces the risk
+of damage and prevents most reinfections of which we all know as &lt;em&gt;&lt;strong&gt;immunity&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; or &lt;em&gt;&lt;strong&gt;acquired immunity&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;other-purpose-of-the-immune-system&quot;&gt;Other purpose of the immune system&lt;a class=&quot;zola-anchor&quot; href=&quot;#other-purpose-of-the-immune-system&quot; aria-label=&quot;Anchor link for: other-purpose-of-the-immune-system&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;The immune system has another role to prevent bodily damage. This one is to prevent
+our own cells to become tumors or cancer cells or kill them before they overwhelm our body.
+This is what we call as &lt;em&gt;&lt;strong&gt;immune surveillance&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;self-and-non-self&quot;&gt;Self and Non-Self&lt;a class=&quot;zola-anchor&quot; href=&quot;#self-and-non-self&quot; aria-label=&quot;Anchor link for: self-and-non-self&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;The body has the ability to identify which cells are &quot;self&quot; and which are &quot;non-self&quot;. In biological and medical
+terms, cells use &lt;em&gt;antigens&lt;&#x2F;em&gt; to identify &quot;self&quot; and &quot;non-self&quot;. Antigens are chemical markers on a cell&#x27;s surface e.g.
+pathogens. Our immune system use these chemical markers to detect foreign cells in the body and destroy them.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;allergies&quot;&gt;Allergies&lt;a class=&quot;zola-anchor&quot; href=&quot;#allergies&quot; aria-label=&quot;Anchor link for: allergies&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Sometimes our body overexaggerates immune responses. Pollen, dust, and other types of mostly harmless substances,
+our body just destroyes them no problem. But other&#x27;s immune systems are overzealous when trying to remove these
+&lt;em&gt;allergens&lt;&#x2F;em&gt;. Hence, allergies exist as a &quot;bug&quot; of our immune system.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;further-reading&quot;&gt;Further Reading&lt;a class=&quot;zola-anchor&quot; href=&quot;#further-reading&quot; aria-label=&quot;Anchor link for: further-reading&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Read the following. Don&#x27;t skip. Most of the exam is based on this blog and the links below.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;bio.libretexts.org&#x2F;Bookshelves&#x2F;Human_Biology&#x2F;Human_Biology_(Wakim_and_Grewal)&#x2F;20%3A_Immune_System&#x2F;20.4%3A_Innate_Immune_System&quot;&gt;Libretexts Chapter 20.4 - Immune System&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.khanacademy.org&#x2F;test-prep&#x2F;mcat&#x2F;organ-systems&#x2F;the-immune-system&#x2F;v&#x2F;types-of-immune-responses-innate-and-adaptive-humoral-vs-cell-mediated&quot;&gt;Khan Academy Types of Immune Responses&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;review&quot;&gt;Review&lt;a class=&quot;zola-anchor&quot; href=&quot;#review&quot; aria-label=&quot;Anchor link for: review&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;ol&gt;
+&lt;li&gt;What is an allergy?&lt;&#x2F;li&gt;
+&lt;li&gt;What will be the first response of your body when it&#x27;s stung by a bee?&lt;&#x2F;li&gt;
+&lt;li&gt;Find out the cells that release histamines.&lt;&#x2F;li&gt;
+&lt;li&gt;What is a cytokine?&lt;&#x2F;li&gt;
+&lt;li&gt;Research about the complement system.&lt;&#x2F;li&gt;
+&lt;li&gt;Describe all pathogen types.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+        
+    </entry>
+</feed>

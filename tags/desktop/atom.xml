@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - desktop</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/desktop/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-05-28T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/desktop/atom.xml</id>
+    <entry xml:lang="en">
+        <title>How I use MicroOS Desktop</title>
+        <published>2023-05-28T00:00:00+00:00</published>
+        <updated>2023-05-28T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/13/"/>
+        <id>https://uncomfyhalomacro.pl/blog/13/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/13/">&lt;h1 id=&quot;update-on-my-current-usage&quot;&gt;Update on my current usage&lt;a class=&quot;zola-anchor&quot; href=&quot;#update-on-my-current-usage&quot; aria-label=&quot;Anchor link for: update-on-my-current-usage&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;strong&gt;I stopped using it&lt;&#x2F;strong&gt;. MicroOS has some of it&#x27;s perks but the current state of the operating system is still in it&#x27;s beta&#x2F;alpha state
+so some moving parts are inherently broken. It&#x27;s probably because of the lack of contributors and interest from SUSE and openSUSE
+for the desktop variant of MicroOS. As much as I want to become a contributor, I realize I lack the time to do so because
+of work and personal problems and issues I still have to fix a lot in real life. If you still want to know how I use it, continue reading.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;MicroOS Desktop is a &lt;em&gt;desktop variant&lt;&#x2F;em&gt; of the openSUSE&#x27;s MicroOS for servers and containerized workflows. Please do note, although they are
+similar, they are separate products and have different goals.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Issues in MicroOS for server should be issued over there and issues in MicroOS Desktop
+should be on MicroOS Desktop.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The goal of the desktop is as follows:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;immutability&lt;&#x2F;li&gt;
+&lt;li&gt;isolation of system and user software&lt;&#x2F;li&gt;
+&lt;li&gt;containerized workflows&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;immutability&quot;&gt;Immutability&lt;a class=&quot;zola-anchor&quot; href=&quot;#immutability&quot; aria-label=&quot;Anchor link for: immutability&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Immutable desktops are nothing new. Windows and MacOS are immutable desktops since &lt;em&gt;you cannot
+change the core part of the system&lt;&#x2F;em&gt; unless you have some permissions and workarounds to do it e.g.
+modifying the system registry. For years, this was the standard of modern OSses including Android.&lt;&#x2F;p&gt;
+&lt;p&gt;Traditional desktop linux and nix systems are &lt;em&gt;mutable&lt;&#x2F;em&gt; which means that the user can modify
+each part of the core system. Although this advantage is also a disadvantage, nothing is perfect.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;advantages-of-an-immutable-system&quot;&gt;Advantages of an immutable system&lt;a class=&quot;zola-anchor&quot; href=&quot;#advantages-of-an-immutable-system&quot; aria-label=&quot;Anchor link for: advantages-of-an-immutable-system&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Being immutable is inherently an advantage of an immutable desktop system. It is hard to
+modify the core part of the system and updates are &quot;atomic&quot; which means the whole system
+will update as an immutable system.&lt;&#x2F;p&gt;
+&lt;p&gt;Users are encouraged to use workflows through sandboxing or containers. In this case, &lt;strong&gt;flatpaks&lt;&#x2F;strong&gt;,
+&lt;strong&gt;nix&lt;&#x2F;strong&gt;, &lt;strong&gt;distrobox&lt;&#x2F;strong&gt;, &lt;strong&gt;toolbx&lt;&#x2F;strong&gt;, &lt;strong&gt;docker&lt;&#x2F;strong&gt; and &lt;strong&gt;podman&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For desktop software, it is advisable to use flatpaks. &lt;em&gt;Some users do use toolbx and distrobox for this&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For development environment, they are encouraged to use distrobox and toolbx. Others may prefer nix.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;disadvantages&quot;&gt;Disadvantages&lt;a class=&quot;zola-anchor&quot; href=&quot;#disadvantages&quot; aria-label=&quot;Anchor link for: disadvantages&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Being immutable &lt;em&gt;&lt;strong&gt;may&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; also be a disadvantage. It&#x27;s very self-explanatory. You cannot modify
+your system as much as you like to.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;security&quot;&gt;Security&lt;a class=&quot;zola-anchor&quot; href=&quot;#security&quot; aria-label=&quot;Anchor link for: security&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Immutable desktops increases security of the core system since it&#x27;s not welcoming any modifications.
+Since the root file system is read-only, it&#x27;s not easy to tamper the system and thus, users
+can avoid any vulnerabilities &lt;em&gt;&lt;strong&gt;unless the vulnerability is from the package and software installed
+from the root file system&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;my-workflow&quot;&gt;My Workflow&lt;a class=&quot;zola-anchor&quot; href=&quot;#my-workflow&quot; aria-label=&quot;Anchor link for: my-workflow&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;For software that I want to use e.g. Firefox, flatpaks are the way to go. Flatpaks are the best
+when it comes to these kind of distributions as they are self-contained and do not pollute
+the host system with ridiculously brittle and large dependencies when installing through
+the system&#x27;s package manager.&lt;&#x2F;p&gt;
+&lt;p&gt;For developing and packaging software and also for learning, and note taking, I use distrobox.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;how-i-use-distrobox&quot;&gt;How I use distrobox&lt;a class=&quot;zola-anchor&quot; href=&quot;#how-i-use-distrobox&quot; aria-label=&quot;Anchor link for: how-i-use-distrobox&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;I created &lt;code&gt;mainbox&lt;&#x2F;code&gt; executable.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;!&#x2F;usr&#x2F;bin&#x2F;bash&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;distrobox&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; enter&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;n&lt;&#x2F;span&gt; tumbleweed &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-language z-shell&quot;&gt;@&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is for my development environment such as notetaking, learning a new language, or programming tasks.&lt;&#x2F;p&gt;
+&lt;p&gt;I also created &lt;code&gt;rootbox&lt;&#x2F;code&gt; executable.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;!&#x2F;usr&#x2F;bin&#x2F;bash&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;distrobox-enter&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;root&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;name&lt;&#x2F;span&gt; opensuse-build-service &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-language z-shell&quot;&gt;@&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is for openSUSE Build Service related stuff since I am a volunteer packager there. I also set
+the &lt;code&gt;--home&lt;&#x2F;code&gt; flag when creating this podman container. The &lt;code&gt;--home&lt;&#x2F;code&gt; flag helps you have a custom
+&lt;code&gt;$HOME&lt;&#x2F;code&gt; inside your container. It avoids clutter on your &lt;em&gt;actual home directory&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;For now, I am still new to MicroOS Desktop and I still experience some bugs here and there because
+I use the KDE Plasma variant of MicroOS which is known to be still in it&#x27;s &lt;strong&gt;alpha&lt;&#x2F;strong&gt; stage. This
+means, it&#x27;s not yet considered for daily use &lt;em&gt;even though some users are now using it&lt;&#x2F;em&gt;. To help
+improve the experience, it&#x27;s best to file bug reports and propose suggestions to the MicroOS
+Plasma Desktop maintainers and contributors. If you are privileged to have the free time to
+contribute, consider offering your skills and services as well.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;troubleshooting&quot;&gt;Troubleshooting&lt;a class=&quot;zola-anchor&quot; href=&quot;#troubleshooting&quot; aria-label=&quot;Anchor link for: troubleshooting&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;blurry-fonts-on-kde-plasma&quot;&gt;Blurry fonts on KDE Plasma&lt;a class=&quot;zola-anchor&quot; href=&quot;#blurry-fonts-on-kde-plasma&quot; aria-label=&quot;Anchor link for: blurry-fonts-on-kde-plasma&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Install all the &lt;code&gt;xdg-desktop-portal&lt;&#x2F;code&gt; implementations especially gnome and gtk. Blurry fonts are usually affecting
+gtk apps and not qt apps.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;issues&quot;&gt;Issues&lt;a class=&quot;zola-anchor&quot; href=&quot;#issues&quot; aria-label=&quot;Anchor link for: issues&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;NVIDIA drivers don&#x27;t load as fast causing some issues with the login manager. Workarounds is a force &lt;code&gt;systemctl restart display-manager.service&lt;&#x2F;code&gt;.
+I am not sure what&#x27;s causing it as there are no logs. This does not happen on vanilla openSUSE TumbleWeed.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Is Linux (as a desktop) normie friendly already?</title>
+        <published>2023-04-27T00:00:00+00:00</published>
+        <updated>2023-04-29T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/10/"/>
+        <id>https://uncomfyhalomacro.pl/blog/10/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/10/">&lt;h1 id=&quot;disclaimer&quot;&gt;Disclaimer&lt;a class=&quot;zola-anchor&quot; href=&quot;#disclaimer&quot; aria-label=&quot;Anchor link for: disclaimer&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I am not really a fan of fighting over which operating system people use, but I do hate
+Arch elitists because most of them are morons.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;my-introduction-to-linux&quot;&gt;My introduction to Linux&lt;a class=&quot;zola-anchor&quot; href=&quot;#my-introduction-to-linux&quot; aria-label=&quot;Anchor link for: my-introduction-to-linux&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I became a linux user since the start of the COVID-19 pandemic because I need to have a working computer that
+works with the slowest hardware which was a Lenovo IdeaPad with Intel i3 (two cores with SMTP) and 8GB RAM.
+I forgot the exact spec, but it was around there. But I think I am not like other first time users. Instead
+of going with Ubuntu as it is the most popular distro, I started with Debian stable. And yes, of course it has
+outdated packages which for me at that time was not relevant as I only need it for mundane tasks such as
+writing documents and moving files around. After a few months, I distrohopped to Kubuntu, Xubuntu, Artix, Manjaro
+and on the New Year of 2021, I hopped to Arch and stayed there for 6 months. The reason I found myself in
+rolling release distros is that I want to have the latest bleeding edge software. However, the desktop
+experience between different release models seems to be similar nor different. Because the fundamentals of a desktop
+is for it to be used as one with the most basic of software. However, I am not saying there are no flaws
+using Linux as a desktop.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;linux-as-a-desktop&quot;&gt;Linux as a desktop&lt;a class=&quot;zola-anchor&quot; href=&quot;#linux-as-a-desktop&quot; aria-label=&quot;Anchor link for: linux-as-a-desktop&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Desktop Linux is not as popular. However, just because it&#x27;s not as popular, it does not mean that it is not usable.
+During my first time using Debian and ignoring the fact that the installer menu is very dated, the desktop experience was alright and I have not experienced some funky
+things except that the software there is always outdated in Debian stable. Given the simplicity of my use cases
+for a desktop e.g. web browsing, writing documents, and moving files around, it seems using Linux as a desktop
+is not really a problem for me. But for those that want to use Photoshop, well tough luck, you are on your own
+as those proprietary software do not really support linux. But hey, if you have old hardware, Linux is your only
+choice unless you want to try the BSDs.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;okay-so-are-there-any-problems&quot;&gt;Okay, so are there any problems?&lt;a class=&quot;zola-anchor&quot; href=&quot;#okay-so-are-there-any-problems&quot; aria-label=&quot;Anchor link for: okay-so-are-there-any-problems&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;No software is perfect nor any concept is ideal. Free and open source software is one and this affects desktop
+Linux adoption.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;desktop-linux-is-dependent-on-the-desktop-environment&quot;&gt;Desktop Linux is dependent on the Desktop Environment&lt;a class=&quot;zola-anchor&quot; href=&quot;#desktop-linux-is-dependent-on-the-desktop-environment&quot; aria-label=&quot;Anchor link for: desktop-linux-is-dependent-on-the-desktop-environment&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;I can&#x27;t simply not emphasize this one.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Your desktop environment in Linux can actually determine your overall
+desktop Linux experience.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;A desktop environment in Linux is basically a set of desktop tools from related toolkits that create a full
+desktop experience. Popular desktop environments include&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;KDE Plasma. Based on the QT Toolkit.&lt;&#x2F;li&gt;
+&lt;li&gt;GNOME. Based on GTK Toolkit&lt;&#x2F;li&gt;
+&lt;li&gt;XFCE. Based on GTK as well.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;So why is this important? Because some users blame the distribution of Linux that they&#x27;re using instead of
+the desktop environment. And thus, they can be deceiving for newcomers because newcomers will think distro X is bad
+because distro Y has this, when they are actually just comparing GNOME over KDE Plasma.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Having many choices is a double-edged sword, it&#x27;s the same on desktop environments&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;But it does not mean we should just keep it at that. We should educate newcomers that it&#x27;s the desktop environment
+they are looking and not the distribution. So instead of suggesting them to &quot;use Arch linux&quot; just for the superiority
+complex, suggest them KDE Plasma and tell them GNOME sucks because it does not have a system tray. *Pitch forks flying where?*&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Another disclaimer&lt;&#x2F;strong&gt;: Just because I hate this part of GNOME, does not mean I hate GNOME as a whole. It&#x27;s just a joke with added
+hint of &lt;a href=&quot;https:&#x2F;&#x2F;linuxiac.com&#x2F;gnome-background-apps&quot;&gt;truth&lt;&#x2F;a&gt; 😛&lt;&#x2F;p&gt;
+&lt;p&gt;So my take here is, use the desktop environment you are more familiar with and you find the most intuitive to use.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;software-availability-can-be-brittle&quot;&gt;Software availability can be brittle&lt;a class=&quot;zola-anchor&quot; href=&quot;#software-availability-can-be-brittle&quot; aria-label=&quot;Anchor link for: software-availability-can-be-brittle&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;One thing I like about Linux is the amount of software availability. Want an office suite? Use Libreoffice.
+Want an image editor? Use GIMP or Krita. And there is no end to it. I think this in my opinion is what makes
+Linux a good choice in using it as a desktop. However, although it&#x27;s an advantage, remember that we are talking
+about &lt;em&gt;free&lt;&#x2F;em&gt; software. And free software can be &lt;em&gt;brittle&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;the-problem-with-free-and-open-source-software&quot;&gt;The problem with free and open source software&lt;a class=&quot;zola-anchor&quot; href=&quot;#the-problem-with-free-and-open-source-software&quot; aria-label=&quot;Anchor link for: the-problem-with-free-and-open-source-software&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Freedom and free can be easily overly used and abused&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;It can be. I appreciate the efforts that are put into these software. But I have my reasons for why being
+free can be a problem.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Software availability does not equate to software quality&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Yes. Just because it&#x27;s available, it does not mean you get the quality you want like from proprietary software
+as well. Proprietary software can be low quality though. However, what I am saying is that, it is hard
+for FOSS to achieve similar quality unless there are incentives.&lt;&#x2F;p&gt;
+&lt;p&gt;Money, is undoubtly, one of the driving force to keep FOSS alive through funding. I remembered reading
+an article stating that GNOME was close to dying because of the lack of funding.&lt;&#x2F;p&gt;
+&lt;p&gt;&quot;But you are a FOSS enthusiast right?&quot;, I am and hear me out. I think the issue about being free
+is the fact that most people interpret &lt;em&gt;&lt;strong&gt;free&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; as in &lt;em&gt;&lt;strong&gt;free beer&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;. This means that people who
+contribute and&#x2F;or maintain FOSS software does not need any incentive... but oh boy they do 🥲. Lots of software
+are very slow to update, slow bug fixes which some can even span for a decade or two (yes that&#x27;s true lmao), and
+even gets abandoned because people do not contribute and just selfishly demand the maintainers without thinking
+that they made this software on their free time... And that free time is not compensated well enough &lt;strong&gt;&lt;em&gt;and free
+time is not free&lt;&#x2F;em&gt;&lt;&#x2F;strong&gt; unless you are privileged enough. These factors lead to cause some open source maintainers
+to drop their project or become hostile to their users which promotes a toxic environment for both users and
+maintainers. Overall, these issues affect the overall quality of the software, hence why people prefer PhotoShop
+over GIMP. Desktop environments are software as well so they are not excluded when it comes to these issues.
+There are certain instances where a certain kind of desktop environment is very hostile to users.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Free is &lt;strong&gt;not&lt;&#x2F;strong&gt; free beer&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Similar articles are listed below, &lt;em&gt;take it as a grain of salty salt&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;fy.blackhats.net.au&#x2F;blog&#x2F;2021-03-23-open-source-enshrines-the-wrong-privilege&#x2F;&quot;&gt;Open source enshrines the wrong privilege&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.infoworld.com&#x2F;article&#x2F;3570483&#x2F;open-source-has-a-people-problem.html&quot;&gt;Open source has a people problem&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&quot;But you just linked two?&quot;, dude I am not your nanny, formulate your own opinion by doing research and thru observations.&lt;&#x2F;p&gt;
+&lt;p&gt;&quot;But this is Linux as a desktop?&quot; and they are related to desktop Linux adoption 🙂.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;adoption-of-desktop-linux-is-slow-because-reasons&quot;&gt;Adoption of desktop Linux is slow because reasons&lt;a class=&quot;zola-anchor&quot; href=&quot;#adoption-of-desktop-linux-is-slow-because-reasons&quot; aria-label=&quot;Anchor link for: adoption-of-desktop-linux-is-slow-because-reasons&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Here is my take for why it is slow.&lt;&#x2F;p&gt;
+&lt;p&gt;Some people are tech-savvy enough to appreciate open source software and make Linux as their daily
+driver and I kind of understand that. However, the reason the normies can&#x27;t use Linux is that
+the workflow, the setup, the software availability and the installation method for some software are
+unfamiliar to them.&lt;&#x2F;p&gt;
+&lt;p&gt;Additionally, desktop Linux is more centered around seasoned developers and enthusiasts rather than
+the common people. And most people buy computers with pre-installed operating systems &lt;em&gt;which of course is &lt;strong&gt;Windows&lt;&#x2F;strong&gt; or &lt;strong&gt;MacOS&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; given that
+Linux has a very small marketshare (around 1-2%). Those operating systems were designed
+&lt;em&gt;for those people&lt;&#x2F;em&gt; and it is no surprise that desktop Linux will stay as obscure for another
+decade or so &lt;em&gt;unless they use the Steam Deck&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;proprietary-and-non-linux-software&quot;&gt;Proprietary and non-Linux software&lt;a class=&quot;zola-anchor&quot; href=&quot;#proprietary-and-non-linux-software&quot; aria-label=&quot;Anchor link for: proprietary-and-non-linux-software&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;There is also an issue with using Windows software. Most of them are proprietary.
+As most software for normies are targetted mostly for the two most popular operating systems,
+Windows and MacOS, some users have to go to various workarounds just to get their favorite software
+to work e.g. running through an emulation layer or through Wine or Proton.&lt;&#x2F;p&gt;
+&lt;p&gt;This can be a bit annoying for those that do not want to learn those things as they want things to get
+done asap.&lt;&#x2F;p&gt;
+&lt;p&gt;In my honest opinion though, this is not the fault of Linux. It&#x27;s more of like &quot;We don&#x27;t want to include
+Linux builds for this X software because we generate less money there&quot; so it&#x27;s a bit understandable
+because capitalism. *cough cough*&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;is-it-now-normie-friendly-then&quot;&gt;Is it now normie friendly then?&lt;a class=&quot;zola-anchor&quot; href=&quot;#is-it-now-normie-friendly-then&quot; aria-label=&quot;Anchor link for: is-it-now-normie-friendly-then&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;That kind of depends. Even the most desktop user friendly Linux distributions are not completely normie
+friendly, starting from the installer to a fully installed setup. But I have to say that
+it kind of is. Linux has come so far from being a developer and an enthusiast only operating system
+to somewhat close to general user desktop operating system.&lt;&#x2F;p&gt;
+&lt;p&gt;I think it&#x27;s kind of fortunate that there are an increasing number of enthusiasts and volunteers to
+create (or fork) Linux distributions and design them in a way that even those with little to no
+technical knowledge can install Linux. One good example is Linux Mint, Ubuntu, and Fedora and some
+Arch forks such as EndeavourOS and ArchCraft. However, the issue also arises &lt;em&gt;during&lt;&#x2F;em&gt; desktop usage
+where users complain about installing drivers, codecs, and other stuff that requires at least
+some technical know-how to fix&#x2F;install&#x2F;debug them. So much for an out-of-the-box experience.&lt;&#x2F;p&gt;
+&lt;p&gt;Hence, I am not going to say it&#x27;s fully normie friendly but there is evidence of progress. This is
+my honest opinion that desktop Linux requires a lot of patience and workarounds just to make it
+work sometimes.&lt;&#x2F;p&gt;
+&lt;p&gt;For instance, I have to install the flatpak software for my girlfriend
+since it&#x27;s the fastest way to get codecs built-in to the software e.g. Firefox. My girlfriend is
+not a developer nor a programmer nor a tech enthusiast. Thus, I have to make her openSUSE
+installation as sane for her as much as possible.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;fyi&quot;&gt;FYI&lt;a class=&quot;zola-anchor&quot; href=&quot;#fyi&quot; aria-label=&quot;Anchor link for: fyi&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Actually, &lt;em&gt;I don&#x27;t use a desktop environment as much as I used to&lt;&#x2F;em&gt;, I always often use a tiling window manager such as
+SwayWM, RiverWM, and Hyprland. For me, it can be considered a desktop linux experience (so you can only blame yourself for having bad configuration or setup).
+However, these are for enthusiast power-users that like to configure everything down to the source code (such as DWM) and our topic
+is about desktop Linux for the normies so it&#x27;s irrelevant.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - lifestyle</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/lifestyle/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-09-26T17:10:39+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/lifestyle/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Change of plans and priorities</title>
+        <published>2023-09-26T00:00:00+00:00</published>
+        <updated>2023-09-26T17:10:39+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/change-of-plans-and-priorities/"/>
+        <id>https://uncomfyhalomacro.pl/blog/change-of-plans-and-priorities/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/change-of-plans-and-priorities/">&lt;p&gt;As my selection of what to learn grows, I think there will be a change of
+plans and priorities. It&#x27;s time to narrow down what is essential.&lt;&#x2F;p&gt;
+&lt;p&gt;Currently, I am learning Rust, and will do some Go. This added more and more of
+my to-do list of learning things.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;and-it-became-unproductive&quot;&gt;And it became unproductive&lt;a class=&quot;zola-anchor&quot; href=&quot;#and-it-became-unproductive&quot; aria-label=&quot;Anchor link for: and-it-became-unproductive&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;My attention span on learning stuff were getting lower and lower to a point,
+I need to reassess which and which are not to learn.&lt;&#x2F;p&gt;
+&lt;p&gt;Here are the list of things I need to do&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Setting aside System Administration&lt;&#x2F;li&gt;
+&lt;li&gt;Setting aside Kanidm&lt;&#x2F;li&gt;
+&lt;li&gt;Setting aside Crystal&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;They&#x27;re really not set aside. I can go back to them in the future if I have the time.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;crystal-is-good-why-not-keep-it&quot;&gt;Crystal is good, why not keep it?&lt;a class=&quot;zola-anchor&quot; href=&quot;#crystal-is-good-why-not-keep-it&quot; aria-label=&quot;Anchor link for: crystal-is-good-why-not-keep-it&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Sadly, only a few companies I know use Crystal. 😥 Even though it&#x27;s actually a more
+useful language to learn and can replace Go.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;now-what-should-i-learn&quot;&gt;Now what should I learn&lt;a class=&quot;zola-anchor&quot; href=&quot;#now-what-should-i-learn&quot; aria-label=&quot;Anchor link for: now-what-should-i-learn&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Rust will always stay. Erlang will stay. Go is added. Python will be revisited. And one database?
+I&#x27;m planning to at least learn one but never got the chance to. Possibly, Postgres or MySQL.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-erlang&quot;&gt;Why Erlang?&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-erlang&quot; aria-label=&quot;Anchor link for: why-erlang&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Concurrency. Also, some of Go&#x27;s ideas are taken from Erlang so I also need to check those as well.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-python&quot;&gt;Why Python?&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-python&quot; aria-label=&quot;Anchor link for: why-python&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;It&#x27;s not hard to relearn. I just need to revisit it. It&#x27;s good for scripts and prototyping.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-rust&quot;&gt;Why Rust?&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-rust&quot; aria-label=&quot;Anchor link for: why-rust&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Because blazingly 🚀🚀🚀 fast 😜&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;what-now&quot;&gt;What now?&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-now&quot; aria-label=&quot;Anchor link for: what-now&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Yes. I am going to watch Learn Go in 3 hours from a Humble Bundle I got last year. And then
+read Thorsten Ball&#x27;s Writing an Interpreter in Go. I will check out Erlang&#x27;s language reference
+too ☺️&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>First impressions on my first non-Google email provider</title>
+        <published>2023-09-19T00:00:00+00:00</published>
+        <updated>2023-09-20T21:28:31+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/first-impressions-on-my-first-non-google-email-provider/"/>
+        <id>https://uncomfyhalomacro.pl/blog/first-impressions-on-my-first-non-google-email-provider/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/first-impressions-on-my-first-non-google-email-provider/">&lt;p&gt;I was planning last year that I will have to start looking for ways to avoid
+Google as much as possible or at least minimize my dependence on Google
+services. &lt;em&gt;It&#x27;s most likely the latter&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;on-september-18-2023&quot;&gt;On September 18, 2023&lt;a class=&quot;zola-anchor&quot; href=&quot;#on-september-18-2023&quot; aria-label=&quot;Anchor link for: on-september-18-2023&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I finally switched to a new email provider called
+&lt;a href=&quot;https:&#x2F;&#x2F;mailbox.org&quot;&gt;Mailbox&lt;&#x2F;a&gt;. I have little information about the company
+but it seems it&#x27;s well known from various tech people I met.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;first-impressions&quot;&gt;First impressions&lt;a class=&quot;zola-anchor&quot; href=&quot;#first-impressions&quot; aria-label=&quot;Anchor link for: first-impressions&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;When I went to their website, it looks so clean and green like the &quot;green
+energy&quot; message they have on their landing page.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;first-impressions-on-my-first-non-google-email-provider&#x2F;.&#x2F;landing-page-mailbox.webp&quot; alt=&quot;Mailbox Dot Org Landing Page&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;But sadly, when I bought for their services, I was not really impressed by
+their web client. It was... uncared for? I am not sure why the landing page
+looks so cool but the placement for their settings is so weird. Here are a
+list of screenshots so you would understand what I mean.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;first-impressions-on-my-first-non-google-email-provider&#x2F;.&#x2F;webclient.webp&quot; alt=&quot;The web client&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Another nitpick is the inconsistency of the tooltip. It should show the tooltip
+&lt;em&gt;when the selection happens&lt;&#x2F;em&gt; and NOT &lt;em&gt;after you are centered on the button&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;first-impressions-on-my-first-non-google-email-provider&#x2F;.&#x2F;buttons.gif&quot; alt=&quot;Tooltip&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Also, when clicking settings, I have to click... &lt;em&gt;twice&lt;&#x2F;em&gt;? One for the
+gear icon, which will create two options as a drop-down; one for settings,
+and one for &quot;connect your device&quot;. That&#x27;s the weirdest way to navigate to
+settings. It&#x27;s subtle but it&#x27;s such a &lt;strong&gt;huge&lt;&#x2F;strong&gt; inconsistency. Kind of
+a missed opportunity.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;first-impressions-on-my-first-non-google-email-provider&#x2F;.&#x2F;gear-setting-inconsistency.webp&quot; alt=&quot;Inconsistent gear button&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;then-what&quot;&gt;Then what?&lt;a class=&quot;zola-anchor&quot; href=&quot;#then-what&quot; aria-label=&quot;Anchor link for: then-what&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;For other stuff, it was alright. But it feels so dated. It&#x27;s good since it&#x27;s
+light I am fine with that. I just don&#x27;t know why the placement&#x2F;behavior of
+the buttons&#x2F;settings are all over the place. Maybe I am wrong? If anyone
+reading this is a front-end designer or specializes in UI&#x2F;UX, please tell me
+if I am wrong.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;services&quot;&gt;Services&lt;a class=&quot;zola-anchor&quot; href=&quot;#services&quot; aria-label=&quot;Anchor link for: services&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Well enough of the UI, how about their services?&lt;&#x2F;p&gt;
+&lt;p&gt;So I bought the 9EUR per month &lt;em&gt;monthly plan&lt;&#x2F;em&gt; which amounts to
+545.74PHP—&lt;em&gt;&lt;strong&gt;Premium Plan&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mail Storage of 25GB&lt;&#x2F;li&gt;
+&lt;li&gt;Cloud Storage of 50GB&lt;&#x2F;li&gt;
+&lt;li&gt;25 Mail aliases&lt;&#x2F;li&gt;
+&lt;li&gt;Allows 250 aliases for custom domains&lt;&#x2F;li&gt;
+&lt;li&gt;Gets more support
+&lt;ul&gt;
+&lt;li&gt;Online office&lt;&#x2F;li&gt;
+&lt;li&gt;Priority &amp;amp; phone&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Sounds great? To be honest, I bought this plan because I want to try the
+most expensive offering.&lt;&#x2F;p&gt;
+&lt;p&gt;But it&#x27;s too early to tell so I will try this for a year and get the yearly
+plan. So I will get a month using the monthly plan and once for the yearly
+plan; a total of 13 months. Unlucky!&lt;&#x2F;p&gt;
+&lt;p&gt;I will be going to skip a bit of the features since I haven&#x27;t got used to it
+yet. But one thing that interests me to use more and more is the DavFS&#x2F;WebDav
+feature. Although, their documentation was not really accurate nor informative
+about it. Yes, they have a documentation but what I mean is, it feels rushed.&lt;&#x2F;p&gt;
+&lt;p&gt;Other features are mentioned in
+https:&#x2F;&#x2F;mailbox.org&#x2F;en&#x2F;private-customers#price-plans.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;overall&quot;&gt;Overall&lt;a class=&quot;zola-anchor&quot; href=&quot;#overall&quot; aria-label=&quot;Anchor link for: overall&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Again, it&#x27;s too early to say anything. But one thing I already did is
+&quot;forwarding&quot; all my emails from my previous Gmail account to my new mailbox
+email addresses and aliases. And I already copied almost all of my old inboxes
+to my new inboxes.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;other-considerations&quot;&gt;Other considerations&lt;a class=&quot;zola-anchor&quot; href=&quot;#other-considerations&quot; aria-label=&quot;Anchor link for: other-considerations&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I was eyeing for &lt;a href=&quot;https:&#x2F;&#x2F;www.fastmail.com&#x2F;&quot;&gt;Fastmail&lt;&#x2F;a&gt; since&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;It&#x27;s recommended by my mentor (bias)&lt;&#x2F;li&gt;
+&lt;li&gt;It&#x27;s in Aussieland, so it&#x27;s closer. And also the only email service near
+southeast asia because Asia seems to have no email service company. &lt;em&gt;Kind of
+makes sense, but I will keep it to myself&lt;&#x2F;em&gt; 😛&lt;&#x2F;li&gt;
+&lt;li&gt;Has more enticing offerings and features. At the same price, you get 100GB and 600+ aliases.&lt;&#x2F;li&gt;
+&lt;li&gt;Probably has a better UI for their web client. Their website says it all.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;For now, I will be using this for a year.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
