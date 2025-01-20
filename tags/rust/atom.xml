@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - rust</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/rust/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-11-10T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/rust/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Exploring Efficient Ways To Package Rust Software in openSUSE</title>
+        <published>2024-08-22T00:00:00+00:00</published>
+        <updated>2024-11-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/exploring-efficient-ways-to-package-rust-software-in-opensuse/"/>
+        <id>https://uncomfyhalomacro.pl/blog/exploring-efficient-ways-to-package-rust-software-in-opensuse/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/exploring-efficient-ways-to-package-rust-software-in-opensuse/">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;&#x2F;strong&gt;
+I am moving over some logic as another package called
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;roast&quot;&gt;roast&lt;&#x2F;a&gt;. This
+is to prepare this vendoring alternative called
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo-vendor-home-registry&quot;&gt;obs-service-cargo-vendor-home-registry&lt;&#x2F;a&gt;.
+The project is still worked on during my free time.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I have re-investigated possible solutions for confusing packaging in Rust. Currently,
+we are using &lt;code&gt;cargo vendor&lt;&#x2F;code&gt; to vendor package dependencies. This comes at a cost.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Back and forth copying of &lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt; for possible projects that use monorepo
+configurations i.e. workspace and real monorepos.
+&lt;ul&gt;
+&lt;li&gt;Examples of these are: zellij, wezterm and python-tokenizers&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;We always want to ensure &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; and I doubt the solution will not avoid this
+since lockfiles are always essential when building software with Rust.&lt;&#x2F;li&gt;
+&lt;li&gt;Existing &lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt; from projects will be overridden with our generated
+&lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The first solution I thought of is a global &lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt; for projects. This
+has been done with &lt;strong&gt;python-tokenizers&lt;&#x2F;strong&gt; in openSUSE because it is possible to use
+&lt;code&gt;--manifest-path&lt;&#x2F;code&gt; to specify a manifest &lt;code&gt;Cargo.toml&lt;&#x2F;code&gt; file in the specfile for cargo
+invocations.&lt;&#x2F;p&gt;
+&lt;p&gt;Seeing this, I realised, why not just use the &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt; since we are pointing at a global cache anyway? This blog is about tracking my future project
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;obs-service-cargo-vendor-home-registry&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;obs-service-cargo-vendor-home-registry&lt;&#x2F;a&gt; of which I plan to integrate into &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Firstyear&#x2F;obs-service-cargo&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;Firstyear&#x2F;obs-service-cargo&lt;&#x2F;a&gt; as an alternative vendor generating utility for Open Build Service or OBS.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;storage-size-eaten-by-cargo-home-vs-cargo-vendor-comparison&quot;&gt;Storage size eaten by &lt;code&gt;CARGO_HOME&lt;&#x2F;code&gt; vs &lt;code&gt;cargo vendor&lt;&#x2F;code&gt; comparison&lt;a class=&quot;zola-anchor&quot; href=&quot;#storage-size-eaten-by-cargo-home-vs-cargo-vendor-comparison&quot; aria-label=&quot;Anchor link for: storage-size-eaten-by-cargo-home-vs-cargo-vendor-comparison&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;&#x2F;strong&gt;
+&lt;code&gt;cargo fetch&lt;&#x2F;code&gt;, &lt;code&gt;cargo vendor&lt;&#x2F;code&gt;, &lt;code&gt;cargo build&lt;&#x2F;code&gt;, and &lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt; all update the &lt;code&gt;CARGO_HOME&lt;&#x2F;code&gt; or what we call the cargo home registry or just cargo home. We use &lt;code&gt;cargo fetch&lt;&#x2F;code&gt; here because it&#x27;s designed to update the registry cache instead of other commands.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;WARNING&lt;&#x2F;strong&gt; Behaviours between &lt;code&gt;cargo fetch&lt;&#x2F;code&gt; and &lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt;
+&lt;code&gt;cargo fetch&lt;&#x2F;code&gt; updates the registry to latest version of crates and also regenerates &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; to reflect the versions unless &lt;code&gt;--locked&lt;&#x2F;code&gt; flag is passed where it tries to respect the versions of the crates from the existing &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; despite this &lt;em&gt;contradicting&lt;&#x2F;em&gt; description in the manpage that
+If a Cargo.lock file is available, this command will ensure that all of the git dependencies and&#x2F;or registry dependencies are downloaded and locally available. Subsequent Cargo commands will be able to run offline after a cargo fetch unless the lock file changes.&lt;&#x2F;p&gt;
+&lt;p&gt;However, &lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt; updates the registry + updates the &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; which in my opinion is just a duplication of the other cargo sub-command &lt;code&gt;cargo update&lt;&#x2F;code&gt;. Why? Both do the same behaviour. Even the part where you pass &lt;code&gt;--locked&lt;&#x2F;code&gt; will give you the same error &quot;&lt;strong&gt;error: the lock file &#x2F;run&#x2F;host&#x2F;tmp&#x2F;jay-1.4.0&#x2F;Cargo.lock needs to be updated but --locked&lt;&#x2F;strong&gt;&quot;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Here are the zstd compressed tarballs for the following after running the cargo commands&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;wezterm&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;: 1.1GB&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;: 1.3GB&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;jay&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;: 24MB&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;: 76MB&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;zellij&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;: 66MB&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;: 133MB&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Why does it seem like &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; duplicates the contents in the tarball? Because it really does. The registry contains the following directory structure&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;└── registry
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── cache
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   └── index.crates.io-6f17d22bba15001f
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    ├── index
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    │   └── index.crates.io-6f17d22bba15001f
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;    └── src
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;        └── index.crates.io-6f17d22bba15001f
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;8 directories, 0 files
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;One can remove the &lt;code&gt;.cargo&#x2F;registry&#x2F;src&lt;&#x2F;code&gt; directory as that contains the extracted crates and then create a &lt;code&gt;tar.zst&lt;&#x2F;code&gt; file using the following commands&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Assuming $CARGO_HOME is set to $PWD&#x2F;.cargo&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;pushd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; .cargo&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;rm&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;rfv&lt;&#x2F;span&gt; registry&#x2F;src&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;popd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;tar&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;zstd&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;cvf&lt;&#x2F;span&gt; vendor.tar.zst .cargo&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;how-to-get-cache-from-cargo-home&quot;&gt;How to get cache from &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#how-to-get-cache-from-cargo-home&quot; aria-label=&quot;Anchor link for: how-to-get-cache-from-cargo-home&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Any of these commands will generate the cargo home registry cache&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;build&lt;&#x2F;li&gt;
+&lt;li&gt;generate-lockfile&lt;&#x2F;li&gt;
+&lt;li&gt;vendor&lt;&#x2F;li&gt;
+&lt;li&gt;fetch&lt;&#x2F;li&gt;
+&lt;li&gt;update&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;del&gt;Some commands are duplication of the other commands i.e. update and
+generate-lockfile. It&#x27;s just that the former prefetches the latest crate versions
+while the latter doesn&#x27;t.&lt;&#x2F;del&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;To update the registry cache, one must either go with &lt;code&gt;cargo fetch&lt;&#x2F;code&gt; or even &lt;code&gt;cargo vendor&lt;&#x2F;code&gt; to avoid building or updating (unless update is set).&lt;&#x2F;p&gt;
+&lt;p&gt;All commands try to regenerate the &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; with the latest compatible MSRV. If
+&lt;code&gt;--locked&lt;&#x2F;code&gt; is passed, it will try to attempt to respect the versions in the &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt;.
+However, if the version of a dependency in &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; got yanked and there is a
+newer version, then an operation with &lt;code&gt;--locked&lt;&#x2F;code&gt; will fail. Also, passing &lt;code&gt;--locked&lt;&#x2F;code&gt; to
+&lt;code&gt;cargo-update&lt;&#x2F;code&gt; is ambiguous as it will always almost fail since it tries to update the
+&lt;code&gt;Cargo.lock&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-not-go-with-cargo-vendor-sync&quot;&gt;Why not go with &lt;code&gt;cargo vendor --sync&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-not-go-with-cargo-vendor-sync&quot; aria-label=&quot;Anchor link for: why-not-go-with-cargo-vendor-sync&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Reason? Uncertainty of how that command respect &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; for each crate. I would
+rather have do&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;cargo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; fetch&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;locked&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;manifest-path&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-option z-shell&quot;&gt;=&lt;&#x2F;span&gt;path&#x2F;to&#x2F;Cargo.toml&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;for each manifest found since one can flexibly turn &lt;code&gt;--locked&lt;&#x2F;code&gt; on and off.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;building-now-with-cargo-home&quot;&gt;Building now with &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#building-now-with-cargo-home&quot; aria-label=&quot;Anchor link for: building-now-with-cargo-home&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;It&#x27;s always has been possible to use &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;, specifically, &lt;code&gt;$CARGO_HOME&#x2F;registry&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;There was an attempt in this repository, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo-vendor-home-registry&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo-vendor-home-registry&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Now, that project has been merged into &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;You can see this working in &lt;a href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;editors&#x2F;kak-lsp&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;editors&#x2F;kak-lsp&lt;&#x2F;a&gt;. But we lied a bit here.
+We will explain that in the later sections.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;path-dependencies-in-cargo-toml-needs-to-be-revisited&quot;&gt;Path dependencies in &lt;code&gt;Cargo.toml&lt;&#x2F;code&gt; needs to be revisited&lt;a class=&quot;zola-anchor&quot; href=&quot;#path-dependencies-in-cargo-toml-needs-to-be-revisited&quot; aria-label=&quot;Anchor link for: path-dependencies-in-cargo-toml-needs-to-be-revisited&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Membered crates (in workspace configurations) and local crates (both are local and in path actually)
+should also be taken consideration when vendoring dependencies.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, &lt;a href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;science:machinelearning&#x2F;python-tokenizers&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;science:machinelearning&#x2F;python-tokenizers&lt;&#x2F;a&gt; have
+two different dependencies that are actually related to each other.&lt;&#x2F;p&gt;
+&lt;p&gt;The solution to this is to eagerly check their manifest and lockfiles. Hence, either with multiple vendor
+tarballs or a vendored &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lockfiles-are-always-inconsistent&quot;&gt;Lockfiles are always inconsistent&lt;a class=&quot;zola-anchor&quot; href=&quot;#lockfiles-are-always-inconsistent&quot; aria-label=&quot;Anchor link for: lockfiles-are-always-inconsistent&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;See &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169&lt;&#x2F;a&gt;. This is a glaring issue
+and not just for &lt;code&gt;cargo install&lt;&#x2F;code&gt; but almost all cargo commands such as &lt;code&gt;cargo fetch&lt;&#x2F;code&gt;. That&#x27;s why in openSUSE, we try to include the lockfile as much as
+possible even if passing &lt;code&gt;--locked&lt;&#x2F;code&gt;. I think I would agree to this comment
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169#issuecomment-539226733&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169#issuecomment-539226733&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Observation&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo fetch --locked&lt;&#x2F;code&gt; does not work because it tries to keep the registry cache updated&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo vendor --locked&lt;&#x2F;code&gt; works because I don&#x27;t know why???&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Now is the use of &lt;code&gt;--sync&lt;&#x2F;code&gt; idea thrown out the window?&lt;&#x2F;p&gt;
+&lt;p&gt;For crates that don&#x27;t ship with a lockfile, we will run either&lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt;
+or &lt;code&gt;cargo update&lt;&#x2F;code&gt;, former is more semantically correct to do as opposed to &lt;code&gt;cargo update&lt;&#x2F;code&gt;. But &lt;code&gt;update&lt;&#x2F;code&gt; makes sense the most because we are going to add update options
+on the new project anyway.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cargo-fetch-vs-cargo-update&quot;&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; vs &lt;code&gt;cargo-update&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#cargo-fetch-vs-cargo-update&quot; aria-label=&quot;Anchor link for: cargo-fetch-vs-cargo-update&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Two days ago as of writing, I filed a bug report regarding inconsistencies
+between &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; and &lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;. Link to bug report
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;14795&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;14795&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The inconsistency specifically is the way the two handle dependencies differently
+especially when it comes to &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;&#x27;s &lt;code&gt;--target&lt;&#x2F;code&gt; flag.&lt;&#x2F;p&gt;
+&lt;p&gt;I had high hopes that by default&lt;sup class=&quot;footnote-reference&quot; id=&quot;fr-but not really-1&quot;&gt;&lt;a href=&quot;#fn-but not really&quot;&gt;[1]&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, it gets &lt;strong&gt;all&lt;&#x2F;strong&gt; target architectures. But I was
+met with failed builds on &lt;del&gt;not so commonly used&lt;&#x2F;del&gt; architectures whereas vendored
+dependencies from &lt;code&gt;cargo-vendor&lt;&#x2F;code&gt; compiles. They fail because they cannot find their
+dependencies fetched from &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I will just have to wait for a feedback regarding how &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; behaves as compared
+to &lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;. I believe though that both should be at least similar in almost
+all aspects.&lt;&#x2F;p&gt;
+&lt;hr&gt;&lt;ol class=&quot;footnotes-list&quot;&gt;
+&lt;li id=&quot;fn-but not really&quot;&gt;
+&lt;p&gt;This is still not a &lt;em&gt;&lt;strong&gt;loss&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; yet for me since most of the software I used in openSUSE
+are used by people who either use x86_64 and aarch64. I don&#x27;t believe that the other
+architectures are used commonly so I have removed support. &lt;a href=&quot;#fr-but not really-1&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Cow is weird</title>
+        <published>2024-06-24T00:00:00+00:00</published>
+        <updated>2024-06-24T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/copy-on-write-is-weird/"/>
+        <id>https://uncomfyhalomacro.pl/blog/copy-on-write-is-weird/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/copy-on-write-is-weird/">&lt;p&gt;So I just found out something weird while learning and writing a
+tutorial for Rust,&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust z-code&quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;    &lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt; body&lt;span class=&quot;z-punctuation z-separator z-rust&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-bitwise z-rust&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-path z-rust&quot;&gt;std&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-path z-rust&quot;&gt;borrow&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;Cow&lt;span class=&quot;z-meta z-generic z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-generic z-begin z-rust&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&amp;#39;&lt;span class=&quot;z-keyword z-operator z-rust&quot;&gt;_&lt;&#x2F;span&gt;, &lt;span class=&quot;z-storage z-type z-rust&quot;&gt;str&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-generic z-end z-rust&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-rust&quot;&gt;=&lt;&#x2F;span&gt; http_req&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-rust&quot;&gt;body&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;    &lt;span class=&quot;z-keyword z-control z-rust&quot;&gt;if&lt;&#x2F;span&gt; buf_str&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-rust&quot;&gt;contains&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-bitwise z-rust&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-rust&quot;&gt;*&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-rust&quot;&gt;*&lt;&#x2F;span&gt;body&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-rust&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;        &lt;span class=&quot;z-support z-macro z-rust&quot;&gt;println!&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-string z-quoted z-double z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-rust&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;Body is same in buf&lt;span class=&quot;z-punctuation z-definition z-string z-end z-rust&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;    &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-rust&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So I found out that &lt;code&gt;&amp;amp;**body&lt;&#x2F;code&gt; is possible because&lt;&#x2F;p&gt;
+&lt;p&gt;body() -&amp;gt; &amp;amp;Cow -&amp;gt; deref -&amp;gt; Cow -&amp;gt; deref -&amp;gt; str (Size cannot be known at compile time)&lt;&#x2F;p&gt;
+&lt;p&gt;therefore, add a reference -&amp;gt; &amp;amp; -&amp;gt; &amp;amp;str&lt;&#x2F;p&gt;
+&lt;p&gt;OR&lt;&#x2F;p&gt;
+&lt;p&gt;we can just use &lt;code&gt;.deref&lt;&#x2F;code&gt; and since Cow already has Deref trait, it&#x27;s actually
+a &quot;double&quot; deref like the previous explanation. However, there is a slight difference&lt;&#x2F;p&gt;
+&lt;p&gt;OR&lt;&#x2F;p&gt;
+&lt;p&gt;we can also just use &lt;code&gt;.as_ref&lt;&#x2F;code&gt; since Cow has Deref trait and the &lt;code&gt;.as_ref&lt;&#x2F;code&gt;
+method will reference the inferred type T &lt;code&gt;self&lt;&#x2F;code&gt; which is String but since it&#x27;s
+a ref so it&#x27;s &amp;amp;String which is then coerced to &amp;amp;str because of String&#x27;s Deref
+trait. See &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;src&#x2F;alloc&#x2F;string.rs.html#2683&quot;&gt;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;src&#x2F;alloc&#x2F;string.rs.html#2683&lt;&#x2F;a&gt;
+and &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;src&#x2F;alloc&#x2F;string.rs.html#2479&quot;&gt;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;src&#x2F;alloc&#x2F;string.rs.html#2479&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>I fell in love with Rust</title>
+        <published>2024-04-23T00:00:00+00:00</published>
+        <updated>2024-04-23T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/i-fell-in-love-with-rust/"/>
+        <id>https://uncomfyhalomacro.pl/blog/i-fell-in-love-with-rust/</id>
+        
+        <summary type="html">&lt;p&gt;For quite some time, I am getting more interested in programming
+languages that have good documentation, a large community and
+accelerating adoption in various sectors in the industry.&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>I should have learned about state machines!</title>
+        <published>2023-09-15T00:00:00+00:00</published>
+        <updated>2023-09-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/learning-state-machines/"/>
+        <id>https://uncomfyhalomacro.pl/blog/learning-state-machines/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/learning-state-machines/">&lt;p&gt;While rewriting
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE&#x2F;obs-service-cargo_vendor&quot;&gt;OBS Service Cargo&lt;&#x2F;a&gt; in Rust, I was thinking of how the logic
+be represented clearly. Here and there, I thought I was done but after
+reading my code, I was like, damn this looks awful. And then my mentor came
+in to give me hints through his code comments in Discord and from his code
+reviews on GitHub. He gave me a link of his talk for PurpleCon, a volunteer
+conference for some hackers in Oceania and NZ?&lt;&#x2F;p&gt;
+&lt;p&gt;Link to youtube video so you can watch as well: &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;VbtsQjbnNw8?si=cKcbednftxxsaIPs&quot;&gt;https:&#x2F;&#x2F;youtu.be&#x2F;VbtsQjbnNw8?si=cKcbednftxxsaIPs&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;i-am-a-biologist-too&quot;&gt;I am a biologist too&lt;a class=&quot;zola-anchor&quot; href=&quot;#i-am-a-biologist-too&quot; aria-label=&quot;Anchor link for: i-am-a-biologist-too&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The answer was right in front of me all along! I was just too
+focused on the tech jargon that I got lost.&lt;&#x2F;p&gt;
+&lt;p&gt;State machines exist in nature too. In many ways, cells and their
+components use some form of &lt;em&gt;state&lt;&#x2F;em&gt; to signify a certain kind of
+action, the same way microwave ovens have a state when to turn off
+e.g. if you open the lid or turn off the power, and when to turn
+on e.g. when to turn the knob to the right and start the timer.&lt;&#x2F;p&gt;
+&lt;p&gt;Hormones, and other forms of cell signalling tell cells what to
+do. Something damaged? Just release histamines to let other immune
+cells know you are damaged.  Are you high on glucose? Oh crap,
+produce more insulin!&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;em&gt;state&lt;&#x2F;em&gt; of your body also can cause some &lt;em&gt;form of action&lt;&#x2F;em&gt;.
+And life does this to achieve homeostasis and other forms of
+biological actions such as defending against a predator or migrating
+to another area to get more food.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;so-how-does-this-help-me-about-state-machines-and-maybe-writing-code&quot;&gt;So how does this help me about state machines and maybe writing code?&lt;a class=&quot;zola-anchor&quot; href=&quot;#so-how-does-this-help-me-about-state-machines-and-maybe-writing-code&quot; aria-label=&quot;Anchor link for: so-how-does-this-help-me-about-state-machines-and-maybe-writing-code&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;I guess I always like think each function is a particular organelle or a cell in a
+software system.&lt;&#x2F;p&gt;
+&lt;p&gt;Each module is a tissue&lt;&#x2F;p&gt;
+&lt;p&gt;Each set of modules interrelated of each other is an organ&lt;&#x2F;p&gt;
+&lt;p&gt;And these organs form an organ system, thus, forming an organism.&lt;&#x2F;p&gt;
+&lt;p&gt;Similar, if not the same, as how software is written.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;State machines&lt;&#x2F;strong&gt; exist and we just get used to it that we forget they exist around
+us.&lt;&#x2F;p&gt;
+&lt;p&gt;If we think each component has a set of states, it&#x27;s easier to imagine the logic of
+many components of your program.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rust-is-one-of-the-perfect-language-to-imagine-anything-as-states&quot;&gt;Rust is one of the perfect language to imagine anything as states&lt;a class=&quot;zola-anchor&quot; href=&quot;#rust-is-one-of-the-perfect-language-to-imagine-anything-as-states&quot; aria-label=&quot;Anchor link for: rust-is-one-of-the-perfect-language-to-imagine-anything-as-states&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Rust has types and enums that can be over(ab)used to think of important components
+to have some set of states. I like this part of Rust where I can just slap an
+enum defining a state or condition and just use it all over the code base for
+things that actually make sense to have it. Even the &lt;code&gt;Option&lt;&#x2F;code&gt; and &lt;code&gt;Result&lt;&#x2F;code&gt;
+types can be thought of as a &lt;em&gt;state of having something&lt;&#x2F;em&gt; and a &lt;em&gt;state of
+having something that does not bite you&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;now-what&quot;&gt;Now what?&lt;a class=&quot;zola-anchor&quot; href=&quot;#now-what&quot; aria-label=&quot;Anchor link for: now-what&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;This is just a short post to remind myself how powerful it is to use state machines.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - security</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/security/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-05-05T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/security/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Using SSH keys with TPM and Git</title>
+        <published>2024-05-05T00:00:00+00:00</published>
+        <updated>2024-05-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/using-ssh-keys-with-tpm-and-git/"/>
+        <id>https://uncomfyhalomacro.pl/blog/using-ssh-keys-with-tpm-and-git/</id>
+        
+        <summary type="html">&lt;p&gt;So my mentor has already made a
+&lt;a href=&quot;https:&#x2F;&#x2F;fy.blackhats.net.au&#x2F;blog&#x2F;2023-04-20-using-a-tpm-for-ssh-keys-on-opensuse-tumbleweed&#x2F;&quot;&gt;post&lt;&#x2F;a&gt;
+about how to use TPMs in openSUSE.&lt;&#x2F;p&gt;
+&lt;p&gt;I followed a bit, did some weird stuff because it doesn&#x27;t work at first. It turns out I made a typo and missed a flag
+🥴&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+</feed>
