@@ -4,6 +4,7 @@ new-blog:
     kak content/blog/$(date +%Y%m%H%M%S).md
 
 new-blog-dir:
+    #!/usr/bin/env bash
     export DIR_NAME=$(date +%Y%m%H%M%S)
     mkdir content/blog/${DIR_NAME}/
     touch content/blog/${DIR_NAME}/index.md
