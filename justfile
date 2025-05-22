@@ -3,6 +3,13 @@
 new-blog:
     kak content/blog/$(date +%Y%m%H%M%S).md
 
+new-blog-dir:
+    export DIR_NAME=$(date +%Y%m%H%M%S)
+    mkdir content/blog/${DIR_NAME}/
+    touch content/blog/${DIR_NAME}/index.md
+    kak   content/blog/${DIR_NAME}/index.md
+
+
 update-theme:
     git submodule update --recursive --remote --init
     git add themes/gruvbox-v
