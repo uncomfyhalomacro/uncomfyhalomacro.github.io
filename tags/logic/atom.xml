@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - logic</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/logic/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-09-15T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/logic/atom.xml</id>
+    <entry xml:lang="en">
+        <title>I should have learned about state machines!</title>
+        <published>2023-09-15T00:00:00+00:00</published>
+        <updated>2023-09-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/learning-state-machines/"/>
+        <id>https://uncomfyhalomacro.pl/blog/learning-state-machines/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/learning-state-machines/">&lt;p&gt;While rewriting
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE&#x2F;obs-service-cargo_vendor&quot;&gt;OBS Service Cargo&lt;&#x2F;a&gt; in Rust, I was thinking of how the logic
+be represented clearly. Here and there, I thought I was done but after
+reading my code, I was like, damn this looks awful. And then my mentor came
+in to give me hints through his code comments in Discord and from his code
+reviews on GitHub. He gave me a link of his talk for PurpleCon, a volunteer
+conference for some hackers in Oceania and NZ?&lt;&#x2F;p&gt;
+&lt;p&gt;Link to youtube video so you can watch as well: &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;VbtsQjbnNw8?si=cKcbednftxxsaIPs&quot;&gt;https:&#x2F;&#x2F;youtu.be&#x2F;VbtsQjbnNw8?si=cKcbednftxxsaIPs&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;i-am-a-biologist-too&quot;&gt;I am a biologist too&lt;a class=&quot;zola-anchor&quot; href=&quot;#i-am-a-biologist-too&quot; aria-label=&quot;Anchor link for: i-am-a-biologist-too&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The answer was right in front of me all along! I was just too
+focused on the tech jargon that I got lost.&lt;&#x2F;p&gt;
+&lt;p&gt;State machines exist in nature too. In many ways, cells and their
+components use some form of &lt;em&gt;state&lt;&#x2F;em&gt; to signify a certain kind of
+action, the same way microwave ovens have a state when to turn off
+e.g. if you open the lid or turn off the power, and when to turn
+on e.g. when to turn the knob to the right and start the timer.&lt;&#x2F;p&gt;
+&lt;p&gt;Hormones, and other forms of cell signalling tell cells what to
+do. Something damaged? Just release histamines to let other immune
+cells know you are damaged.  Are you high on glucose? Oh crap,
+produce more insulin!&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;em&gt;state&lt;&#x2F;em&gt; of your body also can cause some &lt;em&gt;form of action&lt;&#x2F;em&gt;.
+And life does this to achieve homeostasis and other forms of
+biological actions such as defending against a predator or migrating
+to another area to get more food.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;so-how-does-this-help-me-about-state-machines-and-maybe-writing-code&quot;&gt;So how does this help me about state machines and maybe writing code?&lt;a class=&quot;zola-anchor&quot; href=&quot;#so-how-does-this-help-me-about-state-machines-and-maybe-writing-code&quot; aria-label=&quot;Anchor link for: so-how-does-this-help-me-about-state-machines-and-maybe-writing-code&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;I guess I always like think each function is a particular organelle or a cell in a
+software system.&lt;&#x2F;p&gt;
+&lt;p&gt;Each module is a tissue&lt;&#x2F;p&gt;
+&lt;p&gt;Each set of modules interrelated of each other is an organ&lt;&#x2F;p&gt;
+&lt;p&gt;And these organs form an organ system, thus, forming an organism.&lt;&#x2F;p&gt;
+&lt;p&gt;Similar, if not the same, as how software is written.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;State machines&lt;&#x2F;strong&gt; exist and we just get used to it that we forget they exist around
+us.&lt;&#x2F;p&gt;
+&lt;p&gt;If we think each component has a set of states, it&#x27;s easier to imagine the logic of
+many components of your program.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rust-is-one-of-the-perfect-language-to-imagine-anything-as-states&quot;&gt;Rust is one of the perfect language to imagine anything as states&lt;a class=&quot;zola-anchor&quot; href=&quot;#rust-is-one-of-the-perfect-language-to-imagine-anything-as-states&quot; aria-label=&quot;Anchor link for: rust-is-one-of-the-perfect-language-to-imagine-anything-as-states&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Rust has types and enums that can be over(ab)used to think of important components
+to have some set of states. I like this part of Rust where I can just slap an
+enum defining a state or condition and just use it all over the code base for
+things that actually make sense to have it. Even the &lt;code&gt;Option&lt;&#x2F;code&gt; and &lt;code&gt;Result&lt;&#x2F;code&gt;
+types can be thought of as a &lt;em&gt;state of having something&lt;&#x2F;em&gt; and a &lt;em&gt;state of
+having something that does not bite you&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;now-what&quot;&gt;Now what?&lt;a class=&quot;zola-anchor&quot; href=&quot;#now-what&quot; aria-label=&quot;Anchor link for: now-what&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;This is just a short post to remind myself how powerful it is to use state machines.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
