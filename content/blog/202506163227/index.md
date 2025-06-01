@@ -45,7 +45,7 @@ for [b-o-o](https://build.opensuse.org).
 
 Because the crate is written in Rust, I intentionally made it part of
 [obs-service-cargo](https://github.com/openSUSE-Rust/obs-service-cargo/)
-because of this [https://github.com/openSUSE-Rust/obs-service-cargo/pull/124),
+because of this [PR](https://github.com/openSUSE-Rust/obs-service-cargo/pull/124)
 which is now merged. With this, sources can now be fetched from git sources
 and vendored in just one XML file, like for `obs-service-cargo` itself:
 
