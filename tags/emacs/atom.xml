@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - emacs</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/emacs/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-07-22T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/emacs/atom.xml</id>
+    <entry xml:lang="en">
+        <title>My Migration to Emacs</title>
+        <published>2023-07-22T00:00:00+00:00</published>
+        <updated>2023-07-22T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/migration-to-emacs/"/>
+        <id>https://uncomfyhalomacro.pl/blog/migration-to-emacs/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/migration-to-emacs/">&lt;h2 id=&quot;why-i-tried-emacs&quot;&gt;Why I tried Emacs&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-i-tried-emacs&quot; aria-label=&quot;Anchor link for: why-i-tried-emacs&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;I tried Emacs for the following reasons&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;migration-to-emacs&#x2F;#org-mode&quot;&gt;org mode&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;migration-to-emacs&#x2F;#org-roam&quot;&gt;org roam&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I heard many memes and praises of the editor. But one thing that interests me was that emacs can do note taking
+and task scheduling through &lt;a href=&quot;https:&#x2F;&#x2F;orgmode.org&quot;&gt;org mode&lt;&#x2F;a&gt;. Additionally, note taking using the &lt;a href=&quot;https:&#x2F;&#x2F;zettelkasten.de&quot;&gt;zettelkasten&lt;&#x2F;a&gt; through &lt;a href=&quot;https:&#x2F;&#x2F;www.orgroam.com&quot;&gt;org roam&lt;&#x2F;a&gt; greatly
+enhances that experience!&lt;&#x2F;p&gt;
+&lt;p&gt;I tried it for a few weeks now and ... it is amazing! 👀&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;org-mode&quot;&gt;Org Mode&lt;a class=&quot;zola-anchor&quot; href=&quot;#org-mode&quot; aria-label=&quot;Anchor link for: org-mode&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;I wouldn&#x27;t use emacs without this feature. It can allow you to schedule your stuff with &lt;a href=&quot;https:&#x2F;&#x2F;orgmode.org&#x2F;manual&#x2F;Agenda-Views.html&quot;&gt;org agenda&lt;&#x2F;a&gt;. These
+includes &lt;em&gt;note taking&lt;&#x2F;em&gt;, &lt;em&gt;task scheduling&lt;&#x2F;em&gt;, and &lt;em&gt;dailies&lt;&#x2F;em&gt;. Hell, combined that with &lt;a href=&quot;https:&#x2F;&#x2F;www.orgroam.com&#x2F;&quot;&gt;org roam&lt;&#x2F;a&gt;, and you get
+the best of zettelkasten method plus a growing connections of tasks.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;org-roam&quot;&gt;Org Roam&lt;a class=&quot;zola-anchor&quot; href=&quot;#org-roam&quot; aria-label=&quot;Anchor link for: org-roam&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;This feature actually hooked me into using emacs. Without it, my notes would be everywhere without knowing
+which part of this note connects to this note. Yes, you can do it by linking URL links but that&#x27;s not ideal
+to do that manually. Org roam does that for you and it&#x27;s such a breeze.&lt;&#x2F;p&gt;
+&lt;p&gt;Lastly, org roam has another plugin called &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;org-roam&#x2F;org-roam-ui&quot;&gt;org roam ui&lt;&#x2F;a&gt; which allows you to create a graphical representation
+of your knowledge base like how &lt;a href=&quot;https:&#x2F;&#x2F;obsidian.md&quot;&gt;Obsidian&lt;&#x2F;a&gt; and other knowledge base note taking apps do. I forked the project
+as seen &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;org-roam-ui&#x2F;tree&#x2F;feature&#x2F;add-export-functionality&quot;&gt;here&lt;&#x2F;a&gt; to allow me to generate a static web app for my knowledge base and upload it as a standalone
+website. The result is my &lt;a href=&quot;https:&#x2F;&#x2F;zettelkasten.uncomfyhalomacro.pl&quot;&gt;https:&#x2F;&#x2F;zettelkasten.uncomfyhalomacro.pl&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+&lt;img src=&quot;&#x2F;assets&#x2F;photos&#x2F;zettelkasten-sample.webp&quot; &#x2F;&gt;&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;I think I am slowly migrating all of my workflow to Emacs now. I do still use helix for small fast edits but
+for powerful features such as task scheduling, todolists and zettelkasten? I guess it&#x27;s Emacs.&lt;&#x2F;p&gt;
+&lt;p&gt;If you want to see how a professional Emacs user use Emacs, you can check out this &lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;urcL86UpqZc&quot;&gt;link&lt;&#x2F;a&gt;. It&#x27;s very informative.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
