@@ -1,11 +1,13 @@
 +++
 title = "Nushell Script for Fuzzy Finding Lobster Posts"
-date = 2023-09-11
+date = 2025-06-13
 authors = ["Soc Virnyl Estela"]
 +++
+
 ```nu
 #!/usr/bin/nu
-alias MENU = fuzzel -d
+let command_menu = if ($env.XDG_SESSION_TYPE == "wayland") { "fuzzel -d" } else { "bemenu" }
+alias MENU = ^$command_menu
 let sections = [ "active", "recent", "comments" ]
 $env.CACHE_PATH = ("~/.cache/lobsters" | path expand)
 $env.ACTIVE_RSS = ( $env.CACHE_PATH  | path join "active.xml")
@@ -47,13 +49,13 @@ if ($section =~ "active") {
    let options = [ "link to comment" "link to title" ]
    let option = ($options | to text | str trim | MENU -p "select option>" )
    if ($option =~ "link to title") {
-      for $title in $TITLES --numbered {
+      for $title in ($TITLES | enumerate) {
          if $TITLE =~ $title.item {
             xdg-open $"($LINKS | get $title.index)"
          }
       }
    } else if ($option =~ "link to comment") {
-     for $title in $TITLES --numbered {
+     for $title in ($TITLES | enumerate) {
          if $TITLE =~ $title.item {
             xdg-open $"($POSTS | get $title.index)"
          }
@@ -81,13 +83,13 @@ if ($section =~ "active") {
    let options = [ "link to comment" "link to title" ]
    let option = ($options | to text | str trim | MENU -p "select option>" )
    if ($option =~ "link to title") {
-      for $title in $TITLES --numbered {
+      for $title in ($TITLES | enumerate) {
          if $TITLE =~ $title.item {
             xdg-open $"($LINKS | get $title.index)"
          }
       }
    } else if ($option =~ "link to comment") {
-     for $title in $TITLES --numbered {
+     for $title in ($TITLES | enumerate) {
          if $TITLE =~ $title.item {
             xdg-open $"($POSTS | get $title.index)"
          }
