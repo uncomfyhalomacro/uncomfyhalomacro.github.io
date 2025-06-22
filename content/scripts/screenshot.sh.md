@@ -1,7 +1,7 @@
 +++
 title = "Screenshot script I use on both X11 and Wayland"
 authors = ["Soc Virnyl Estela"]
-date = "2025-06-16
+date = "2025-06-22"
 +++
 
 **Dependencies**:
