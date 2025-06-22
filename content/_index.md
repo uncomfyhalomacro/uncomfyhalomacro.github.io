@@ -38,20 +38,51 @@ github](https://github.com/uncomfyhalomacro/uncomfyhalomacro.github.io).
 
 ## 💻 Languages
 
+I prefer the following programming languages:
+
 - ⚙️ Rust
 - 🟣 Julia
-- 🐍 Python
+- 🔮 Crystal
+
+I am also proficient in the following programming languages:
+
 - 👍 Typescript and Javascript
+- 🐍 Python
+
+I also have little, but meaningful experiences with the following programming languages:
+
+- 🐇 Harelang
+- 🌩️ Zig
 
 ## 🌐 Web Frameworks and Tools
 
-- 🦖 ExpressJS
+I have notable experience with the following web development frameworks:
+
 - ⚛️ ReactJS
 - 🩹 ViteJS
 - ⏭️ NextJS
 - 🤤 Redux Toolkit
 
+I am familiar with the following middleware frameworks:
+
+- 🟨 ExpressJS
+- 🔥 Hono
+- 🐿️ Oak
+
+Although, for a short time, I also have experienced using
+[axum](https://github.com/tokio-rs/axum), and will continue to do so in the future.
+
+I am also familiar with the following Javascript runtimes:
+
+- 🦕 Deno
+- 🟩 NodeJS
+
+Although, [bun](https://bun.sh) isn't in the list, I am pretty sure that
+switching to it is a non-issue.
+
 ## 🛠️  General Developer Tools
+
+I am familiar with the following developer tools:
 
 - 🐧 Linux (openSUSE Tumbleweed)
 - 🐚 Zsh
@@ -59,9 +90,29 @@ github](https://github.com/uncomfyhalomacro/uncomfyhalomacro.github.io).
 - 🪟 Zellij
 - ✍️ Kakoune
 
+I am also knowledgeable using VSCode, and vim. I often use `docker` and `podman`
+to generate custom containers for software development.
+
 ## Planning to Learn
+
+I am planning to learn the following languages/software and their ecosystem in no particular order:
+
 - 🩸 Elixir
+- ☕ Java
+- 🦫 Go
+- 🟠 C
+- 🎼 C#
 - 🌈 Gleam
+- 🕸️ K8s
+- 🎼 Ansible
+
+## Career Prospects
+
+My plan in the future is to become either a desktop engineer building
+meaningful interfaces between users and software, or become a systems engineer building tools and
+maintaining platforms. Although, I am quite not sure where to go, I will
+just continue learning and hopefully, those experiences will narrow down to
+a preferred profession.
 
 # 🤗 Open Source Experience
 
