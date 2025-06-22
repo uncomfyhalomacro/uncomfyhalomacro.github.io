@@ -1,7 +1,7 @@
 +++
 title = "Colorpicker script for Wayland"
 authors = ["Soc Virnyl Estela"]
-date = "2025-06-22
+date = "2025-06-22"
 +++
 
 **Dependencies**:
