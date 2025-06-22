@@ -11,6 +11,7 @@ date = "2025-06-16
 - `swappy`
 - `xclip`
 - `libnotify-tools`
+- `waysip`
 
 ```bash
 #!/bin/bash
