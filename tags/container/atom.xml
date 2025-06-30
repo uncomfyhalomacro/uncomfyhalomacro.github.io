@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - container</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/container/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-01-30T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/container/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Calling Executables Outside Distrobox That Are From Another Distrobox</title>
+        <published>2023-08-06T00:00:00+00:00</published>
+        <updated>2024-01-30T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/calling-executables-outside-distrobox-that-are-from-another-distrobox/"/>
+        <id>https://uncomfyhalomacro.pl/blog/calling-executables-outside-distrobox-that-are-from-another-distrobox/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/calling-executables-outside-distrobox-that-are-from-another-distrobox/">&lt;h1 id=&quot;update&quot;&gt;Update&lt;a class=&quot;zola-anchor&quot; href=&quot;#update&quot; aria-label=&quot;Anchor link for: update&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;This old post is outdated and requires a small update. To run an executable from another
+container (here we use distrobox, a frontend for podman or docker), you just need to run
+this command inside the desired container where you want to run the executable.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; ln &#x2F;usr&#x2F;bin&#x2F;distrobox-host-exec &#x2F;usr&#x2F;local&#x2F;bin&#x2F;my-executable&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Make sure that the &lt;code&gt;my-executable&lt;&#x2F;code&gt; was already &lt;code&gt;distrobox-export&lt;&#x2F;code&gt;ed to the host.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;old-post&quot;&gt;Old post&lt;a class=&quot;zola-anchor&quot; href=&quot;#old-post&quot; aria-label=&quot;Anchor link for: old-post&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;To anyone that might have asked themselves&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;How do I call an executable from Y distro to the current X distro I am using in distrobox?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The answer is to &lt;strong&gt;create a script&lt;&#x2F;strong&gt;. But first you will have to use &lt;code&gt;distrobox-host-exec&lt;&#x2F;code&gt;. Create a symlink inside your distrobox. You can either declare
+an init-hook or do it manually. The command is&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;ln&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;sf&lt;&#x2F;span&gt; distrobox-host-exec &#x2F;usr&#x2F;local&#x2F;bin&#x2F;podman&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will create a pseudo podman executable that will run the host system&#x27;s &lt;code&gt;podman&lt;&#x2F;code&gt;, assuming you have that installed in your host system.&lt;&#x2F;p&gt;
+&lt;p&gt;To check if it works, run&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;podman&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; ps&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will give you a list of available containers that are active.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;example-situation&quot;&gt;Example situation&lt;a class=&quot;zola-anchor&quot; href=&quot;#example-situation&quot; aria-label=&quot;Anchor link for: example-situation&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;So let&#x27;s assume you are in a weird situation. You want to use &lt;a href=&quot;https:&#x2F;&#x2F;ziglang.org&quot;&gt;zig&lt;&#x2F;a&gt; but the one on openSUSE Tumbleweed distrobox is 0.10.0 because it has an
+issue with &lt;a href=&quot;https:&#x2F;&#x2F;ziglang.org&#x2F;download&#x2F;0.11.0&#x2F;release-notes.html#glibc-234&quot;&gt;glibc&lt;&#x2F;a&gt; versions. But it builds correctly on openSUSE Leap 15.5! The next thing you did was to create your leap distrobox&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;distrobox-create&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;i&lt;&#x2F;span&gt; leap:latest&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;n&lt;&#x2F;span&gt; leap&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And then you ran the following command inside your leap distrobox&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; zypper addrepo https:&#x2F;&#x2F;download.opensuse.org&#x2F;repositories&#x2F;devel:tools:compiler&#x2F;15.5&#x2F;devel:tools:compiler.repo&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; zypper refresh&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; zypper install zig&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So uh... how do I use zig from leap when I am in a tumbleweed distrobox?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;By using &lt;code&gt;distrobox-host-exec&lt;&#x2F;code&gt; which calls your &lt;code&gt;podman&lt;&#x2F;code&gt; executable! Remember the symlink? Here is the idea&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;podman&lt;&#x2F;code&gt; has an &lt;code&gt;exec&lt;&#x2F;code&gt; command. Running &lt;code&gt;podman exec --help&lt;&#x2F;code&gt; gives you the following output:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;txt&quot; class=&quot;language-txt z-code&quot;&gt;&lt;code class=&quot;language-txt&quot; data-lang=&quot;txt&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Run a process in a running container
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Description:
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  Execute the specified command inside a running container.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Usage:
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  podman exec [options] CONTAINER [COMMAND [ARG...]]
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Examples:
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  podman exec -it ctrID ls
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  podman exec -it -w &#x2F;tmp myCtr pwd
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  podman exec --user root ctrID ls
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Options:
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -d, --detach               Run the exec session in detached mode (backgrounded)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;      --detach-keys string   Select the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&amp;lt;value&amp;gt; where &amp;lt;value&amp;gt; is one of: a-z, @, ^, [, , or _ (default &amp;quot;ctrl-p,ctrl-q&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -e, --env stringArray      Set environment variables
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;      --env-file strings     Read in a file of environment variables
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -i, --interactive          Keep STDIN open even if not attached
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -l, --latest               Act on the latest container podman is aware of
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;                             Not supported with the &amp;quot;--remote&amp;quot; flag
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;      --preserve-fds uint    Pass N additional file descriptors to the container
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;      --privileged           Give the process extended Linux capabilities inside the container.  The default is false
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -t, --tty                  Allocate a pseudo-TTY. The default is false
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -u, --user string          Sets the username or UID used and optionally the groupname or GID for the specified command
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -w, --workdir string       Working directory inside the container
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Since it says here that we can run a process from a running container, we can create a script to run &lt;code&gt;zig&lt;&#x2F;code&gt; in your tumbleweed distrobox!&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;!&#x2F;bin&#x2F;bash&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;podman&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; exec&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;user&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-shell&quot;&gt;USER&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;it&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;w&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-shell&quot;&gt;PWD&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; leap zig &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-language z-shell&quot;&gt;@&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And save it to &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;zig&lt;&#x2F;code&gt; and run &lt;code&gt;sudo chmod +x &#x2F;usr&#x2F;local&#x2F;bin&#x2F;zig&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;testing-your-zig-executable&quot;&gt;Testing your zig executable&lt;a class=&quot;zola-anchor&quot; href=&quot;#testing-your-zig-executable&quot; aria-label=&quot;Anchor link for: testing-your-zig-executable&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Inside your tumbleweed distrobox which now contains your pseudo zig executable, you can test if it works by doing the commands&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;md&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; hello-zig&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-language z-shell&quot;&gt;_&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;zig&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; init-exe&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;zig&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; build&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;.&#x2F;zig-out&#x2F;hello-zig&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The last command should output&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;txt&quot; class=&quot;language-txt z-code&quot;&gt;&lt;code class=&quot;language-txt&quot; data-lang=&quot;txt&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;All your codebase are belong to us.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Run `zig build test` to run the tests.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;how-it-works&quot;&gt;How it works&lt;a class=&quot;zola-anchor&quot; href=&quot;#how-it-works&quot; aria-label=&quot;Anchor link for: how-it-works&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;We have &lt;code&gt;distrobox-host-exec&lt;&#x2F;code&gt; (which calls &lt;code&gt;host-spawn&lt;&#x2F;code&gt; in the background), and &lt;code&gt;podman&lt;&#x2F;code&gt;. By using &lt;code&gt;distrobox-host-exec&lt;&#x2F;code&gt; to
+run the host system &lt;code&gt;podman&lt;&#x2F;code&gt;, we can also check other running containers, not just from &lt;code&gt;leap&lt;&#x2F;code&gt; distrobox in the previous examples.&lt;&#x2F;p&gt;
+&lt;p&gt;With &lt;code&gt;podman&lt;&#x2F;code&gt;, we can use its &lt;code&gt;exec&lt;&#x2F;code&gt; command to run executables &lt;em&gt;from other containers&lt;&#x2F;em&gt;. The important flags are&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-w&lt;&#x2F;code&gt; or &lt;code&gt;--workdir&lt;&#x2F;code&gt;. This is where you set &lt;code&gt;$PWD&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;-i&lt;&#x2F;code&gt; or &lt;code&gt;--interactive&lt;&#x2F;code&gt;. This allows interactivity&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;-t&lt;&#x2F;code&gt; or &lt;code&gt;--tty&lt;&#x2F;code&gt;. This will allow it to work somewhat okay-ish in a terminal.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Plus &lt;code&gt;$@&lt;&#x2F;code&gt; to add possible other subcommands of an executable e.g. &lt;code&gt;build&lt;&#x2F;code&gt;, &lt;code&gt;test&lt;&#x2F;code&gt;, &lt;code&gt;--help&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;--user&lt;&#x2F;code&gt; is set to &lt;code&gt;$USER&lt;&#x2F;code&gt; so it respects your user inside the container. Otherwise, it will become &lt;code&gt;root&lt;&#x2F;code&gt; which
+maybe is not what you want.&lt;&#x2F;p&gt;
+&lt;p&gt;So the final and cool command for the pseudo zig executable is:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;!&#x2F;bin&#x2F;bash&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; leap can be anything: container ID or container NAME&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;podman&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; exec&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;user&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-shell&quot;&gt;USER&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;it&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;w&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-shell&quot;&gt;PWD&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; leap zig &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-language z-shell&quot;&gt;@&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;more-information&quot;&gt;More information&lt;a class=&quot;zola-anchor&quot; href=&quot;#more-information&quot; aria-label=&quot;Anchor link for: more-information&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;You can find more information from the following links:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;distrobox.privatedns.org&#x2F;usage&#x2F;distrobox-host-exec&#x2F;&quot;&gt;https:&#x2F;&#x2F;distrobox.privatedns.org&#x2F;usage&#x2F;distrobox-host-exec&#x2F;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;manpages.opensuse.org&#x2F;Tumbleweed&#x2F;podman&#x2F;podman-exec.1.en.html&quot;&gt;https:&#x2F;&#x2F;manpages.opensuse.org&#x2F;Tumbleweed&#x2F;podman&#x2F;podman-exec.1.en.html&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>VSCodium Flatpak on openSUSE Aeon</title>
+        <published>2023-07-14T00:00:00+00:00</published>
+        <updated>2023-07-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/codium-on-opensuse-aeon/"/>
+        <id>https://uncomfyhalomacro.pl/blog/codium-on-opensuse-aeon/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/codium-on-opensuse-aeon/">&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;a class=&quot;zola-anchor&quot; href=&quot;#prerequisites&quot; aria-label=&quot;Anchor link for: prerequisites&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;To start, you must have an immutable linux desktop distribution such as openSUSE Aeon. In this short post,
+I will explain how to set up VSCodium Flatpak in an immutable linux desktop. Some of the steps
+can be imitated to other immutable distros such as Fedora Silverblue and VanillaOS.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;reason&quot;&gt;Reason&lt;a class=&quot;zola-anchor&quot; href=&quot;#reason&quot; aria-label=&quot;Anchor link for: reason&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;There are ongoing issues and questions amongst Linux users and skepticisms regarding the usability of
+immutable desktops and the push for an all &lt;strong&gt;flatpak&lt;&#x2F;strong&gt; (or &lt;strong&gt;snap&lt;&#x2F;strong&gt;, if you prefer that,) immutable desktop
+distribution.&lt;&#x2F;p&gt;
+&lt;p&gt;This post, however, only debunks misinformation of how to use VSCodium Flatpak (or even VSCode Flatpak) properly
+in this kind of system.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-guide&quot;&gt;The Guide&lt;a class=&quot;zola-anchor&quot; href=&quot;#the-guide&quot; aria-label=&quot;Anchor link for: the-guide&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;setting-up-flatpak&quot;&gt;Setting up Flatpak&lt;a class=&quot;zola-anchor&quot; href=&quot;#setting-up-flatpak&quot; aria-label=&quot;Anchor link for: setting-up-flatpak&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;openSUSE Aeon already has flatpak set up out of the box but it&#x27;s &lt;code&gt;system-wide&lt;&#x2F;code&gt;. If you prefer &lt;em&gt;user-wide&lt;&#x2F;em&gt; installations, you can do:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;flatpak&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;user&lt;&#x2F;span&gt; remote-add &lt;span class=&quot;z-punctuation z-separator z-continuation z-line z-shell&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt;        --&lt;&#x2F;span&gt;if-not-exists&lt;&#x2F;span&gt; flathub &lt;span class=&quot;z-punctuation z-separator z-continuation z-line z-shell&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;        https:&#x2F;&#x2F;dl.flathub.org&#x2F;repo&#x2F;flathub.flatpakrepo&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;installing-vscodium-flatpak&quot;&gt;Installing VSCodium Flatpak&lt;a class=&quot;zola-anchor&quot; href=&quot;#installing-vscodium-flatpak&quot; aria-label=&quot;Anchor link for: installing-vscodium-flatpak&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Assuming you use openSUSE Aeon, you can install VSCodium Flatpak through GNOME Software. If you love to use the
+CLI, you can do the following:&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;user-wide-install&quot;&gt;User-wide install&lt;a class=&quot;zola-anchor&quot; href=&quot;#user-wide-install&quot; aria-label=&quot;Anchor link for: user-wide-install&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h4&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;flatpak&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;user&lt;&#x2F;span&gt; install com.vscodium.codium&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h4 id=&quot;system-wide-install&quot;&gt;System-wide install&lt;a class=&quot;zola-anchor&quot; href=&quot;#system-wide-install&quot; aria-label=&quot;Anchor link for: system-wide-install&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h4&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;flatpak&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; install com.vscodium.codium&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then install Open-Remote-SSH Plugin for VSCodium - &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jeanp413&#x2F;open-remote-ssh&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;jeanp413&#x2F;open-remote-ssh&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;setting-up-distrobox&quot;&gt;Setting up distrobox&lt;a class=&quot;zola-anchor&quot; href=&quot;#setting-up-distrobox&quot; aria-label=&quot;Anchor link for: setting-up-distrobox&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;openSUSE Aeon comes with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;89luca89&#x2F;distrobox&quot;&gt;distrobox&lt;&#x2F;a&gt; out of the &lt;em&gt;box&lt;&#x2F;em&gt; 😜&lt;&#x2F;p&gt;
+&lt;p&gt;Distrobox is a &lt;a href=&quot;https:&#x2F;&#x2F;podman.io&quot;&gt;podman&lt;&#x2F;a&gt; frontend much like &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;containers&#x2F;toolbox&quot;&gt;toolbx&lt;&#x2F;a&gt;. I prefer distrobox because it&#x27;s way more flexible in my experience.&lt;&#x2F;p&gt;
+&lt;p&gt;To create my own container, I run the following command&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;distrobox-enter&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; tumbleweed&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will create a podman container named as &quot;tumbleweed&quot;. I advise you to set a &lt;strong&gt;custom&lt;&#x2F;strong&gt; &lt;code&gt;HOME&lt;&#x2F;code&gt; directory
+though. You can do that by using the command&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;distrobox-create&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;n&lt;&#x2F;span&gt; tumbleweed&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;H&lt;&#x2F;span&gt; somedir&#x2F;you&#x2F;really&#x2F;want&#x2F;to&#x2F;set&#x2F;as&#x2F;HOME&#x2F;for&#x2F;that&#x2F;container&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For more information, check out the documentation at &lt;a href=&quot;https:&#x2F;&#x2F;distrobox.privatedns.org&#x2F;usage&quot;&gt;https:&#x2F;&#x2F;distrobox.privatedns.org&#x2F;usage&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;setting-up-ssh-and-sshd-in-your-container&quot;&gt;Setting up SSH and SSHD in your container&lt;a class=&quot;zola-anchor&quot; href=&quot;#setting-up-ssh-and-sshd-in-your-container&quot; aria-label=&quot;Anchor link for: setting-up-ssh-and-sshd-in-your-container&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;After entering your container (here we use &quot;tumbleweed&quot;), do&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;usr&#x2F;sbin&#x2F;sshd-gen-keys-start&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; assuming you have vim installed in the podman container&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; I use vim here&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; vim &#x2F;etc&#x2F;ssh&#x2F;sshd_config&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then add the following to your &lt;code&gt;&#x2F;etc&#x2F;ssh&#x2F;sshd_config&lt;&#x2F;code&gt; in that container&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;txt&quot; class=&quot;language-txt z-code&quot;&gt;&lt;code class=&quot;language-txt&quot; data-lang=&quot;txt&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Port 10000
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;ListenAddress localhost
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;PermitEmptyPasswords yes
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;PermitUserEnvironment yes
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;X11Forwarding yes
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Next, run the &lt;code&gt;sshd&lt;&#x2F;code&gt; command like so&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;usr&#x2F;sbin&#x2F;sshd&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Make sure the container is running during all of your sessions. Distrobox does it by default.&lt;&#x2F;p&gt;
+&lt;p&gt;Then in your &lt;strong&gt;host system&lt;&#x2F;strong&gt;, edit &lt;code&gt;~&#x2F;.ssh&#x2F;config&lt;&#x2F;code&gt; with the following content&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;txt&quot; class=&quot;language-txt z-code&quot;&gt;&lt;code class=&quot;language-txt&quot; data-lang=&quot;txt&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Host tumbleweed
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  HostName localhost
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  Port 10000
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Finally, use your Open-Remote-SSH plugin in VSCodium to connect to that container and set up your
+development environment!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Setting up VSCodium flatpak is complicated but not that hard as long as you are familiar with how containers
+work and how to choose the right plugins. I believe that a development environment that is mostly SSH-ing
+to containers bring benefits that outweighs its disadvantages:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;clean base system; install dev dependencies in the container&lt;&#x2F;li&gt;
+&lt;li&gt;throw the container away to start fresh if desired&lt;&#x2F;li&gt;
+&lt;li&gt;allows developers to install only the necessary stuff on their base system&lt;&#x2F;li&gt;
+&lt;li&gt;encourages the use of flatpaks, a universal distribution&#x2F;packaging format&lt;&#x2F;li&gt;
+&lt;li&gt;explores possibilities of making immutable desktops as a viable development environment&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>How I use MicroOS Desktop</title>
+        <published>2023-05-28T00:00:00+00:00</published>
+        <updated>2023-05-28T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/13/"/>
+        <id>https://uncomfyhalomacro.pl/blog/13/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/13/">&lt;h1 id=&quot;update-on-my-current-usage&quot;&gt;Update on my current usage&lt;a class=&quot;zola-anchor&quot; href=&quot;#update-on-my-current-usage&quot; aria-label=&quot;Anchor link for: update-on-my-current-usage&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;strong&gt;I stopped using it&lt;&#x2F;strong&gt;. MicroOS has some of it&#x27;s perks but the current state of the operating system is still in it&#x27;s beta&#x2F;alpha state
+so some moving parts are inherently broken. It&#x27;s probably because of the lack of contributors and interest from SUSE and openSUSE
+for the desktop variant of MicroOS. As much as I want to become a contributor, I realize I lack the time to do so because
+of work and personal problems and issues I still have to fix a lot in real life. If you still want to know how I use it, continue reading.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;MicroOS Desktop is a &lt;em&gt;desktop variant&lt;&#x2F;em&gt; of the openSUSE&#x27;s MicroOS for servers and containerized workflows. Please do note, although they are
+similar, they are separate products and have different goals.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Issues in MicroOS for server should be issued over there and issues in MicroOS Desktop
+should be on MicroOS Desktop.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The goal of the desktop is as follows:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;immutability&lt;&#x2F;li&gt;
+&lt;li&gt;isolation of system and user software&lt;&#x2F;li&gt;
+&lt;li&gt;containerized workflows&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;immutability&quot;&gt;Immutability&lt;a class=&quot;zola-anchor&quot; href=&quot;#immutability&quot; aria-label=&quot;Anchor link for: immutability&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Immutable desktops are nothing new. Windows and MacOS are immutable desktops since &lt;em&gt;you cannot
+change the core part of the system&lt;&#x2F;em&gt; unless you have some permissions and workarounds to do it e.g.
+modifying the system registry. For years, this was the standard of modern OSses including Android.&lt;&#x2F;p&gt;
+&lt;p&gt;Traditional desktop linux and nix systems are &lt;em&gt;mutable&lt;&#x2F;em&gt; which means that the user can modify
+each part of the core system. Although this advantage is also a disadvantage, nothing is perfect.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;advantages-of-an-immutable-system&quot;&gt;Advantages of an immutable system&lt;a class=&quot;zola-anchor&quot; href=&quot;#advantages-of-an-immutable-system&quot; aria-label=&quot;Anchor link for: advantages-of-an-immutable-system&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Being immutable is inherently an advantage of an immutable desktop system. It is hard to
+modify the core part of the system and updates are &quot;atomic&quot; which means the whole system
+will update as an immutable system.&lt;&#x2F;p&gt;
+&lt;p&gt;Users are encouraged to use workflows through sandboxing or containers. In this case, &lt;strong&gt;flatpaks&lt;&#x2F;strong&gt;,
+&lt;strong&gt;nix&lt;&#x2F;strong&gt;, &lt;strong&gt;distrobox&lt;&#x2F;strong&gt;, &lt;strong&gt;toolbx&lt;&#x2F;strong&gt;, &lt;strong&gt;docker&lt;&#x2F;strong&gt; and &lt;strong&gt;podman&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For desktop software, it is advisable to use flatpaks. &lt;em&gt;Some users do use toolbx and distrobox for this&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For development environment, they are encouraged to use distrobox and toolbx. Others may prefer nix.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;disadvantages&quot;&gt;Disadvantages&lt;a class=&quot;zola-anchor&quot; href=&quot;#disadvantages&quot; aria-label=&quot;Anchor link for: disadvantages&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Being immutable &lt;em&gt;&lt;strong&gt;may&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; also be a disadvantage. It&#x27;s very self-explanatory. You cannot modify
+your system as much as you like to.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;security&quot;&gt;Security&lt;a class=&quot;zola-anchor&quot; href=&quot;#security&quot; aria-label=&quot;Anchor link for: security&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Immutable desktops increases security of the core system since it&#x27;s not welcoming any modifications.
+Since the root file system is read-only, it&#x27;s not easy to tamper the system and thus, users
+can avoid any vulnerabilities &lt;em&gt;&lt;strong&gt;unless the vulnerability is from the package and software installed
+from the root file system&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;my-workflow&quot;&gt;My Workflow&lt;a class=&quot;zola-anchor&quot; href=&quot;#my-workflow&quot; aria-label=&quot;Anchor link for: my-workflow&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;For software that I want to use e.g. Firefox, flatpaks are the way to go. Flatpaks are the best
+when it comes to these kind of distributions as they are self-contained and do not pollute
+the host system with ridiculously brittle and large dependencies when installing through
+the system&#x27;s package manager.&lt;&#x2F;p&gt;
+&lt;p&gt;For developing and packaging software and also for learning, and note taking, I use distrobox.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;how-i-use-distrobox&quot;&gt;How I use distrobox&lt;a class=&quot;zola-anchor&quot; href=&quot;#how-i-use-distrobox&quot; aria-label=&quot;Anchor link for: how-i-use-distrobox&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;I created &lt;code&gt;mainbox&lt;&#x2F;code&gt; executable.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;!&#x2F;usr&#x2F;bin&#x2F;bash&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;distrobox&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; enter&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;n&lt;&#x2F;span&gt; tumbleweed &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-language z-shell&quot;&gt;@&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is for my development environment such as notetaking, learning a new language, or programming tasks.&lt;&#x2F;p&gt;
+&lt;p&gt;I also created &lt;code&gt;rootbox&lt;&#x2F;code&gt; executable.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;!&#x2F;usr&#x2F;bin&#x2F;bash&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;distrobox-enter&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;root&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;name&lt;&#x2F;span&gt; opensuse-build-service &lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-language z-shell&quot;&gt;@&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is for openSUSE Build Service related stuff since I am a volunteer packager there. I also set
+the &lt;code&gt;--home&lt;&#x2F;code&gt; flag when creating this podman container. The &lt;code&gt;--home&lt;&#x2F;code&gt; flag helps you have a custom
+&lt;code&gt;$HOME&lt;&#x2F;code&gt; inside your container. It avoids clutter on your &lt;em&gt;actual home directory&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;For now, I am still new to MicroOS Desktop and I still experience some bugs here and there because
+I use the KDE Plasma variant of MicroOS which is known to be still in it&#x27;s &lt;strong&gt;alpha&lt;&#x2F;strong&gt; stage. This
+means, it&#x27;s not yet considered for daily use &lt;em&gt;even though some users are now using it&lt;&#x2F;em&gt;. To help
+improve the experience, it&#x27;s best to file bug reports and propose suggestions to the MicroOS
+Plasma Desktop maintainers and contributors. If you are privileged to have the free time to
+contribute, consider offering your skills and services as well.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;troubleshooting&quot;&gt;Troubleshooting&lt;a class=&quot;zola-anchor&quot; href=&quot;#troubleshooting&quot; aria-label=&quot;Anchor link for: troubleshooting&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;blurry-fonts-on-kde-plasma&quot;&gt;Blurry fonts on KDE Plasma&lt;a class=&quot;zola-anchor&quot; href=&quot;#blurry-fonts-on-kde-plasma&quot; aria-label=&quot;Anchor link for: blurry-fonts-on-kde-plasma&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Install all the &lt;code&gt;xdg-desktop-portal&lt;&#x2F;code&gt; implementations especially gnome and gtk. Blurry fonts are usually affecting
+gtk apps and not qt apps.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;issues&quot;&gt;Issues&lt;a class=&quot;zola-anchor&quot; href=&quot;#issues&quot; aria-label=&quot;Anchor link for: issues&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;NVIDIA drivers don&#x27;t load as fast causing some issues with the login manager. Workarounds is a force &lt;code&gt;systemctl restart display-manager.service&lt;&#x2F;code&gt;.
+I am not sure what&#x27;s causing it as there are no logs. This does not happen on vanilla openSUSE TumbleWeed.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

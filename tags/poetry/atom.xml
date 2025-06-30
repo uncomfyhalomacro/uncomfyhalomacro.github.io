@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - poetry</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/poetry/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-04-26T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/poetry/atom.xml</id>
+    <entry xml:lang="en">
+        <title>gasping for air</title>
+        <published>2025-04-26T00:00:00+00:00</published>
+        <updated>2025-04-26T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/poetry/entry1/"/>
+        <id>https://uncomfyhalomacro.pl/poetry/entry1/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/poetry/entry1/">&lt;p&gt;what i believe to be love—
+was just me painting a picture
+that does not hold any water&lt;&#x2F;p&gt;
+&lt;p&gt;if only life was a little bit kind,
+but what i get was the harsh reality—
+that one mistake is enough&lt;&#x2F;p&gt;
+&lt;p&gt;a mistake that could have been fixed,
+but no one reached out—
+to reassure me that &quot;to err is human&quot;&lt;&#x2F;p&gt;
+&lt;p&gt;i was willing,
+determined,
+to fix myself,
+to prove for them,
+that i also deserve to be understood,
+but here i am,
+trying to heal up,
+while gasping for air&lt;&#x2F;p&gt;
+&lt;p&gt;i hope someday,
+i&#x27;ll be able to swim back to the shore,
+but now, i am still in this life raft—
+thinking what to do next&lt;&#x2F;p&gt;
+&lt;p&gt;may time give me the peace i need&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
