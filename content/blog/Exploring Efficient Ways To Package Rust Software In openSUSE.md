@@ -1,7 +1,6 @@
 +++
 title = "Exploring Efficient Ways To Package Rust Software in openSUSE"
 authors = ["Soc Virnyl Estela"]
-description = "a small short guide on how to setup VSCodium Flatpak on an immutable desktop"
 date = 2024-08-22
 updated = 2024-11-10
 draft = false
