@@ -237,7 +237,7 @@ The merge message should look similar to the one I had for **rusty_v8** (see ima
 # Conclusion
 
 At this point, I am not familiar how those changes are pushed into Factory. I believe there will be an automation as well
-for pushing devel packages from devel projects to Factory. I also believe that the <opensuse.github.io/scm-staging/user_guide.html> is
+for pushing devel packages from devel projects to Factory. I also believe that the <https://opensuse.github.io/scm-staging/user_guide.html> is
 deprecated or inaccurate because of this experience.
 
 In conclusion, I guess this is how far I can understand how the SCMSync workflow works. If you have any questions, just
