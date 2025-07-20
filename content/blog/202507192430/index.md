@@ -1,6 +1,7 @@
 +++
 title = "Let's revisit packaging with SCMSync workflow"
 date = 2025-07-20
+updated = 2025-07-21
 authors = ["Soc Virnyl Estela"]
 [taxonomies]
 tags = [
@@ -236,12 +237,29 @@ The merge message should look similar to the one I had for **rusty_v8** (see ima
 
 # Conclusion
 
-At this point, I am not familiar how those changes are pushed into Factory. I believe there will be an automation as well
+~~At this point, I am not familiar how those changes are pushed into Factory~~. I believe there will be an automation as well
 for pushing devel packages from devel projects to Factory. I also believe that the <https://opensuse.github.io/scm-staging/user_guide.html> is
 deprecated or inaccurate because of this experience.
 
 In conclusion, I guess this is how far I can understand how the SCMSync workflow works. If you have any questions, just
 [email me](mailto:uncomfyhalomacro@opensuse.org) or message me in [openSUSE Discord](https://discord.gg/opensuse).
+
+# Updated Last Step–SR a devel project to Factory
+
+Avindra, one of the packagers, messaged me on Discord and that there is a part I missed. To submit a devel project
+to Factory, one can just do the same thing as mentioned in <https://en.opensuse.org/openSUSE:OBS_to_Git#How_to_submit_from_devel_project_to_Factory?>.
+
+Hence, for biome, it would be just
+
+```bash
+osc sr devel:languages:javascript/biome openSUSE:Factory
+```
+
+But when I did this, the rev is suspicious and also there was no changelog. I aborted because I then discovered that
+the meta package is still building for RISCv64. It's still building after I slept for 8 hours... 🤣
+
+Thus, I SR-ed for rusty_v8. I will SR for deno too after a few days to let the snapshot have rusty_v8. 🙂
+
 
 
 
