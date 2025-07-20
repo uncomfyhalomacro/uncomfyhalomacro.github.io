@@ -17,7 +17,7 @@ jobs:
     - name: Install openring-rs
       run: |
         export CC=clang
-        cargo install --git https://github.com/lukehsiao/openring-rs
+        cargo install --locked --git https://github.com/lukehsiao/openring-rs
     - name: Generate openring
       run: |
         export PATH="${PATH}:${HOME}/.cargo/bin"
