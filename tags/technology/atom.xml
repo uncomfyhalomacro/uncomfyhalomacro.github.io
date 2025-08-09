@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - technology</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/technology/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-06-02T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/technology/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Self hosting is fun but...</title>
+        <published>2024-06-02T00:00:00+00:00</published>
+        <updated>2024-06-02T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/self-hosting-is-fun-but/"/>
+        <id>https://uncomfyhalomacro.pl/blog/self-hosting-is-fun-but/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/self-hosting-is-fun-but/">&lt;h1 id=&quot;hi&quot;&gt;Hi!&lt;a class=&quot;zola-anchor&quot; href=&quot;#hi&quot; aria-label=&quot;Anchor link for: hi&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Hello there!&lt;&#x2F;p&gt;
+&lt;p&gt;I have decided to start self-hosting my website! My current plans after this
+is to start donating to &lt;a href=&quot;https:&#x2F;&#x2F;codeberg.org&quot;&gt;Codeberg&lt;&#x2F;a&gt;, starting July. The reason why I
+decided to self-host is page load. My website, despite being a static website,
+is slow to load because of Codeberg Pages. Codeberg Pages is fine actually, but
+at some points in time it does a bit weird. This is probably because the data
+centers are in Germany or somewhere in Europe while I am in the Philippines.&lt;&#x2F;p&gt;
+&lt;p&gt;The self-hosting provider I use for here is &lt;a href=&quot;https:&#x2F;&#x2F;www.linode.com&#x2F;&quot;&gt;Linode&lt;&#x2F;a&gt;. But I plan
+to change after a month. I think I am looking at &lt;a href=&quot;https:&#x2F;&#x2F;contabo.com&quot;&gt;Contabo&lt;&#x2F;a&gt; next.
+More reasons why below.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;about-linode&quot;&gt;About Linode&lt;a class=&quot;zola-anchor&quot; href=&quot;#about-linode&quot; aria-label=&quot;Anchor link for: about-linode&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Linode. Hmm. I can&#x27;t give much opinions about it. This is my first time
+trying out self-hosting after all.&lt;&#x2F;p&gt;
+&lt;p&gt;The pricing is in my opinion, could be better? Not sure. Now that I found
+out about &lt;a href=&quot;https:&#x2F;&#x2F;contabo.com&quot;&gt;Contabo&lt;&#x2F;a&gt;, I plan to ditch this instance and move over.&lt;&#x2F;p&gt;
+&lt;p&gt;Documentation is actually there in Linode but most of it is either outdated
+or possibly wrong? I have a lot of things I read from the docs that did not
+work well for me so I read official sources instead aka &lt;strong&gt;the&lt;&#x2F;strong&gt; documentation
+of the software I am going to use. They could have done it better I guess
+&lt;strong&gt;and they lack docs for openSUSE too&lt;&#x2F;strong&gt; 😢.&lt;&#x2F;p&gt;
+&lt;p&gt;I plan to have two compute instances in &lt;a href=&quot;https:&#x2F;&#x2F;contabo.com&quot;&gt;Contabo&lt;&#x2F;a&gt; because I plan
+to use the other instance for a database, and also self-hosting &lt;a href=&quot;https:&#x2F;&#x2F;woodpecker-ci.org&quot;&gt;Woodpecker
+CI&lt;&#x2F;a&gt;. Possibly I will add other services as well such as&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;NextCloud&lt;&#x2F;li&gt;
+&lt;li&gt;VaultWarden (Bitwarden basically) or I just use password-store.&lt;&#x2F;li&gt;
+&lt;li&gt;Collabora Office&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I might share one of these services to my family or friends I guess.&lt;&#x2F;p&gt;
+&lt;p&gt;The reason being, for experience and it&#x27;s also very fun.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;what-i-learned-so-far&quot;&gt;What I learned so far&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-i-learned-so-far&quot; aria-label=&quot;Anchor link for: what-i-learned-so-far&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;experimenting-forgejo&quot;&gt;Experimenting Forgejo&lt;a class=&quot;zola-anchor&quot; href=&quot;#experimenting-forgejo&quot; aria-label=&quot;Anchor link for: experimenting-forgejo&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;It would be a waste to not use the remaining compute resources so I decided
+to give &lt;a href=&quot;https:&#x2F;&#x2F;forgejo.org&quot;&gt;Forgejo&lt;&#x2F;a&gt; a &lt;a href=&quot;https:&#x2F;&#x2F;go.dev&#x2F;&quot;&gt;Go&lt;&#x2F;a&gt;. 😉&lt;&#x2F;p&gt;
+&lt;p&gt;Forgejo is available now in openSUSE. Although, I am quite confused
+by the systemd service but now I understand the implications for
+why it was decided not to use the home directory of whatever
+invokes the &lt;code&gt;forgejo&lt;&#x2F;code&gt; binary. This was discussed in the
+https:&#x2F;&#x2F;en.opensuse.org&#x2F;openSUSE:Security_Features#Systemd_hardening_effort.&lt;&#x2F;p&gt;
+&lt;p&gt;Anyhow, I had a lot of hiccups configuring &lt;a href=&quot;https:&#x2F;&#x2F;forgejo.org&quot;&gt;Forgejo&lt;&#x2F;a&gt; but I just
+decided to just use whatever that systemd script has and just edit the file
+to point to a custom config by running&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;EDITOR&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;kak&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;systemctl&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; edit&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;full&lt;&#x2F;span&gt; forgejo.service&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;specifically, I edited the line containing &lt;code&gt;ExecStart=&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;EDITOR=kak&lt;&#x2F;code&gt; is so annoying. openSUSE does have a way
+to set this by adding that to &lt;code&gt;&#x2F;etc&#x2F;profile.local&lt;&#x2F;code&gt;.
+Local configs or those that are suffixed with &lt;code&gt;*.local&lt;&#x2F;code&gt; is
+unique to openSUSE. Users are encouraged to edit the
+local configs rather than the defaults. This is how
+I got so confused at first when trying it out the first time.
+Also, this explains why I also edit the apache config
+at a different file instead of the &lt;code&gt;httpd.conf&lt;&#x2F;code&gt; file. Specifically,
+by editing &lt;code&gt;&#x2F;etc&#x2F;sysconfig&#x2F;apache2&lt;&#x2F;code&gt; 🥴.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Anyway, the site is up at &lt;a href=&quot;https:&#x2F;&#x2F;forgejo.uncomfyhalomacro.pl&quot;&gt;https:&#x2F;&#x2F;forgejo.uncomfyhalomacro.pl&lt;&#x2F;a&gt;. Feel free
+to take a look around. However, &lt;strong&gt;registrations are closed&lt;&#x2F;strong&gt; so if you want
+to make an account, you are not able to unless we are friends. ⚠️
+If you are my friend, do keep in mind that this is experimental and still
+possible that I will kill this instance. Once I get the hang of it, I will
+start putting my projects to the self-hosted vm.&lt;&#x2F;p&gt;
+&lt;p&gt;Another issue I have is setting the &lt;code&gt;[mailer]&lt;&#x2F;code&gt; configuration. Because it seems
+to be not working to be honest and I am not sure why. I filed a ticket to
+my mail provider if MTA is part of their service because I might be mistaken.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;nginx&quot;&gt;Nginx&lt;a class=&quot;zola-anchor&quot; href=&quot;#nginx&quot; aria-label=&quot;Anchor link for: nginx&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;To manage redirects and subdomain URLs, I tried my hand at Nginx. I read it
+as ngeenx and not like &#x27;engine X&#x27; or like how I read Lynx.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;first-impressions&quot;&gt;First Impressions&lt;a class=&quot;zola-anchor&quot; href=&quot;#first-impressions&quot; aria-label=&quot;Anchor link for: first-impressions&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;The language looks like &lt;a href=&quot;https:&#x2F;&#x2F;kdl.dev&#x2F;&quot;&gt;KDL&lt;&#x2F;a&gt;. I actually do not know
+what Nginx use but whatever. The syntax confuses me a lot to be honest and
+I really don&#x27;t like how it looks when configuring. Some of you might find
+the language simple. But what really confused me a lot is doing redirects. I
+guess I didn&#x27;t read enough documentation 🥴.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;certbot-integration-impressions&quot;&gt;Certbot Integration Impressions&lt;a class=&quot;zola-anchor&quot; href=&quot;#certbot-integration-impressions&quot; aria-label=&quot;Anchor link for: certbot-integration-impressions&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Certbot integration is nice. The pressing issue is when certbot rewrites
+files for Nginx.  This causes a lot of confusion to me because the
+rewritten configs to point to the SSL certificates are faulty and can
+cause misredirects. I have to manually edit the files to be honest.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;apache&quot;&gt;Apache&lt;a class=&quot;zola-anchor&quot; href=&quot;#apache&quot; aria-label=&quot;Anchor link for: apache&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;I am not sure why but after the onslaught of trying Nginx, I decided
+to use Apache.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;first-impressions-1&quot;&gt;First Impressions&lt;a class=&quot;zola-anchor&quot; href=&quot;#first-impressions-1&quot; aria-label=&quot;Anchor link for: first-impressions-1&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;I got pampered by openSUSE because it contains templates at &lt;code&gt;&#x2F;etc&#x2F;apache2&#x2F;vhosts.d&lt;&#x2F;code&gt;.
+At first, I was so confused because when I read the default config at
+&lt;code&gt;&#x2F;etc&#x2F;apache2&#x2F;httpd.conf&lt;&#x2F;code&gt;, the documentation from Linode and other sources
+conflict because openSUSE&#x27;s default config has a lot of comments to discourage
+the use of it. Instead, I have to edit &lt;code&gt;&#x2F;etc&#x2F;sysconfig&#x2F;apache2&lt;&#x2F;code&gt; and add a
+new file &lt;code&gt;&#x2F;etc&#x2F;apache2&#x2F;httpd.conf.local&lt;&#x2F;code&gt;. This file is added to &lt;code&gt;&#x2F;etc&#x2F;sysconfig&#x2F;apache2&lt;&#x2F;code&gt;,
+specifically, &lt;code&gt;APACHE_CONF_INCLUDE_FILES&lt;&#x2F;code&gt;. Here is a snippet of the updated sysconfig.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;# Here you can name files, separated by spaces, that should be Include&amp;#39;d from 
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;# httpd.conf. 
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;#
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;# This allows you to add e.g. VirtualHost statements without touching 
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;# &#x2F;etc&#x2F;apache2&#x2F;httpd.conf itself, which makes upgrading easier. 
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;#
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;APACHE_CONF_INCLUDE_FILES=&amp;quot;&#x2F;etc&#x2F;apache2&#x2F;httpd.conf.local&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;better-syntax-plugins-and-tooling&quot;&gt;Better syntax, plugins, and tooling&lt;a class=&quot;zola-anchor&quot; href=&quot;#better-syntax-plugins-and-tooling&quot; aria-label=&quot;Anchor link for: better-syntax-plugins-and-tooling&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;I am not saying that I did not have difficulty using Apache. But
+as I roamed around the Internet, I just found out that it uses
+utility tools that helps installs plugins. As of writing, I have
+added the &lt;code&gt;filter&lt;&#x2F;code&gt; and &lt;code&gt;deflate&lt;&#x2F;code&gt; module. The latter was already
+added by default but the &lt;code&gt;filter&lt;&#x2F;code&gt; module was not. This was
+to enhance page loads (yeah I know it&#x27;s a static site 🤣) but
+a small speed up helps 🤪.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s also easy to just add additional subdomains as well
+in &lt;code&gt;&#x2F;etc&#x2F;apache2&#x2F;vhosts.d&lt;&#x2F;code&gt;. You just have to configure if what you want
+is a reverse proxy and a redirect or serve directly the directory
+specifically those in &lt;code&gt;&#x2F;srv&#x2F;www&#x2F;vhosts&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;certbot-integration-impressions-1&quot;&gt;Certbot Integration Impressions&lt;a class=&quot;zola-anchor&quot; href=&quot;#certbot-integration-impressions-1&quot; aria-label=&quot;Anchor link for: certbot-integration-impressions-1&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;I am just going to say that the integration with certbot is amazing.  Even as
+to correctly configure my configs. Running &lt;code&gt;certbot --apache -d mydomain.com -d other.mydomain.com&lt;&#x2F;code&gt; is a breeze. It will add a new file corresponding
+to the config name with &lt;code&gt;-le-ssl.conf&lt;&#x2F;code&gt; suffix. I just add a small modification
+but so far only to the one that contains &lt;code&gt;www.mydomain.com&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dns&quot;&gt;DNS&lt;a class=&quot;zola-anchor&quot; href=&quot;#dns&quot; aria-label=&quot;Anchor link for: dns&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;In regards to DNS, I have some issues configuring it. I manage to learn more
+about A&#x2F;AAAA and CNAME records. So far, it&#x27;s all good and working.&lt;&#x2F;p&gt;
+&lt;p&gt;I am just surprised that I don&#x27;t know how long it will really propagate. One
+hiccup I made before was a mistypo of configuring spam reputation for
+a mail provider I use for my custom domain. And yes, it did propagate
+the domain and because of that, I have or had an ephemeral URL domain
+&lt;code&gt;autoconfig.mydomain.com&lt;&#x2F;code&gt; which points to my atuin instance. It&#x27;s gone now.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;closing-thoughts&quot;&gt;Closing Thoughts&lt;a class=&quot;zola-anchor&quot; href=&quot;#closing-thoughts&quot; aria-label=&quot;Anchor link for: closing-thoughts&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Self-hosting is a fun idea. Although, I might be looking at other hosting solutions
+like Contabo. I heard they have a good price over ratio but I also
+heard mixed reviews from different communities e.g. they lower the quality
+of network bandwidth (?) but I can&#x27;t seem to see what&#x27;s the issue yet
+so I might have to experience that myself.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>How should you choose a distro?</title>
+        <published>2023-05-12T00:00:00+00:00</published>
+        <updated>2023-05-12T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/12/"/>
+        <id>https://uncomfyhalomacro.pl/blog/12/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/12/">&lt;p&gt;Ever thought of what linux distribution to choose? You are not alone.&lt;&#x2F;p&gt;
+&lt;p&gt;Linux (or GNU&#x2F;Linux for the pedant 😛) has at least hundreds of different existing distributions. This
+gives users many distributions to choose from and the freedom to use their distribution of choice. This
+includes the popular distros such as Fedora, Ubuntu, openSUSE, and Linux Mint and the most obscure such
+as Carbs Linux, Clear Linux, and some Arch derivative you never heard of before.&lt;&#x2F;p&gt;
+&lt;p&gt;However, this can also be confusing to newcomers (or even old users) alike because your distro of choice
+can really matter when it comes to community support, maintenance, and also the life of the distribution
+before it f itself out of existence. This means that choosing the wrong distribution can result to
+unintended consequences for you as a user for areas in e.g. security, community, and support.&lt;&#x2F;p&gt;
+&lt;p&gt;This &lt;em&gt;&lt;strong&gt;nearly&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; happened with &lt;a href=&quot;https:&#x2F;&#x2F;getsol.us&#x2F;&quot;&gt;Solus&lt;&#x2F;a&gt; btw. The two posts summarizes what happened:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;SolusProject&#x2F;comments&#x2F;ssps5j&#x2F;i_no_longer_feel_safe_using_solus&#x2F;&quot;&gt;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;SolusProject&#x2F;comments&#x2F;ssps5j&#x2F;i_no_longer_feel_safe_using_solus&#x2F;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;getsol.us&#x2F;2023&#x2F;04&#x2F;18&#x2F;a-new-voyage&#x2F;&quot;&gt;A New Voyage - Solus Project&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Good thing it&#x27;s back 😄. I don&#x27;t use Solus though. But what can we learn from this btw as a user? And how
+does this affect our decision to choose a distribution? Is choosing a distribution really matter?&lt;&#x2F;p&gt;
+&lt;p&gt;Unfortunately, the short answer is &lt;em&gt;&lt;strong&gt;yes&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;. You can skip btw but if you want to read more I have some
+important points to take why this is so.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;your-distribution-of-choice-really-matters&quot;&gt;Your distribution of choice really matters&lt;a class=&quot;zola-anchor&quot; href=&quot;#your-distribution-of-choice-really-matters&quot; aria-label=&quot;Anchor link for: your-distribution-of-choice-really-matters&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;It&#x27;s painfully obvious that your distro of choice really matters. There are many factors to consider
+when choosing a distro. Choosing the &quot;right&quot; distro for you is very subjective but here are the factors
+you really need to consider:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;12&#x2F;#documentation-and-wiki&quot;&gt;Documentation and Wiki&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;12&#x2F;#community&quot;&gt;Community&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;12&#x2F;#software-availability&quot;&gt;Software Availability&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;12&#x2F;#longevity&quot;&gt;Longevity&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;documentation-and-wiki&quot;&gt;Documentation and Wiki&lt;a class=&quot;zola-anchor&quot; href=&quot;#documentation-and-wiki&quot; aria-label=&quot;Anchor link for: documentation-and-wiki&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Why is this first mentioned than the other sections? Because good documentation and a wiki can help both
+old and new users to hop over a distro. Badly written or no documentation at all can be a reason why
+certain distros will never have any new users at all. Beginner-friendly distros are &quot;beginner friendly&quot;
+for a reason. That&#x27;s because they have good documentation on how to install, use, and maintain their
+system. Even hard-core &quot;do it yourself&quot; distros such as Arch or Gentoo are popular because they have
+an informative Wiki where anyone can contribute or improve existing information.&lt;&#x2F;p&gt;
+&lt;p&gt;A special mention for &lt;a href=&quot;https:&#x2F;&#x2F;www.freebsd.org&#x2F;&quot;&gt;FreeBSD&lt;&#x2F;a&gt;, as it is one of my favorite non-linux
+distribution with great &lt;a href=&quot;https:&#x2F;&#x2F;docs.freebsd.org&#x2F;en&#x2F;&quot;&gt;documentation and manual&lt;&#x2F;a&gt;. Easy to understand and grasp.
+Sadly, I really cannot daily drive it because some software work only on Linux. I do hope you try it out!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;community&quot;&gt;Community&lt;a class=&quot;zola-anchor&quot; href=&quot;#community&quot; aria-label=&quot;Anchor link for: community&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;What makes a Linux (or a BSD) distribution stay alive for years and years? What keeps it afloat? And what
+keeps it thriving still in the future?&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s actually the community behind your favorite distribution.&lt;&#x2F;p&gt;
+&lt;p&gt;Growing interest and usage of a distribution helps maintain motivation from both project contributors and
+community members. However, incentives are actually needed to keep both the distribution and community thriving.
+This is shown to be true to most &lt;em&gt;corporate&lt;&#x2F;em&gt; &lt;strong&gt;and&lt;&#x2F;strong&gt; &lt;em&gt;community&lt;&#x2F;em&gt; backed distributions such as Fedora (from RHEL),
+and openSUSE (from SUSE). With no incentives such as funding and through donations, it is really hard
+for a community to stay alive, and again, this nearly happened to Solus.&lt;&#x2F;p&gt;
+&lt;p&gt;This is important as well in choosing your distribution because you are given the assurance to stick to that
+distribution without worrying that it will someday become a dead project and a dead community.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;software-availability&quot;&gt;Software Availability&lt;a class=&quot;zola-anchor&quot; href=&quot;#software-availability&quot; aria-label=&quot;Anchor link for: software-availability&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;This is very self-explanatory really. Your distribution of choice may not have the software you use when you were
+in another distribution. This can be fixed by helping contribute to the distribution itself by volunteering to
+package the software you usually use. I don&#x27;t think there should be an issue about that but it is up to you
+if you have the time to do that. No one is forcing you to contribute. The idea of giving back should be encouraged
+though.&lt;&#x2F;p&gt;
+&lt;p&gt;Fortunately, packaging formats such as &lt;a href=&quot;https:&#x2F;&#x2F;flatpak.org&#x2F;&quot;&gt;flatpak&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;snapcraft.io&quot;&gt;snap&lt;&#x2F;a&gt; bridge the
+issues with software availability. I definitely recommend flatpak over snaps though as flatpaks are &lt;em&gt;truly
+platform-agnostic&lt;&#x2F;em&gt; unlike Canonical&#x27;s snap 🤮. No to AppImage, I will write a blog about that soon.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;longevity&quot;&gt;Longevity&lt;a class=&quot;zola-anchor&quot; href=&quot;#longevity&quot; aria-label=&quot;Anchor link for: longevity&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;How long does a distribution last? New distributions are born nearly every year or so but the question remains. What
+keeps a distribution&#x27;s existence last for decades?&lt;&#x2F;p&gt;
+&lt;p&gt;The answer is very simple. Time and money. Unfortunately, free software is not actually free as you would like it to be.
+Contributors and project maintainers alike need some form of incentive for them to keep a project alive. *They gotta eat
+and sleep too you know...&lt;&#x2F;p&gt;
+&lt;p&gt;Small time distributions rarely last a year or two before they become dead (insert another Arch-derivative meme here).
+These kinds of distros rarely last because there are no incentives and additionally, they are usually hobby projects or
+projects that only focus on a niche.&lt;&#x2F;p&gt;
+&lt;p&gt;Corporate-backed &lt;strong&gt;and&lt;&#x2F;strong&gt; community-backed distros are on the clear because they have the means and incentives to do so.
+It is also why I always recommend distributions such as Fedora or openSUSE.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Choosing a Linux distribution can be confusing. Sometimes joining the popular is the safest option to take. Other times, you
+just want to try obscure distros just to be different. To be honest, preference is preference. Whether you like pineapple
+on pizza or not, it is up to you to choose a distro. However, ignoring the factors I mentioned to choose a distribution that
+you want to use daily can affect your productivity and time. If you really want to try out a distribution and test it out,
+I suggest run it inside a container or virtual machine. Explore and hop around until the shoe fits 😀.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
