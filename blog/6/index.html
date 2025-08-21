@@ -1,0 +1,68 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1" name=viewport><meta content="uncomfy uh... i have a website? Julia x Zellij a short post about how this workflow works" name=description><title>Julia x Zellij</title><link href=/favicon.png rel=icon><link href="https://uncomfyhalomacro.pl/style.css?h=b3ea0c6ca2d4276c7a3b" rel=stylesheet><link media="(prefers-color-scheme: dark)" href=/syntax-theme-dark.css rel=stylesheet><link media="(prefers-color-scheme: light)" href=/syntax-theme-light.css rel=stylesheet><link href="https://uncomfyhalomacro.pl/color/auto.css?h=c9e3a532fd9af99660b2" rel=stylesheet><link href=https://uncomfyhalomacro.pl/atom.xml rel=alternate title=RSS type=application/atom+xml><script crossorigin src=https://kit.fontawesome.com/51d55b4c7d.js></script><script>function resize() {
+    var x = document.getElementById("myLinks");
+    // var y = document.getElementsByClassName("subcontainer")[0];
+    // var nav = document.getElementsByClassName("topnav")[0];
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+  try {
+    const bannedReferrers = [/news\.ycombinator\.com/i, /reddit\.com/i];
+    if (document.referrer) {
+      const ref = new URL(document.referrer);
+      if (
+        !/bad-networks/i.test(window.location.href) &&
+        bannedReferrers.some((r) => r.test(ref.host))
+      ) {
+        window.location.href = "https://www.pcloadletter.dev/blog/bad-networks";
+      }
+    }
+  } catch (e) {console.log(e)}</script><body><div class=main-grid><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a></div></div><div class=sub-grid><div class=content-grid><div class=info><h1>Julia x Zellij<span> <a href=https://uncomfyhalomacro.pl/atom.xml><i class="fa-sharp fa-solid fa-rss"></i></a> </span></h1><p><span class=author> Soc Virnyl Estela </span>| <span class=dates>2022-12-19</span> | <span class=readtime>reading time: ~2min</span></div><div class=toc><h1>Contents</h1><div class=toc-container><ul><li><a href=https://uncomfyhalomacro.pl/blog/6/#multiplexing-workflows>Multiplexing workflows</a><li><a href=https://uncomfyhalomacro.pl/blog/6/#what-is-zellij>What is Zellij?</a><li><a href=https://uncomfyhalomacro.pl/blog/6/#julia-x-zellij>Julia x Zellij</a><li><a href=https://uncomfyhalomacro.pl/blog/6/#now-what>Now what?</a></ul></div></div><div class=content-body><article><section class=content><h2 id=multiplexing-workflows>Multiplexing workflows<a aria-label="Anchor link for: multiplexing-workflows" class=zola-anchor href=#multiplexing-workflows>§</a></h2><p>A <em>multiplexer</em> is a program that multiplex a screen into several splits usually separated with their own purpose and function. In this post, the multiplexers we are talking about is for the terminal.<p>There are many multiplexing programs that exist today such as screen, tmux, and <a href=https://zellij.dev>zellij</a>. They serve similar purposes in that each split, pane, tab or whatever they call it can specific programs to your liking e.g. running htop, editing a file, listing passwords. Other multiplexing capabilities maybe is already built-in with your terminal emulator e.g. <a href=https://sw.kovidgoyal.net/kitty/>kitty</a> and <a href=https://wezfurlong.org/wezterm/>wezterm</a> are known to have such features.<p>So how does a multiplexing workflow help you improve your <a href=https://julialang.org>Julia</a> package development?<h2 id=what-is-zellij>What is <a href=https://zellij.dev>Zellij</a>?<a aria-label="Anchor link for: what-is-zellij" class=zola-anchor href=#what-is-zellij>§</a></h2><p><strong>Zellij</strong> is one of the popular rust cli tools that exist today - a multiplexer with batteries included and soon to have plugins support. I am writing this blog with the help of zellij using a layout that runs zola. It's a simple layout you can use as you can see below.<pre class="language-kdl z-code" data-lang=kdl><code class=language-kdl data-lang=kdl><span class="z-text z-plain">layout {
+</span><span class="z-text z-plain">  pane split_direction="vertical" {
+</span><span class="z-text z-plain">    pane command="helix"
+</span><span class="z-text z-plain">    pane split_direction="horizontal" {
+</span><span class="z-text z-plain">      zola { args "check"; }
+</span><span class="z-text z-plain">      zola { args "build"; }
+</span><span class="z-text z-plain">      zola { args "serve"; }
+</span><span class="z-text z-plain">      pane {
+</span><span class="z-text z-plain">      	name "free-terminal"
+</span><span class="z-text z-plain">      }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">  pane size=1 borderless=true {
+</span><span class="z-text z-plain">    plugin location="zellij:compact-bar"
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">  pane_template name="zola" {
+</span><span class="z-text z-plain">    command "zola"
+</span><span class="z-text z-plain">    start_suspended true
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">}
+</span></code></pre><h2 id=julia-x-zellij>Julia x Zellij<a aria-label="Anchor link for: julia-x-zellij" class=zola-anchor href=#julia-x-zellij>§</a></h2><p>As you can see from the example layout from the previous section, you can finally get an idea of how to integrate <code>julia</code> with <code>zellij</code>.<pre class="language-kdl z-code" data-lang=kdl><code class=language-kdl data-lang=kdl><span class="z-text z-plain">layout {
+</span><span class="z-text z-plain">  pane split_direction="vertical" {
+</span><span class="z-text z-plain">  	pane command="helix"
+</span><span class="z-text z-plain">  	pane split_direction="horizontal" {
+</span><span class="z-text z-plain">  		pane {
+</span><span class="z-text z-plain">  			name "julia-repl"
+</span><span class="z-text z-plain">  			command "julia"
+</span><span class="z-text z-plain">  			args "--startup-file=no" "--project=." 
+</span><span class="z-text z-plain">  			start_suspended true
+</span><span class="z-text z-plain">  		}
+</span><span class="z-text z-plain">  		pane {
+</span><span class="z-text z-plain">  			name "julia-test"
+</span><span class="z-text z-plain">  			command "julia"
+</span><span class="z-text z-plain">  			args "--startup-file=no" "--project=." "-e" "using Pkg; Pkg.instantiate(); Pkg.test()"
+</span><span class="z-text z-plain">  			start_suspended true
+</span><span class="z-text z-plain">  		}
+</span><span class="z-text z-plain">  		pane {
+</span><span class="z-text z-plain">  			name "free-terminal"
+</span><span class="z-text z-plain">  			focus true
+</span><span class="z-text z-plain">  		}
+</span><span class="z-text z-plain">  	}
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">  pane size=1 borderless=true {
+</span><span class="z-text z-plain">  	plugin location="zellij:compact-bar"
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">}
+</span></code></pre><p>This results with the layout below:<p><img alt=zellij-julia-layout-template src=https://uncomfyhalomacro.pl/blog/6/./blog-6-julia-template-zellij.png.webp><ul><li>Left contains your editor<li>Right contains the following: <ul><li>Julia REPL<li>Julia Pkg.test() command<li>Terminal</ul></ul><p>This layout makes it easy for you to test and rerun commands for your Julia package development.<h2 id=now-what>Now what?<a aria-label="Anchor link for: now-what" class=zola-anchor href=#now-what>§</a></h2><p>This may not be your workflow but for those who are interested in using <a href=https://zellij.dev>zellij</a> may find it a good idea to integrate this workflow for their next Julia project. Thanks for reading this short post.</section></article></div><footer>follow <a href=https://fosstodon.org/@uncomfyhalomacro rel=me target=_blank>uncomfyhalomacro@fosstodon.org</a> ⋅ © 2024 <a href=https://codeberg.org/uncomfyhalomacro/gruvbox-v target=_blank>gruvbox-v</a> ⋅ powered by <a href=https://getzola.org target=_blank>zola</a> ⋅ theme by <a href=https://codeberg.org/uncomfyhalomacro target=_blank>uncomfyhalomacro</a> ⋅ Content <a href=https://creativecommons.org/licenses/by-sa/4.0/ target=_blank>CC-BY-4.0</a></footer></div><div class=right-grid><div class=toc><h1>Contents</h1><div class=toc-container><ul><li><a href=https://uncomfyhalomacro.pl/blog/6/#multiplexing-workflows>Multiplexing workflows</a><li><a href=https://uncomfyhalomacro.pl/blog/6/#what-is-zellij>What is Zellij?</a><li><a href=https://uncomfyhalomacro.pl/blog/6/#julia-x-zellij>Julia x Zellij</a><li><a href=https://uncomfyhalomacro.pl/blog/6/#now-what>Now what?</a></ul></div></div></div></div><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a></div></div></div>

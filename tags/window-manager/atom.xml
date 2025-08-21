@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - window-manager</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/window-manager/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-04-25T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/window-manager/atom.xml</id>
+    <entry xml:lang="en">
+        <title>I switched to Hyprland</title>
+        <published>2023-04-25T00:00:00+00:00</published>
+        <updated>2023-04-25T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/9/"/>
+        <id>https://uncomfyhalomacro.pl/blog/9/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/9/">&lt;h1 id=&quot;disclaimer&quot;&gt;Disclaimer&lt;a class=&quot;zola-anchor&quot; href=&quot;#disclaimer&quot; aria-label=&quot;Anchor link for: disclaimer&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I really do not care what window manager or desktop environment you are using.
+For me, it is stupid to start flame wars when it comes to things like these
+including editors and browsers. Because what the hell are you doing with life
+if you focus your energy on something so childish and unproductive?&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Use whatever fits for you, don&#x27;t let others dictate what you use. Life is short&lt;&#x2F;em&gt; 😄&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;so-yeah-window-managers-go-brrr&quot;&gt;So yeah - window managers go brrr...&lt;a class=&quot;zola-anchor&quot; href=&quot;#so-yeah-window-managers-go-brrr&quot; aria-label=&quot;Anchor link for: so-yeah-window-managers-go-brrr&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I am a fan of using window managers especially those that have tiling and
+workspace functionality. I experienced using many tiling window managers such
+as i3wm, swaywm, xmonad, and leftwm. And I &lt;em&gt;used to&lt;&#x2F;em&gt; daily drive &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;riverwm&#x2F;river&quot;&gt;riverwm&lt;&#x2F;a&gt;,
+a week before the time I am writing this.
+For me, my motivations in using a window manager are the following criteria:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Sane configuration&lt;&#x2F;strong&gt;. I really dislike a configuration that requires you to
+learn a programming language. I am looking at you XMonad.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Community Support&lt;&#x2F;strong&gt;. If there are many users, then it&#x27;s probably a good
+window manager.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;WiKi&lt;&#x2F;strong&gt;. What I Know Is.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Extensibility&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Monitor&lt;&#x2F;strong&gt; support and mirroring.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic tiling&lt;&#x2F;strong&gt; with tabs support.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Wayland&lt;&#x2F;strong&gt;. Because it&#x27;s the trend now on major distributions.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Below are the window managers&#x2F;compositors that I listed to be potential for
+my daily drive usage.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;i3&quot;&gt;i3&lt;a class=&quot;zola-anchor&quot; href=&quot;#i3&quot; aria-label=&quot;Anchor link for: i3&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;It fits most of the the criteria &lt;em&gt;&lt;strong&gt;except&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; the part where it&#x27;s
+not Wayland and it does not have dynamic tiling by default (yes, you can use
+a plugin for that but no... too much hassle).&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;wayland.freedesktop.org&quot;&gt;Wayland&lt;&#x2F;a&gt; is now the trend for
+&lt;em&gt;major distributions&lt;&#x2F;em&gt; such as openSUSE, Fedora, and Ubuntu. I really do not care
+much about the politics but the Xorg Foundation seems to be focused now on the
+development of Wayland as they claim that X11 and X server is technological
+burden that they don&#x27;t want to maintain anymore as claimed by them.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Wayland is a replacement for the X11 window system protocol and architecture
+with the aim to be easier to develop, extend, and maintain&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;So no for i3. 😥&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;sway&quot;&gt;Sway&lt;a class=&quot;zola-anchor&quot; href=&quot;#sway&quot; aria-label=&quot;Anchor link for: sway&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Wayland? Check. Dynamic tiling? No, but I don&#x27;t want to install a plugin to add
+dynamic tiling.&lt;&#x2F;p&gt;
+&lt;p&gt;&quot;But that&#x27;s just one thing?&quot;. I do agree, however, Sway and other wlroots-based
+Wayland compositors do not have proper multi-monitor support, especially the
+part where &lt;em&gt;I can&#x27;t mirror my output&lt;&#x2F;em&gt; to an external display. It&#x27;s a wlroots issue
+and I really can&#x27;t blame the Wayland and Wlroots developers since they are
+doing this in their free time even with tools such as wlr-randr and kanshi.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;river&quot;&gt;River&lt;a class=&quot;zola-anchor&quot; href=&quot;#river&quot; aria-label=&quot;Anchor link for: river&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;This was my daily driver and been using it since early February 2022. It&#x27;s a
+dynamic tiling compositor with extensible layouts through the river-protocols
+specifically &lt;code&gt;river-layout-v3&lt;&#x2F;code&gt;, therefore, you can make your own layout generator in
+any language. Notable layout generators that I have tried other than the default
+&lt;code&gt;rivertile&lt;&#x2F;code&gt; are &lt;code&gt;rivercarro&lt;&#x2F;code&gt; and &lt;code&gt;stacktile&lt;&#x2F;code&gt;. But as river is also a wlroots-based
+Wayland compositor, I have the same issues that I have with sway on output mirroring.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;now-why-hyprland&quot;&gt;Now why Hyprland?&lt;a class=&quot;zola-anchor&quot; href=&quot;#now-why-hyprland&quot; aria-label=&quot;Anchor link for: now-why-hyprland&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;As much as I love &lt;a href=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;9&#x2F;#river&quot;&gt;river&lt;&#x2F;a&gt;, I have to use an external monitor (smart TVs and projector)
+every weekdays for lectures because I am an instructor for a private university
+in the field of chemistry, and biology and some humanities-related subjects. This led me
+to use &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;leftwm&#x2F;leftwm&quot;&gt;LeftWM&lt;&#x2F;a&gt; as my dynamic tiler written in Rust.&lt;&#x2F;p&gt;
+&lt;p&gt;But as it is not Wayland, I have to look for an alternative which has good external monitor
+support with output mirroring. LeftWM is great, but I can&#x27;t remain maintaining two
+dotfiles...&lt;&#x2F;p&gt;
+&lt;p&gt;So yes, I noticed &lt;a href=&quot;https:&#x2F;&#x2F;hyprland.org&quot;&gt;Hyprland&lt;&#x2F;a&gt; from one of my friends who also uses Wayland.
+It was still beta at that time and I have heard many bugs so I was not really into it
+until someone packaged it in openSUSE Build Service and submitted it the openSUSE Wayland project
+and openSUSE Factory project. That led me to try it and package &lt;code&gt;xdg-desktop-portal-hyprland&lt;&#x2F;code&gt;
+in my own openSUSE Build Service project and install Hyprland.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;a class=&quot;zola-anchor&quot; href=&quot;#features&quot; aria-label=&quot;Anchor link for: features&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Hyprland has the following features (maybe I miss some of them but whatever):&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;IPC support&lt;&#x2F;li&gt;
+&lt;li&gt;Dynamic tiling by default&lt;&#x2F;li&gt;
+&lt;li&gt;Hyprland protocols&lt;&#x2F;li&gt;
+&lt;li&gt;Portals&lt;&#x2F;li&gt;
+&lt;li&gt;Global Shortcuts&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Because Hyprland has IPC support, this means users can create their own way to communicate
+and control the compositor. I rarely use this feature even in Sway because I just use usually
+what it brings on the table by default. It&#x27;s also dynamic tiling and supports two kinds of layouts:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dwindle&lt;&#x2F;li&gt;
+&lt;li&gt;Master (and stack)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I love the Dwindle layout since it&#x27;s easy to rearrange the windows around to my fav master layout.&lt;&#x2F;p&gt;
+&lt;p&gt;Hyprland also has an extension protocol for Wayland which is designed to be used with Hyprland itself.
+This protocol was made so that it can be used with its fork of the Portal implementation for
+wlroots based compositors, known as &lt;code&gt;xdg-desktop-portal-hyprland&lt;&#x2F;code&gt;. This fork addresses the following:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Screen selection - it now supports window selections now as well. This means, you can now specify
+which client&#x2F;window you want to show on the screen.&lt;&#x2F;li&gt;
+&lt;li&gt;Global shortcuts - it now supports global shortcuts which is an extension of the Wayland protocol
+which uses Portals.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;I have not experienced global shortcuts in KDE Plasma on X11 before so I really do not know
+what to say about it. But people are hyping on it so I guess that functionality is a good thing.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;my-decision&quot;&gt;My decision&lt;a class=&quot;zola-anchor&quot; href=&quot;#my-decision&quot; aria-label=&quot;Anchor link for: my-decision&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;I switched to Hyprland for the following things&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Good monitor support&lt;&#x2F;strong&gt;. I want to emphasize how I have trouble using &lt;code&gt;wlr-randr&lt;&#x2F;code&gt; and &lt;code&gt;kanshi&lt;&#x2F;code&gt; only
+to see an open issue on wlroots regarding mirror output support.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic tiling&lt;&#x2F;strong&gt; by default.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Portals&lt;&#x2F;strong&gt;. The fork is great ☺️. I can finally share a specific window if I wanted to now.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Additionally, the eye-candy. I have not customized for a long time now for river. Ricing was a tedious
+task and usually a waste of time that&#x27;s why. But with Hyprland, I think that fire has somewhat lit up
+again. Although, my current configuration for Hyprland is simple, at least I know that I can easily
+rice it up if I wanted to (round-corners look nice btw!). So yes, here is my setup with &lt;a href=&quot;https:&#x2F;&#x2F;elkowar.github.io&#x2F;eww&#x2F;eww.html&quot;&gt;eww&lt;&#x2F;a&gt;
+as my bar 😁&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;9&#x2F;.&#x2F;hyprland-fastfetch.webp&quot; alt=&quot;screenshot of hyprland setup&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

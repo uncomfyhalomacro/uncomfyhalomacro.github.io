@@ -1,0 +1,78 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1" name=viewport><meta content="uncomfy uh... i have a website? Nushell script for opening Youtube videos with MPV " name=description><title>Nushell script for opening Youtube videos with MPV</title><link href=/favicon.png rel=icon><link href="https://uncomfyhalomacro.pl/style.css?h=b3ea0c6ca2d4276c7a3b" rel=stylesheet><link media="(prefers-color-scheme: dark)" href=/syntax-theme-dark.css rel=stylesheet><link media="(prefers-color-scheme: light)" href=/syntax-theme-light.css rel=stylesheet><link href="https://uncomfyhalomacro.pl/color/auto.css?h=c9e3a532fd9af99660b2" rel=stylesheet><link href=https://uncomfyhalomacro.pl/atom.xml rel=alternate title=RSS type=application/atom+xml><script crossorigin src=https://kit.fontawesome.com/51d55b4c7d.js></script><script>function resize() {
+    var x = document.getElementById("myLinks");
+    // var y = document.getElementsByClassName("subcontainer")[0];
+    // var nav = document.getElementsByClassName("topnav")[0];
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+  try {
+    const bannedReferrers = [/news\.ycombinator\.com/i, /reddit\.com/i];
+    if (document.referrer) {
+      const ref = new URL(document.referrer);
+      if (
+        !/bad-networks/i.test(window.location.href) &&
+        bannedReferrers.some((r) => r.test(ref.host))
+      ) {
+        window.location.href = "https://www.pcloadletter.dev/blog/bad-networks";
+      }
+    }
+  } catch (e) {console.log(e)}</script><body><div class=main-grid><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a></div></div><div class=sub-grid><div class=content-grid><div class=info><h1>Nushell script for opening Youtube videos with MPV<span> <a href=https://uncomfyhalomacro.pl/atom.xml><i class="fa-sharp fa-solid fa-rss"></i></a> </span></h1><p><span class=author> Soc Virnyl Estela </span>| <span class=dates>2024-03-05</span> | <span class=readtime>reading time: ~0min</span></div><div class=notoc></div><div class=content-body><article><section class=content><pre class="language-nu z-code" data-lang=nu><code class=language-nu data-lang=nu><span class="z-text z-plain">#!/usr/bin/nu
+</span><span class="z-text z-plain">alias MENU = fuzzel -d
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">let subbed_channels = [ 
+</span><span class="z-text z-plain">  
+</span><span class="z-text z-plain"> chrisbiscardi
+</span><span class="z-text z-plain"> Coderized
+</span><span class="z-text z-plain"> CodeAesthetic
+</span><span class="z-text z-plain"> dreamsofcode
+</span><span class="z-text z-plain"> fasterthanlime
+</span><span class="z-text z-plain"> fireship
+</span><span class="z-text z-plain"> fknight
+</span><span class="z-text z-plain"> freecodecamp
+</span><span class="z-text z-plain"> LearnLinuxTV
+</span><span class="z-text z-plain"> LowLevelLearning
+</span><span class="z-text z-plain"> niccoloveslinux 
+</span><span class="z-text z-plain"> NoBoilerplate
+</span><span class="z-text z-plain"> _noisecode
+</span><span class="z-text z-plain"> RustVideos
+</span><span class="z-text z-plain"> VideosByDefault
+</span><span class="z-text z-plain"> ThePrimeTimeagen
+</span><span class="z-text z-plain"> TraversyMedia
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">]
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">let channel = ($subbed_channels | to text | MENU -p "choose channel>" | str trim)
+</span><span class="z-text z-plain">if ($channel | is-empty) {
+</span><span class="z-text z-plain"> exit 0
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">if $channel not-in $subbed_channels {
+</span><span class="z-text z-plain">  notify-send --icon dialog-error --app-name Error -u critical "Not in the list" $"($channel) channel is not in the list of your subs!"
+</span><span class="z-text z-plain">  exit 1
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">let titles = (http get $"(http get $"https://www.youtube.com/@($channel | to text | str trim)" | query web -q 'link' -a href | find feeds | get 0 | ansi strip)" --raw | query web -q 'title')
+</span><span class="z-text z-plain">let channel_title = ($titles | get 0)
+</span><span class="z-text z-plain">let video_titles = ($titles | skip 1)
+</span><span class="z-text z-plain">let chosen_video_title = ($titles | to text | MENU -p 'open link to>' | str trim)
+</span><span class="z-text z-plain">if ($chosen_video_title | is-empty) {
+</span><span class="z-text z-plain"> exit 0
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">let video_hashes = (http get $"(http get $"https://www.youtube.com/@($channel | str trim)" | query web -q 'link' -a href | find feeds | get 0 | ansi strip)" --raw | query web -q 'yt\:videoId')
+</span><span class="z-text z-plain">for $video_title in $video_titles --numbered {
+</span><span class="z-text z-plain"> if $chosen_video_title == $channel_title {
+</span><span class="z-text z-plain">  notify-send --icon firefox --app-name firefox $"Opening Youtube channel - ($channel_title) - in default browser"
+</span><span class="z-text z-plain">  setsid /bin/sh -c $"xdg-open 'https://youtube.com/@($channel)'"
+</span><span class="z-text z-plain">  sleep 0.3sec
+</span><span class="z-text z-plain">  exit 0
+</span><span class="z-text z-plain"> }
+</span><span class="z-text z-plain"> if ($chosen_video_title in $video_titles) and ($chosen_video_title in $video_title.item) {
+</span><span class="z-text z-plain">  notify-send --icon mpv --app-name mpv $"Opening '($video_title.item)' in mpv"
+</span><span class="z-text z-plain">  let ytflags = "(mp4,webm)[height&LT?1080]+bestaudio/best"  
+</span><span class="z-text z-plain">  setsid /bin/sh -c $'mpv --slang=en --ytdl-raw-options=ignore-config=,sub-lang=en,write-auto-sub= --ytdl-format="($ytflags)" --no-fs "https://youtube.com/watch?v=($video_hashes | get $video_title.index)"'
+</span><span class="z-text z-plain">  sleep 0.3sec
+</span><span class="z-text z-plain">  exit 0
+</span><span class="z-text z-plain"> }
+</span><span class="z-text z-plain">}
+</span></code></pre></section></article></div><footer>follow <a href=https://fosstodon.org/@uncomfyhalomacro rel=me target=_blank>uncomfyhalomacro@fosstodon.org</a> ⋅ © 2024 <a href=https://codeberg.org/uncomfyhalomacro/gruvbox-v target=_blank>gruvbox-v</a> ⋅ powered by <a href=https://getzola.org target=_blank>zola</a> ⋅ theme by <a href=https://codeberg.org/uncomfyhalomacro target=_blank>uncomfyhalomacro</a> ⋅ Content <a href=https://creativecommons.org/licenses/by-sa/4.0/ target=_blank>CC-BY-4.0</a></footer></div><div class=right-grid><div class=notoc></div></div></div><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a></div></div></div>

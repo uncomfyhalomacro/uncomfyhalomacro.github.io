@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - static-site-generators</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/static-site-generators/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-11-15T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/static-site-generators/atom.xml</id>
+    <entry xml:lang="en">
+        <title>How To Deploy A Webpage to GitHub Pages</title>
+        <published>2024-11-15T00:00:00+00:00</published>
+        <updated>2024-11-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202411094841/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202411094841/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202411094841/">&lt;p&gt;There are many existing documentation about deploying webpages to GitHub pages.&lt;&#x2F;p&gt;
+&lt;p&gt;This guide is just a guide for those that are interested in a very manual setup.&lt;&#x2F;p&gt;
+&lt;p&gt;There is already a &lt;a href=&quot;https:&#x2F;&#x2F;docs.github.com&#x2F;en&#x2F;pages&#x2F;quickstart&quot;&gt;full documentation&lt;&#x2F;a&gt;
+for GitHub Pages if you want the full doc experience.&lt;&#x2F;p&gt;
+&lt;p&gt;Also, readers are expected that they are competent enough to know basic Git commands.&lt;&#x2F;p&gt;
+&lt;p&gt;Commands used here are for Bash shell.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;deploying-a-small-html-file&quot;&gt;Deploying a small HTML file&lt;a class=&quot;zola-anchor&quot; href=&quot;#deploying-a-small-html-file&quot; aria-label=&quot;Anchor link for: deploying-a-small-html-file&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;If you are not yet familiar with how the CI works, do not worry as you will
+notice that writing CI workflows as basic as this is not that really
+difficult.&lt;&#x2F;p&gt;
+&lt;p&gt;To start with, you have to do the following as prerequisites.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a GitHub Account.&lt;&#x2F;li&gt;
+&lt;li&gt;Create a repository.&lt;&#x2F;li&gt;
+&lt;li&gt;Clone the new repository locally.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The full commands starting for step 3 are&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; clone https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;simple-site&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; simple-site&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Adjust the URL to your repository. If you prefer SSH, the full commands are&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; clone git@github.com:uncomfyhalomacro&#x2F;simple-site.git&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; simple-site&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;One can check that the remote for the repository is set properly by
+running the following command.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; remote&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;v&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;By default, it&#x27;s named as &lt;code&gt;origin&lt;&#x2F;code&gt;. Your output could look like this&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;origin	git@github.com:uncomfyhalomacro&#x2F;simple-site.git (fetch)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;origin	git@github.com:uncomfyhalomacro&#x2F;simple-site.git (push)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now that everything is setup, let&#x27;s create an &lt;code&gt;index.html&lt;&#x2F;code&gt; at the root
+directory of the project.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;touch&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; index.html&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Open and edit it with your editor. I use &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mawww&#x2F;kakoune&quot;&gt;kakoune&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Copy this simple HTML code below to your new file &lt;code&gt;index.html&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;html&quot; class=&quot;language-html z-code&quot;&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-sgml z-doctype z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;!&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-declaration z-doctype z-html&quot;&gt;DOCTYPE&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-doctype z-html&quot;&gt;html&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-structure z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-structure z-any z-html&quot;&gt;html&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-html&quot;&gt;lang&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;en&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-structure z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-structure z-any z-html&quot;&gt;body&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;Hello World!
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-structure z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-structure z-any z-html&quot;&gt;body&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-structure z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-structure z-any z-html&quot;&gt;html&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This should suffice.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setting-up-your-personal-access-token&quot;&gt;Setting Up Your PERSONAL ACCESS TOKEN&lt;a class=&quot;zola-anchor&quot; href=&quot;#setting-up-your-personal-access-token&quot; aria-label=&quot;Anchor link for: setting-up-your-personal-access-token&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;To setup your &lt;strong&gt;Personal Access Token&lt;&#x2F;strong&gt; (&lt;strong&gt;PAT&lt;&#x2F;strong&gt;), you must be logged in to your
+GitHub account. Then head over to &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;settings&#x2F;apps&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;settings&#x2F;apps&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;You should see an option &quot;Personal access tokens&quot;. Click that button.&lt;&#x2F;p&gt;
+&lt;p&gt;You should get a drop down with some options. Click &quot;Tokens (classic)&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;In the upper-right, you can see the &quot;Generate new token&quot; button. Click that.&lt;&#x2F;p&gt;
+&lt;p&gt;You should get a drop down with some options. Click &quot;Generate new token (classic)&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;You will be redirected to either enter your password or TOTP for 2FA. Please enter
+what was asked.&lt;&#x2F;p&gt;
+&lt;p&gt;Name your TOKEN to whatever you want e.g. &quot;simple-site&quot;. Feel free to set the expiration
+date of the TOKEN.&lt;&#x2F;p&gt;
+&lt;p&gt;You will also see a lot of scopes. Just select the one with &lt;code&gt;[ ] repo Full control of private repositories&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This will give full control for both private and public repositories that you have.&lt;&#x2F;p&gt;
+&lt;p&gt;Now on the bottom-right, click the &quot;Generate token&quot; button. You will be redirected with a
+one time copy of the token. Copy or write it down somewhere safe.&lt;&#x2F;p&gt;
+&lt;p&gt;⚠️ Be careful not to share your token once it&#x27;s generated.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setting-up-github-workflows&quot;&gt;Setting Up GitHub Workflows&lt;a class=&quot;zola-anchor&quot; href=&quot;#setting-up-github-workflows&quot; aria-label=&quot;Anchor link for: setting-up-github-workflows&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Now, in your local repository, create a directory &lt;code&gt;.github&#x2F;workflows&#x2F;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkdir&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;p&lt;&#x2F;span&gt; .github&#x2F;workflows&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Create a new file called &lt;code&gt;pubish.yml&lt;&#x2F;code&gt; at &lt;code&gt;.github&#x2F;workflows&#x2F;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;touch&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; .github&#x2F;workflows&#x2F;publish.yml&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Copy the following code snippet to your &lt;code&gt;publish.yml&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yaml&quot; class=&quot;language-yaml z-code&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;name&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;Publish&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;permissions&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;write-all&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-constant z-language z-boolean z-yaml&quot;&gt;on&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;push&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;jobs&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;  &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;build&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;runs-on&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;ubuntu-latest&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;env&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;      &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;TOKEN&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;${{ secrets.TOKEN }}&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;steps&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-punctuation z-definition z-block z-sequence z-item z-yaml&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;name&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;Checkout&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;      &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;uses&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;actions&#x2F;checkout@v4&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-punctuation z-definition z-block z-sequence z-item z-yaml&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;name&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;Publish static site&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;      &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;run&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-control z-flow z-block-scalar z-literal z-yaml&quot;&gt;|&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        mkdir -p public
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        pushd public
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        cp ..&#x2F;index.html index.html
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        touch .nojekyll
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git init
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git branch -m gh-pages
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git config --global user.email &amp;quot;youremail&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git config --global user.name &amp;quot;yourusername&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git remote add origin &amp;quot;https:&#x2F;&#x2F;yourusername:$TOKEN@github.com&#x2F;yourusername&#x2F;simple-site.git&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git add -A
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git commit -m &amp;quot;update site page&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git push --force -u origin gh-pages
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Ensure you have replaced the following&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&quot;youremail&quot; should be your email address&lt;&#x2F;li&gt;
+&lt;li&gt;&quot;yourusername&quot; should be your username e.g. username for GitHub account&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Be careful with the indentations as YAML can be quite confusing.&lt;&#x2F;p&gt;
+&lt;p&gt;Now before pushing to your remote repository, you have to set your TOKEN
+as a GitHub secret in your repository. You should head to the link like&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;yourusername&#x2F;simple-site&#x2F;settings&#x2F;secrets&#x2F;actions
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Replace first the &quot;yourusername&quot; with your username on GitHub before
+copying it and pasting it on your browser.&lt;&#x2F;p&gt;
+&lt;p&gt;You will see two options once you head to the webpage&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Environment secrets&lt;&#x2F;li&gt;
+&lt;li&gt;Repository secrets&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Choose the one with Repository secrets and click &quot;New repository secret&quot;. You will
+be redirected to a page where you will input your TOKEN. Set the name as &quot;TOKEN&quot;.
+Then paste the value of your PERSONAL ACCESS TOKEN.&lt;&#x2F;p&gt;
+&lt;p&gt;Once set, click &quot;Add secret&quot; button.&lt;&#x2F;p&gt;
+&lt;p&gt;Lastly, add and commit your local changes and push it to your remote repository.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; add&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;A&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; commit&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;m&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;initial commit&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; push&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;u&lt;&#x2F;span&gt; origin main&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Your site will now be at &lt;code&gt;https:&#x2F;&#x2F;yourgithubusername.github.io&#x2F;simple-site&lt;&#x2F;code&gt;
+where &lt;code&gt;yourgithubusername&lt;&#x2F;code&gt; is your GitHub username. You should see
+a &quot;Hello World!&quot; on your browser.&lt;&#x2F;p&gt;
+&lt;p&gt;See the source repository for how we did it at &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;simple-site&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;simple-site&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;convenient-static-site-generators&quot;&gt;Convenient Static Site Generators&lt;a class=&quot;zola-anchor&quot; href=&quot;#convenient-static-site-generators&quot; aria-label=&quot;Anchor link for: convenient-static-site-generators&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;At this point, you already know how to setup and deploy a webpage. However,
+writing a complex webpage with pure HTML can be tedious.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s where &lt;em&gt;static site generators&lt;&#x2F;em&gt; come into the picture.&lt;&#x2F;p&gt;
+&lt;p&gt;There are many popular static site generators to choose from such as&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;gohugo.io&#x2F;getting-started&#x2F;quick-start&#x2F;&quot;&gt;Hugo&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;getzola.org&quot;&gt;Zola&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;docs.astro.build&#x2F;en&#x2F;getting-started&#x2F;&quot;&gt;Astro&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;For this part of the tutorial, you are going to use zola, a simple static
+site generator written in Rust.&lt;&#x2F;p&gt;
+&lt;p&gt;First create a new repository named &quot;ssg-site&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;Clone it locally and change directory into the &lt;code&gt;ssg-site&lt;&#x2F;code&gt; directory.&lt;&#x2F;p&gt;
+&lt;p&gt;An example command will look like this. This uses SSH as the remote repository.
+Adjust to your configuration.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; clone git@github.com:yourusername&#x2F;ssg-site.git&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Replace &quot;yourusername&quot; with your GitHub username.&lt;&#x2F;p&gt;
+&lt;p&gt;Then you must install zola. Follow installation instructions
+&lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;documentation&#x2F;getting-started&#x2F;installation&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;initialising-zola&quot;&gt;Initialising Zola&lt;a class=&quot;zola-anchor&quot; href=&quot;#initialising-zola&quot; aria-label=&quot;Anchor link for: initialising-zola&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Run the following command at the root directory of the project.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;zola&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; init .&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It will ask you the following questions.&lt;&#x2F;p&gt;
+&lt;p&gt;For the first question&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;What is the URL of your site? (https:&#x2F;&#x2F;example.com):&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;You should input the following format &lt;code&gt;https:&#x2F;&#x2F;yourusername.github.io&#x2F;ssg-site&lt;&#x2F;code&gt; where
+&quot;yourusername&quot; is your GitHub username.&lt;&#x2F;p&gt;
+&lt;p&gt;The next question will be&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do you want to enable Sass compilation?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Type &quot;Y&quot; then press Enter.&lt;&#x2F;p&gt;
+&lt;p&gt;The third question will be&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do you want to enable syntax highlighting?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Type &quot;Y&quot; then press Enter.&lt;&#x2F;p&gt;
+&lt;p&gt;The last question will be&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do you want to build a search index of the content?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Feel free to type &quot;Y&quot; or &quot;N&quot;. It does not matter yet, unless in the future, you want
+your site to have a search bar.&lt;&#x2F;p&gt;
+&lt;p&gt;You have finally setup your Zola configuration. Now try running the command&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;zola&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; serve&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It should serve your webpage locally at &lt;a href=&quot;http:&#x2F;&#x2F;127.0.0.1:1111&quot;&gt;http:&#x2F;&#x2F;127.0.0.1:1111&lt;&#x2F;a&gt;. It might change if another
+has already parked that port.&lt;&#x2F;p&gt;
+&lt;p&gt;But our site is still bland. Let&#x27;s proceed adding a theme.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setting-up-zola-theme&quot;&gt;Setting Up Zola Theme&lt;a class=&quot;zola-anchor&quot; href=&quot;#setting-up-zola-theme&quot; aria-label=&quot;Anchor link for: setting-up-zola-theme&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Zola has many cool themes. You can check the theme collection at &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;themes&#x2F;&quot;&gt;https:&#x2F;&#x2F;www.getzola.org&#x2F;themes&#x2F;&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s use &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;themes&#x2F;anemone&#x2F;&quot;&gt;anemone&lt;&#x2F;a&gt;, one of my favourite themes in Zola.&lt;&#x2F;p&gt;
+&lt;p&gt;At the root directory of your project, run the following command.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; submodule add &lt;span class=&quot;z-string z-quoted z-double z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;https:&#x2F;&#x2F;github.com&#x2F;Speyll&#x2F;anemone&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; themes&#x2F;anemone&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This should create a git submodule in your project.&lt;&#x2F;p&gt;
+&lt;p&gt;Now open and edit your &lt;code&gt;config.toml&lt;&#x2F;code&gt;. It should look like the following.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; class=&quot;language-toml z-code&quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-toml&quot;&gt;#&lt;&#x2F;span&gt; The URL the site will be built for&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;base_url&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-basic z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-toml&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;https:&#x2F;&#x2F;yourusername.github.io&#x2F;ssg-site&lt;span class=&quot;z-punctuation z-definition z-string z-end z-toml&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-toml&quot;&gt;#&lt;&#x2F;span&gt; Whether to automatically compile all Sass files in the sass directory&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;compile_sass&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-toml&quot;&gt;true&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-toml&quot;&gt;#&lt;&#x2F;span&gt; Whether to build a search index to be used later on by a JavaScript library&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;build_search_index&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-toml&quot;&gt;false&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;theme&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-basic z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-toml&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;anemone&lt;span class=&quot;z-punctuation z-definition z-string z-end z-toml&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-table z-begin z-toml&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-tag z-table z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-table z-toml&quot;&gt;markdown&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-table z-end z-toml&quot;&gt;]&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-toml&quot;&gt;#&lt;&#x2F;span&gt; Whether to do syntax highlighting&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-toml&quot;&gt;#&lt;&#x2F;span&gt; Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;highlight_code&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-toml&quot;&gt;true&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-table z-begin z-toml&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-tag z-table z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-table z-toml&quot;&gt;extra&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-table z-end z-toml&quot;&gt;]&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-toml&quot;&gt;#&lt;&#x2F;span&gt; Put all your custom variables here&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;toc&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-toml&quot;&gt;true&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;display_author&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-toml&quot;&gt;true&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;list_pages&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-toml&quot;&gt;true&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;header_nav&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-array z-begin z-toml&quot;&gt;[&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;  &lt;span class=&quot;z-punctuation z-definition z-inline-table z-begin z-toml&quot;&gt;{&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;url&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-basic z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-toml&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&#x2F;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-toml&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-inline-table z-toml&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-tag z-key z-toml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-toml&quot;&gt;name_en&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-key-value z-toml&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-basic z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-toml&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&#x2F;home&#x2F;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-toml&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-inline-table z-end z-toml&quot;&gt;}&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-array z-end z-toml&quot;&gt;]&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-toml&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Replace &quot;yourusername&quot; with your GitHub username. Save the file.&lt;&#x2F;p&gt;
+&lt;p&gt;Your webpage will reload and it will be an empty page with a footer. The colors
+are new as well because of the theme.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;adding-some-content&quot;&gt;Adding some content&lt;a class=&quot;zola-anchor&quot; href=&quot;#adding-some-content&quot; aria-label=&quot;Anchor link for: adding-some-content&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Now that our theme is up, let&#x27;s add some content. At the root directory of your project,
+head to &lt;code&gt;content&lt;&#x2F;code&gt; directory. Create a new markdown file &lt;code&gt;_index.md&lt;&#x2F;code&gt;. Now copy and paste
+this &lt;em&gt;Lorem ipsum&lt;&#x2F;em&gt; to &lt;code&gt;_index.md&lt;&#x2F;code&gt; file.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;+++
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;title = &amp;quot;Lorem Ipsum&amp;quot;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;+++
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;# Lorem Ipsum
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;## Dolor sit amet
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;### Consectetur adipiscing elit
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then run the following commands.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;cp&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; _index.md 1.md&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To understand what these files do, &lt;code&gt;_index.md&lt;&#x2F;code&gt; serves as the &quot;home&quot; page. It will
+list our posts such as &lt;code&gt;1.md&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Now try to edit &lt;code&gt;_index.md&lt;&#x2F;code&gt; such as an introduction about yourself and what you do.&lt;&#x2F;p&gt;
+&lt;p&gt;Then edit &lt;code&gt;1.md&lt;&#x2F;code&gt; with your new goals in life or tips and tricks.&lt;&#x2F;p&gt;
+&lt;p&gt;Once satisfied, let&#x27;s finally deploy your site to GitHub Pages.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;deploying-to-github-pages&quot;&gt;Deploying to GitHub Pages&lt;a class=&quot;zola-anchor&quot; href=&quot;#deploying-to-github-pages&quot; aria-label=&quot;Anchor link for: deploying-to-github-pages&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;At this point, you can either regenerate a new TOKEN or use the previous one you
+have created from &lt;code&gt;simple-site&lt;&#x2F;code&gt;. Let&#x27;s just assume you already have a TOKEN.&lt;&#x2F;p&gt;
+&lt;p&gt;First, run this command at the root directory of your project.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-echo z-shell&quot;&gt;echo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &lt;span class=&quot;z-string z-quoted z-double z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;public&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt; .gitignore&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This should ignore the generated &lt;code&gt;public&lt;&#x2F;code&gt; directory. You should always do this
+because otherwise, you will end up having duplicated files &lt;em&gt;unless you have other
+plans&lt;&#x2F;em&gt;. The &lt;code&gt;public&lt;&#x2F;code&gt; directory is only created when you run this command.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;zola&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; build&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Next, add the new TOKEN as a &lt;strong&gt;Repository secret&lt;&#x2F;strong&gt;. You can repeat the steps you did on how to add
+a new TOKEN to your repository like in the &lt;code&gt;simple-site&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is the fun part. Do the following commands.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkdir&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;p&lt;&#x2F;span&gt; .github&#x2F;workflows&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;touch&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; .github&#x2F;workflows&#x2F;publish.yml&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then edit your &lt;code&gt;publish.yml&lt;&#x2F;code&gt; file which is located at &lt;code&gt;.github&#x2F;workflows&#x2F;&lt;&#x2F;code&gt; with the following code.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yaml&quot; class=&quot;language-yaml z-code&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;name&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;Publish&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;permissions&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;write-all&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-constant z-language z-boolean z-yaml&quot;&gt;on&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;push&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;jobs&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;  &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;build&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;runs-on&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;ubuntu-latest&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;container&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;opensuse&#x2F;tumbleweed:latest&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;env&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;      &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;TOKEN&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;${{ secrets.TOKEN }}&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;steps&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-punctuation z-definition z-block z-sequence z-item z-yaml&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;name&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;Checkout&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;      &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;uses&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;actions&#x2F;checkout@v4&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;    &lt;span class=&quot;z-punctuation z-definition z-block z-sequence z-item z-yaml&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;name&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;Install dependencies&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;      &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;run&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-control z-flow z-block-scalar z-literal z-yaml&quot;&gt;|&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        zypper --non-interactive in zola git
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;&lt;&#x2F;span&gt;    &lt;span class=&quot;z-punctuation z-definition z-block z-sequence z-item z-yaml&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;name&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;Generate static site&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;      &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;run&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-control z-flow z-block-scalar z-literal z-yaml&quot;&gt;|&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        rm -rf themes&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        mkdir -p themes&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        pushd themes&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git clone --depth 1 https:&#x2F;&#x2F;github.com&#x2F;Speyll&#x2F;anemone
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        popd
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        zola build
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;&lt;&#x2F;span&gt;    &lt;span class=&quot;z-punctuation z-definition z-block z-sequence z-item z-yaml&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;name&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;Publish static site&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;      &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;&lt;span class=&quot;z-entity z-name z-tag z-yaml&quot;&gt;run&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-control z-flow z-block-scalar z-literal z-yaml&quot;&gt;|&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        pushd public
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        touch .nojekyll
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        echo &amp;quot;uncomfyhalomacro.pl&amp;quot; &amp;gt;&amp;gt; CNAME
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git init
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git branch -m gh-pages
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git config --global user.email &amp;quot;youremail&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git config --global user.name &amp;quot;yourusername&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git remote add origin &amp;quot;https:&#x2F;&#x2F;yourusername:$TOKEN@github.com&#x2F;yourusername&#x2F;ssg-site.git&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git add -A
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git commit -m &amp;quot;update site page&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-string z-unquoted z-block z-yaml&quot;&gt;        git push --force -u origin gh-pages
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Ensure you change &quot;yourusername&quot; to your GitHub username and &quot;youremail&quot; to the email you are using for your GitHub account.&lt;&#x2F;p&gt;
+&lt;p&gt;Save the file. Now run the following command to add and commit your changes, then push.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; add&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;A&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; commit&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;m&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-single z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;my first blog&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; push&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;u&lt;&#x2F;span&gt; origin main&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Notice that in the YAML file, it uses a custom image. That&#x27;s because that
+linux distribution image, Tumbleweed, already has an updated version of zola.&lt;&#x2F;p&gt;
+&lt;p&gt;Once your site has been generated in the GitHub actions, you can head over to this link format
+&lt;code&gt;yourusername.github.io&#x2F;ssg-site&lt;&#x2F;code&gt; where &quot;yourusername&quot; is your GitHub username.&lt;&#x2F;p&gt;
+&lt;p&gt;Feel free to use this or learn and use other SSGs to prettify your blogs and web pages!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;faq&quot;&gt;FAQ&lt;a class=&quot;zola-anchor&quot; href=&quot;#faq&quot; aria-label=&quot;Anchor link for: faq&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I noticed that you didn&#x27;t use a GitHub action plugin &lt;code&gt;shalzz&#x2F;zola-deploy-action@master&lt;&#x2F;code&gt;. Why?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;If you know the process, then you can trust yourself more than some random plugin. Not saying they could not be trusted
+but you have to weigh your risks&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;You already know how to deploy, then you are more sure that you can trust yourself.&lt;&#x2F;li&gt;
+&lt;li&gt;Trust is a spectrum.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Therefore, I don&#x27;t need someone&#x27;s tool if I already know how to do things. It&#x27;s for the security side of things since
+GitHub actions can be a potential attack surface.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Okay that&#x27;s a wrap. Feel free to reach out to me in my preferred communication channels 🤪&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
