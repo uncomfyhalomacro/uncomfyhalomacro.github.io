@@ -40,6 +40,7 @@ I prefer the following programming languages:
 - ⚙️ Rust
 - 🟣 Julia
 - 🔮 Crystal
+- 🦫 Go
 
 I am also proficient in the following programming languages:
 
@@ -96,7 +97,6 @@ I am planning to learn the following languages/software and their ecosystem in n
 
 - 🩸 Elixir
 - ☕ Java
-- 🦫 Go
 - 🟠 C
 - 🎼 C#
 - 🌈 Gleam
