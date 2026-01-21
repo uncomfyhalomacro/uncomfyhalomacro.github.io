@@ -25,6 +25,7 @@ jobs:
         just webring
     - name: Generate static site
       run: |
+        export PATH="${PATH}:${HOME}/.cargo/bin"
         rm -rf themes/
         mkdir -p themes/
         pushd themes/
