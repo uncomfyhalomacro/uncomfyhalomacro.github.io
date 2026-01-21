@@ -247,7 +247,7 @@ fn generate_random_string(length: usize) -> String {
         .collect()
 }
 
-#[utoipa::path(post,path= "/create", responses((status = OK, body = Item)))]
+#[utoipa::path(post,path= "/create", responses((status = OK, body = (u64, Item))))]
 async fn create_item(Extension(app_state): Extension<Arc<AppState>>) -> impl IntoResponse {
     let id: u64 = random();
     let name = generate_random_string(10);
