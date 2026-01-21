@@ -18,7 +18,7 @@ jobs:
       run: |
         export CC=clang
         cargo install --git https://github.com/lukehsiao/openring-rs
-        cargo install zola
+        cargo install --locked --git https://github.com/getzola/zola
     - name: Generate openring
       run: |
         export PATH="${PATH}:${HOME}/.cargo/bin"
