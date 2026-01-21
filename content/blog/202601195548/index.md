@@ -42,7 +42,6 @@ This project will just do simple CRUD operations and have the following endpoint
 
 - POST /items/create
 - GET /items/{id}
-- POST /items/{id}
 - DELETE /items/{id}
 
 We can have an SQLite database or some kind of storage we can use to simulate CRUD. But
