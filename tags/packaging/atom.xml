@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - packaging</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/packaging/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-07-21T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/packaging/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Let&#x27;s revisit packaging with SCMSync workflow</title>
+        <published>2025-07-20T00:00:00+00:00</published>
+        <updated>2025-07-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202507192430/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202507192430/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202507192430/">&lt;p&gt;So here I am doing another attempt at updating a package in openSUSE. This package is &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;biomejs.dev&quot;&gt;biome&lt;&#x2F;a&gt;. As of writing,
+it&#x27;s way behind 1 minor version, and still at version 2.0.5.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;preparing-to-fork-and-clone&quot;&gt;Preparing to fork and clone&lt;a class=&quot;zola-anchor&quot; href=&quot;#preparing-to-fork-and-clone&quot; aria-label=&quot;Anchor link for: preparing-to-fork-and-clone&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;The first thing I did was login to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;src.opensuse.org&quot;&gt;https:&#x2F;&#x2F;src.opensuse.org&lt;&#x2F;a&gt; with my openSUSE account.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-19_26_47.png&quot; alt=&quot;openSUSE OpenID&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-19_30_13.png&quot; alt=&quot;openSUSE Login portal&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Once logged in, I headed to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;src.opensuse.org&#x2F;javascript&#x2F;biome&quot;&gt;https:&#x2F;&#x2F;src.opensuse.org&#x2F;javascript&#x2F;biome&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-19_32_27.png&quot; alt=&quot;openSUSE Gitea Biome Repository&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I clicked the fork button on the upper-right and cloned the repository to inside a local directory, in this case,
+mine is located at &lt;code&gt;~&#x2F;development&#x2F;git-obs&#x2F;&lt;&#x2F;code&gt; since this kind of workflow does not really require a &quot;root&quot;
+OBS directory e.g. &lt;code&gt;~&#x2F;development&#x2F;obs&lt;&#x2F;code&gt; where it contains directories to projects such as my home project
+&lt;code&gt;home:uncomfyhalomacro&lt;&#x2F;code&gt; that contains packages or subprojects.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-19_36_09.png&quot; alt=&quot;Forked repo&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-19_37_30.png&quot; alt=&quot;Running git clone of the forked repo&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;updating-the-sources&quot;&gt;Updating the sources&lt;a class=&quot;zola-anchor&quot; href=&quot;#updating-the-sources&quot; aria-label=&quot;Anchor link for: updating-the-sources&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I deleted the sources first with the following commands:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#AF3A03, #FE8019);&quot;&gt;cd&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; biome&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  #&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; heading into the git repository&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;git&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; rm&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt; *&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;.tar&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  #&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; deleting the sources&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;FYI, I accidentally ran &lt;code&gt;osc rm *.tar*&lt;&#x2F;code&gt; at first because I was still stuck with the mindset using the old workflow.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-19_40_16.png&quot; alt=&quot;Oopsie with the command&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The latest version as of writing is now at 2.1.2 or specifically, at the git tag &lt;code&gt;@biomejs&#x2F;biome@2.1.2&lt;&#x2F;code&gt;. Seems they use a
+different naming scheme for tagging versions but it&#x27;s still 2.1.2. No worries because the &lt;code&gt;Source0&lt;&#x2F;code&gt; points to
+the archive of the same naming scheme.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-19_43_21.png&quot; alt=&quot;Naming scheme in SOURCE0&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Then I ran the following command.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;osc&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; service&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;vvv&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; mr&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-19_46_26.png&quot; alt=&quot;Command output for osc service -vvv mr&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;As you can see from the image above, biome has a lot of crate dependencies.&lt;&#x2F;p&gt;
+&lt;p&gt;This command produced two new tarballs, &lt;code&gt;biome-2.1.2.tar.gz&lt;&#x2F;code&gt; and a refreshed &lt;code&gt;vendor.tar.zst&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;updating-the-changes-file&quot;&gt;Updating the changes file&lt;a class=&quot;zola-anchor&quot; href=&quot;#updating-the-changes-file&quot; aria-label=&quot;Anchor link for: updating-the-changes-file&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I ran the following command to update the &lt;code&gt;biome.changes&lt;&#x2F;code&gt; file.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;osc&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; vc&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;However, this makes this a manual process because there is no perfect way to get all changelogs. Hence,
+I have to clone the upstream biome repository on GitHub.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-19_56_39.png&quot; alt=&quot;Cloning upstream repo&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Then ran the following commands to get each commit summary between 2.0.5 and 2.1.2.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;git&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; log&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; @biomejs&#x2F;biome@2.0.5..@biomejs&#x2F;biome@2.1.2&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;-oneline&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt; |&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; cut&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;d&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;f2-&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt; |&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; wl-copy&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-20_05_01.png&quot; alt=&quot;new changes file&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;commiting-and-pushing-the-changes&quot;&gt;Commiting and pushing the changes&lt;a class=&quot;zola-anchor&quot; href=&quot;#commiting-and-pushing-the-changes&quot; aria-label=&quot;Anchor link for: commiting-and-pushing-the-changes&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Then I committed those changes after adding the updated files and removing the old sources.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-20_06_58.png&quot; alt=&quot;commit image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I ran &lt;code&gt;git push&lt;&#x2F;code&gt;. Remember that this operation should have Git LFS enabled.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;setting-the-meta-project-and-meta-package&quot;&gt;Setting the meta project and meta package&lt;a class=&quot;zola-anchor&quot; href=&quot;#setting-the-meta-project-and-meta-package&quot; aria-label=&quot;Anchor link for: setting-the-meta-project-and-meta-package&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;At this point, if I was sure that this will build correctly, I can just open a PR to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;src.opensuse.org&#x2F;javascript&#x2F;biome&quot;&gt;https:&#x2F;&#x2F;src.opensuse.org&#x2F;javascript&#x2F;biome&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;However, just for showing how I set a meta project and a meta package, I ran the following commands.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;osc&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; meta&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; prj&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;e&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; home:uncomfyhalomacro:biomejs&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The XML file configuration for this meta project is this.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;project&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;home:uncomfyhalomacro:biomejs&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;title&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;title&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; &amp;lt;!--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; Short title of NewProject &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;--&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;description&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;description&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;    &amp;lt;!--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; This is for a longer description of the purpose of the project &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;--&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;!--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; Uncomment and specify an URL and branch if your project is managed in git.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;scmsync&amp;gt;url#branch&amp;lt;&#x2F;scmsync&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  --&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;person&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; role&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;maintainer&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; userid&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;uncomfyhalomacro&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt; &#x2F;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;person&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; role&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;bugowner&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; userid&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;uncomfyhalomacro&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt; &#x2F;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;&amp;lt;!--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; remove this block to publish your packages on the mirrors &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;--&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;publish&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;disable&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt; &#x2F;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;publish&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;build&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;enable&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt; &#x2F;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;build&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;debuginfo&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;enable&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt; &#x2F;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;debuginfo&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;repository&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;openSUSE_Factory&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;path&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; project&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;openSUSE:Factory&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; repository&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;snapshot&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt; &#x2F;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;arch&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;x86_64&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;arch&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;arch&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;i586&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;arch&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;repository&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;project&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Take &lt;strong&gt;note&lt;&#x2F;strong&gt; that I did not set scmsync option for this because I don&#x27;t need to or I have not learned to set a git project as a meta project&#x27;s scmsync option yet.&lt;&#x2F;p&gt;
+&lt;p&gt;For package setup, I pointed it to the new meta project and then added a suffix &lt;code&gt;&#x2F;biome&lt;&#x2F;code&gt; to create a package biome.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;osc&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; meta&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; pkg&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;e&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; home:uncomfyhalomacro:biomejs&#x2F;biome&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Sadly, I am not too fluent with how the XML configuration works. So I just passed this one instead&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;package&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;biome&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;title&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;title&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; &amp;lt;!--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; Title of package &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;--&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;description&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;description&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; &amp;lt;!--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; for long description &lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;--&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;scmsync&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;https:&#x2F;&#x2F;src.opensuse.org&#x2F;uncomfyhalomacro&#x2F;biome#main&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;scmsync&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;&amp;lt;!--&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; following roles are inherited from the parent project&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;person role=&amp;quot;maintainer&amp;quot; userid=&amp;quot;uncomfyhalomacro&amp;quot;&#x2F;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;person role=&amp;quot;bugowner&amp;quot; userid=&amp;quot;uncomfyhalomacro&amp;quot;&#x2F;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;--&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;&amp;lt;!--&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;url&amp;gt;PUT_UPSTREAM_URL_HERE&amp;lt;&#x2F;url&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;--&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;&amp;lt;!--&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  use one of the examples below to disable building of this package&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  on a certain architecture, in a certain repository,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  or a combination thereof:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;disable repository=&amp;quot;SUSE_SLE-10&amp;quot;&#x2F;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;disable repository=&amp;quot;SUSE_SLE-10&amp;quot; arch=&amp;quot;x86_64&amp;quot;&#x2F;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  Possible sections where you can use the tags above:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;build&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;&#x2F;build&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;debuginfo&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;&#x2F;debuginfo&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;publish&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;&#x2F;publish&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;useforbuild&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  &amp;lt;&#x2F;useforbuild&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  Please have a look at:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  http:&#x2F;&#x2F;en.opensuse.org&#x2F;Restricted_formats&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  Packages containing formats listed there are NOT allowed to&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;  be packaged in the openSUSE Buildservice and will be deleted!&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;--&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;package&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Notice the scmsync option. I pointed it to my fork and with the branch &quot;main&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;Fortunately, the meta project has the correct config for setting which images to use for the build workers.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-20_19_25.png&quot; alt=&quot;Package is building&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;For clarity, the full link to the build after setting the meta project and meta package is &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;home:uncomfyhalomacro:biomejs&#x2F;biome&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;home:uncomfyhalomacro:biomejs&#x2F;biome&lt;&#x2F;a&gt;. You may not be able to access this in the future because
+I probably deleted the meta project.&lt;&#x2F;p&gt;
+&lt;p&gt;I waited for the builds to succeed.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-20_22_51.png&quot; alt=&quot;Building status&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;One of the builds succeeded after a while.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-20_30_12.png&quot; alt=&quot;Build succeeded&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;making-a-pr&quot;&gt;Making a PR&lt;a class=&quot;zola-anchor&quot; href=&quot;#making-a-pr&quot; aria-label=&quot;Anchor link for: making-a-pr&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Lastly, I created a PR from my fork to the javascript project&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-20_31_15.png&quot; alt=&quot;PR to project&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;strong&gt;autogits-devel&lt;&#x2F;strong&gt; bot will stage my changes (with the &lt;strong&gt;autogits_obs_staging_bot&lt;&#x2F;strong&gt;) and creates a new meta project for testing my PR.&lt;&#x2F;p&gt;
+&lt;p&gt;It basically just did what I did in the last steps where I created a meta project and meta package and check if the builds succeed.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-20_32_50.png&quot; alt=&quot;Auto gits devel bot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-20_36_15.png&quot; alt=&quot;Auto gits obs staging bot comment&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-20_37_00.png&quot; alt=&quot;New meta project and package generated from staging bot&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Once the builds succeed, my changes are then merged.&lt;&#x2F;p&gt;
+&lt;p&gt;The merge message should look similar to the one I had for &lt;strong&gt;rusty_v8&lt;&#x2F;strong&gt; (see image below).&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202507192430&#x2F;.&#x2F;wayshot-2025_07_20-20_39_30.png&quot; alt=&quot;rusty_v8 merge&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;del&gt;At this point, I am not familiar how those changes are pushed into Factory&lt;&#x2F;del&gt;. I believe there will be an automation as well
+for pushing devel packages from devel projects to Factory. I also believe that the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;opensuse.github.io&#x2F;scm-staging&#x2F;user_guide.html&quot;&gt;https:&#x2F;&#x2F;opensuse.github.io&#x2F;scm-staging&#x2F;user_guide.html&lt;&#x2F;a&gt; is
+deprecated or inaccurate because of this experience.&lt;&#x2F;p&gt;
+&lt;p&gt;In conclusion, I guess this is how far I can understand how the SCMSync workflow works. If you have any questions, just
+&lt;a href=&quot;mailto:uncomfyhalomacro@opensuse.org&quot;&gt;email me&lt;&#x2F;a&gt; or message me in &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;discord.gg&#x2F;opensuse&quot;&gt;openSUSE Discord&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;updated-last-step-sr-a-devel-project-to-factory&quot;&gt;Updated Last Step–SR a devel project to Factory&lt;a class=&quot;zola-anchor&quot; href=&quot;#updated-last-step-sr-a-devel-project-to-factory&quot; aria-label=&quot;Anchor link for: updated-last-step-sr-a-devel-project-to-factory&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Avindra, one of the packagers, messaged me on Discord and that there is a part I missed. To submit a devel project
+to Factory, one can just do the same thing as mentioned in &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;en.opensuse.org&#x2F;openSUSE:OBS_to_Git#How_to_submit_from_devel_project_to_Factory?&quot;&gt;https:&#x2F;&#x2F;en.opensuse.org&#x2F;openSUSE:OBS_to_Git#How_to_submit_from_devel_project_to_Factory?&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Hence, for biome, it would be just&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;osc&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; sr&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; devel:languages:javascript&#x2F;biome&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; openSUSE:Factory&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;But when I did this, the rev is suspicious and also there was no changelog. I aborted because I then discovered that
+the meta package is still building for RISCv64. It&#x27;s still building after I slept for 8 hours... 🤣&lt;&#x2F;p&gt;
+&lt;p&gt;Thus, I SR-ed for rusty_v8. I will SR for deno too after a few days to let the snapshot have rusty_v8. 🙂&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Packaging with Roast and Roast SCM</title>
+        <published>2025-06-01T00:00:00+00:00</published>
+        <updated>2025-06-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202506163227/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202506163227/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202506163227/">&lt;p&gt;Hello!&lt;&#x2F;p&gt;
+&lt;p&gt;In the iteration of all the changes for
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;codeberg.org&#x2F;Rusty-Geckos&#x2F;roast&quot;&gt;roast&lt;&#x2F;a&gt;, we have finally
+released a new major version, 7.x series. Although, I really
+don&#x27;t care much about the strictness of version numbers, this
+release brings a new addition, a feature flag called &lt;code&gt;obs&lt;&#x2F;code&gt;. This is
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;openbuildservice.org&#x2F;&quot;&gt;OpenBuildService&lt;&#x2F;a&gt; specific, and it allows it
+to become an alternative to &lt;code&gt;obs-service-set_version&lt;&#x2F;code&gt; + &lt;code&gt;obs-service-obs_scm&lt;&#x2F;code&gt;,
+hence, a combination of both services.&lt;&#x2F;p&gt;
+&lt;p&gt;roast itself is using this to package itself to
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&quot;&gt;b-o-o&lt;&#x2F;a&gt; using the following &lt;code&gt;_service&lt;&#x2F;code&gt; file
+configuration.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;services&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;service&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;roast_scm&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; mode&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;manual&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;     &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;url&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;https:&#x2F;&#x2F;codeberg.org&#x2F;Rusty-Geckos&#x2F;roast&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;     &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;revision&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;v7.1.1&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;     &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;versionrewriteregex&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;v(.*)&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;     &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;versionrewritepattern&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;${1}&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;     &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;changesgenerate&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;true&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;     &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;changesauthor&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;Soc Virnyl Estela&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;     &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;changesemail&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;uncomfyhalomacro@opensuse.org&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;service&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;service&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;cargo_vendor&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; mode&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;manual&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;     &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;src&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;roast*.tar.zst&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;     &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;update&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;true&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;service&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;services&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;which can be seen &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;opensuse.org&#x2F;package&#x2F;show&#x2F;Archiving&#x2F;roast&quot;&gt;here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In the future, I will release a small video tutorial on how to use &lt;code&gt;roast_scm&lt;&#x2F;code&gt;
+for &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&quot;&gt;b-o-o&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Because the crate is written in Rust, I intentionally made it part of
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&#x2F;&quot;&gt;obs-service-cargo&lt;&#x2F;a&gt;
+because of this &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&#x2F;pull&#x2F;124&quot;&gt;PR&lt;&#x2F;a&gt;
+which is now merged. With this, sources can now be fetched from git sources
+and vendored in just one XML file, like for &lt;code&gt;obs-service-cargo&lt;&#x2F;code&gt; itself:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;services&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;service&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;cargo_vendor&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; mode&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;manual&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;src&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;update&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;true&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;versionrewriteregex&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;^v?(.*)&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;versionrewritepattern&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;${1}&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;changesgenerate&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;true&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;revision&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;master&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;changesauthor&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;Soc Virnyl Estela&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;    &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt; name&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt;changesemail&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #A89984);&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span&gt;uncomfyhalomacro@opensuse.org&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;param&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;  &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;service&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#427B58, #8EC07C);&quot;&gt;services&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#076678, #83A598);&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;which can also be seen &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;devel:languages:rust&#x2F;obs-service-cargo&quot;&gt;here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Since I am one of the active Rust packagers in openSUSE, I plan to just switch
+and use this new feature for vendoring auto-magically.&lt;&#x2F;p&gt;
+&lt;p&gt;Well, that&#x27;s just it for this short update.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Exploring Efficient Ways To Package Rust Software in openSUSE</title>
+        <published>2024-08-22T00:00:00+00:00</published>
+        <updated>2024-11-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/exploring-efficient-ways-to-package-rust-software-in-opensuse/"/>
+        <id>https://uncomfyhalomacro.pl/blog/exploring-efficient-ways-to-package-rust-software-in-opensuse/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/exploring-efficient-ways-to-package-rust-software-in-opensuse/">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;&#x2F;strong&gt;
+I am moving over some logic as another package called
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;roast&quot;&gt;roast&lt;&#x2F;a&gt;. This
+is to prepare this vendoring alternative called
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo-vendor-home-registry&quot;&gt;obs-service-cargo-vendor-home-registry&lt;&#x2F;a&gt;.
+The project is still worked on during my free time.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I have re-investigated possible solutions for confusing packaging in Rust. Currently,
+we are using &lt;code&gt;cargo vendor&lt;&#x2F;code&gt; to vendor package dependencies. This comes at a cost.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Back and forth copying of &lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt; for possible projects that use monorepo
+configurations i.e. workspace and real monorepos.
+&lt;ul&gt;
+&lt;li&gt;Examples of these are: zellij, wezterm and python-tokenizers&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;We always want to ensure &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; and I doubt the solution will not avoid this
+since lockfiles are always essential when building software with Rust.&lt;&#x2F;li&gt;
+&lt;li&gt;Existing &lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt; from projects will be overridden with our generated
+&lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The first solution I thought of is a global &lt;code&gt;.cargo&#x2F;config.toml&lt;&#x2F;code&gt; for projects. This
+has been done with &lt;strong&gt;python-tokenizers&lt;&#x2F;strong&gt; in openSUSE because it is possible to use
+&lt;code&gt;--manifest-path&lt;&#x2F;code&gt; to specify a manifest &lt;code&gt;Cargo.toml&lt;&#x2F;code&gt; file in the specfile for cargo
+invocations.&lt;&#x2F;p&gt;
+&lt;p&gt;Seeing this, I realised, why not just use the &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt; since we are pointing at a global cache anyway? This blog is about tracking my future project
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;obs-service-cargo-vendor-home-registry&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;obs-service-cargo-vendor-home-registry&lt;&#x2F;a&gt; of which I plan to integrate into &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Firstyear&#x2F;obs-service-cargo&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;Firstyear&#x2F;obs-service-cargo&lt;&#x2F;a&gt; as an alternative vendor generating utility for Open Build Service or OBS.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;storage-size-eaten-by-cargo-home-vs-cargo-vendor-comparison&quot;&gt;Storage size eaten by &lt;code&gt;CARGO_HOME&lt;&#x2F;code&gt; vs &lt;code&gt;cargo vendor&lt;&#x2F;code&gt; comparison&lt;a class=&quot;zola-anchor&quot; href=&quot;#storage-size-eaten-by-cargo-home-vs-cargo-vendor-comparison&quot; aria-label=&quot;Anchor link for: storage-size-eaten-by-cargo-home-vs-cargo-vendor-comparison&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;&#x2F;strong&gt;
+&lt;code&gt;cargo fetch&lt;&#x2F;code&gt;, &lt;code&gt;cargo vendor&lt;&#x2F;code&gt;, &lt;code&gt;cargo build&lt;&#x2F;code&gt;, and &lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt; all update the &lt;code&gt;CARGO_HOME&lt;&#x2F;code&gt; or what we call the cargo home registry or just cargo home. We use &lt;code&gt;cargo fetch&lt;&#x2F;code&gt; here because it&#x27;s designed to update the registry cache instead of other commands.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;WARNING&lt;&#x2F;strong&gt; Behaviours between &lt;code&gt;cargo fetch&lt;&#x2F;code&gt; and &lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt;
+&lt;code&gt;cargo fetch&lt;&#x2F;code&gt; updates the registry to latest version of crates and also regenerates &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; to reflect the versions unless &lt;code&gt;--locked&lt;&#x2F;code&gt; flag is passed where it tries to respect the versions of the crates from the existing &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; despite this &lt;em&gt;contradicting&lt;&#x2F;em&gt; description in the manpage that
+If a Cargo.lock file is available, this command will ensure that all of the git dependencies and&#x2F;or registry dependencies are downloaded and locally available. Subsequent Cargo commands will be able to run offline after a cargo fetch unless the lock file changes.&lt;&#x2F;p&gt;
+&lt;p&gt;However, &lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt; updates the registry + updates the &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; which in my opinion is just a duplication of the other cargo sub-command &lt;code&gt;cargo update&lt;&#x2F;code&gt;. Why? Both do the same behaviour. Even the part where you pass &lt;code&gt;--locked&lt;&#x2F;code&gt; will give you the same error &quot;&lt;strong&gt;error: the lock file &#x2F;run&#x2F;host&#x2F;tmp&#x2F;jay-1.4.0&#x2F;Cargo.lock needs to be updated but --locked&lt;&#x2F;strong&gt;&quot;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Here are the zstd compressed tarballs for the following after running the cargo commands&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;wezterm&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;: 1.1GB&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;: 1.3GB&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;jay&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;: 24MB&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;: 76MB&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;zellij&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;: 66MB&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;: 133MB&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Why does it seem like &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; duplicates the contents in the tarball? Because it really does. The registry contains the following directory structure&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;└── registry&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    ├── cache&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    │   └── index.crates.io-6f17d22bba15001f&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    ├── index&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    │   └── index.crates.io-6f17d22bba15001f&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    └── src&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        └── index.crates.io-6f17d22bba15001f&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;8 directories, 0 files&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;One can remove the &lt;code&gt;.cargo&#x2F;registry&#x2F;src&lt;&#x2F;code&gt; directory as that contains the extracted crates and then create a &lt;code&gt;tar.zst&lt;&#x2F;code&gt; file using the following commands&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt;#&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#928374, #928374);font-style: italic;&quot;&gt; Assuming $CARGO_HOME is set to $PWD&#x2F;.cargo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;pushd .cargo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;rm&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;rfv&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; registry&#x2F;src&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;popd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;tar&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;-zstd&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;cvf&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; vendor.tar.zst&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; .cargo&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h1 id=&quot;how-to-get-cache-from-cargo-home&quot;&gt;How to get cache from &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#how-to-get-cache-from-cargo-home&quot; aria-label=&quot;Anchor link for: how-to-get-cache-from-cargo-home&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Any of these commands will generate the cargo home registry cache&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;build&lt;&#x2F;li&gt;
+&lt;li&gt;generate-lockfile&lt;&#x2F;li&gt;
+&lt;li&gt;vendor&lt;&#x2F;li&gt;
+&lt;li&gt;fetch&lt;&#x2F;li&gt;
+&lt;li&gt;update&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;del&gt;Some commands are duplication of the other commands i.e. update and
+generate-lockfile. It&#x27;s just that the former prefetches the latest crate versions
+while the latter doesn&#x27;t.&lt;&#x2F;del&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;To update the registry cache, one must either go with &lt;code&gt;cargo fetch&lt;&#x2F;code&gt; or even &lt;code&gt;cargo vendor&lt;&#x2F;code&gt; to avoid building or updating (unless update is set).&lt;&#x2F;p&gt;
+&lt;p&gt;All commands try to regenerate the &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; with the latest compatible MSRV. If
+&lt;code&gt;--locked&lt;&#x2F;code&gt; is passed, it will try to attempt to respect the versions in the &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt;.
+However, if the version of a dependency in &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; got yanked and there is a
+newer version, then an operation with &lt;code&gt;--locked&lt;&#x2F;code&gt; will fail. Also, passing &lt;code&gt;--locked&lt;&#x2F;code&gt; to
+&lt;code&gt;cargo-update&lt;&#x2F;code&gt; is ambiguous as it will always almost fail since it tries to update the
+&lt;code&gt;Cargo.lock&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;why-not-go-with-cargo-vendor-sync&quot;&gt;Why not go with &lt;code&gt;cargo vendor --sync&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-not-go-with-cargo-vendor-sync&quot; aria-label=&quot;Anchor link for: why-not-go-with-cargo-vendor-sync&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Reason? Uncertainty of how that command respect &lt;code&gt;Cargo.lock&lt;&#x2F;code&gt; for each crate. I would
+rather have do&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;cargo&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; fetch&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;-locked&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;-manifest-path=path&#x2F;to&#x2F;Cargo.toml&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;for each manifest found since one can flexibly turn &lt;code&gt;--locked&lt;&#x2F;code&gt; on and off.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;building-now-with-cargo-home&quot;&gt;Building now with &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#building-now-with-cargo-home&quot; aria-label=&quot;Anchor link for: building-now-with-cargo-home&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;It&#x27;s always has been possible to use &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;, specifically, &lt;code&gt;$CARGO_HOME&#x2F;registry&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;There was an attempt in this repository, &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo-vendor-home-registry&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo-vendor-home-registry&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Now, that project has been merged into &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;You can see this working in &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;editors&#x2F;kak-lsp&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;editors&#x2F;kak-lsp&lt;&#x2F;a&gt;. But we lied a bit here.
+We will explain that in the later sections.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;path-dependencies-in-cargo-toml-needs-to-be-revisited&quot;&gt;Path dependencies in &lt;code&gt;Cargo.toml&lt;&#x2F;code&gt; needs to be revisited&lt;a class=&quot;zola-anchor&quot; href=&quot;#path-dependencies-in-cargo-toml-needs-to-be-revisited&quot; aria-label=&quot;Anchor link for: path-dependencies-in-cargo-toml-needs-to-be-revisited&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Membered crates (in workspace configurations) and local crates (both are local and in path actually)
+should also be taken consideration when vendoring dependencies.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;science:machinelearning&#x2F;python-tokenizers&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;science:machinelearning&#x2F;python-tokenizers&lt;&#x2F;a&gt; have
+two different dependencies that are actually related to each other.&lt;&#x2F;p&gt;
+&lt;p&gt;The solution to this is to eagerly check their manifest and lockfiles. Hence, either with multiple vendor
+tarballs or a vendored &lt;code&gt;$CARGO_HOME&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lockfiles-are-always-inconsistent&quot;&gt;Lockfiles are always inconsistent&lt;a class=&quot;zola-anchor&quot; href=&quot;#lockfiles-are-always-inconsistent&quot; aria-label=&quot;Anchor link for: lockfiles-are-always-inconsistent&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;See &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169&lt;&#x2F;a&gt;. This is a glaring issue
+and not just for &lt;code&gt;cargo install&lt;&#x2F;code&gt; but almost all cargo commands such as &lt;code&gt;cargo fetch&lt;&#x2F;code&gt;. That&#x27;s why in openSUSE, we try to include the lockfile as much as
+possible even if passing &lt;code&gt;--locked&lt;&#x2F;code&gt;. I think I would agree to this comment
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169#issuecomment-539226733&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;7169#issuecomment-539226733&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Observation&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cargo fetch --locked&lt;&#x2F;code&gt; does not work because it tries to keep the registry cache updated&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;cargo vendor --locked&lt;&#x2F;code&gt; works because I don&#x27;t know why???&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Now is the use of &lt;code&gt;--sync&lt;&#x2F;code&gt; idea thrown out the window?&lt;&#x2F;p&gt;
+&lt;p&gt;For crates that don&#x27;t ship with a lockfile, we will run either&lt;code&gt;cargo generate-lockfile&lt;&#x2F;code&gt;
+or &lt;code&gt;cargo update&lt;&#x2F;code&gt;, former is more semantically correct to do as opposed to &lt;code&gt;cargo update&lt;&#x2F;code&gt;. But &lt;code&gt;update&lt;&#x2F;code&gt; makes sense the most because we are going to add update options
+on the new project anyway.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cargo-fetch-vs-cargo-update&quot;&gt;&lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; vs &lt;code&gt;cargo-update&lt;&#x2F;code&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#cargo-fetch-vs-cargo-update&quot; aria-label=&quot;Anchor link for: cargo-fetch-vs-cargo-update&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Two days ago as of writing, I filed a bug report regarding inconsistencies
+between &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; and &lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;. Link to bug report
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;14795&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;cargo&#x2F;issues&#x2F;14795&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The inconsistency specifically is the way the two handle dependencies differently
+especially when it comes to &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;&#x27;s &lt;code&gt;--target&lt;&#x2F;code&gt; flag.&lt;&#x2F;p&gt;
+&lt;p&gt;I had high hopes that by default&lt;sup class=&quot;footnote-reference&quot; id=&quot;fr-but not really-1&quot;&gt;&lt;a href=&quot;#fn-but not really&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, it gets &lt;strong&gt;all&lt;&#x2F;strong&gt; target architectures. But I was
+met with failed builds on &lt;del&gt;not so commonly used&lt;&#x2F;del&gt; architectures whereas vendored
+dependencies from &lt;code&gt;cargo-vendor&lt;&#x2F;code&gt; compiles. They fail because they cannot find their
+dependencies fetched from &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I will just have to wait for a feedback regarding how &lt;code&gt;cargo-fetch&lt;&#x2F;code&gt; behaves as compared
+to &lt;code&gt;cargo-vendor&lt;&#x2F;code&gt;. I believe though that both should be at least similar in almost
+all aspects.&lt;&#x2F;p&gt;
+&lt;section class=&quot;footnotes&quot;&gt;
+&lt;ol class=&quot;footnotes-list&quot;&gt;
+&lt;li id=&quot;fn-but not really&quot;&gt;
+&lt;p&gt;This is still not a &lt;em&gt;&lt;strong&gt;loss&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; yet for me since most of the software I used in openSUSE
+are used by people who either use x86_64 and aarch64. I don&#x27;t believe that the other
+architectures are used commonly so I have removed support. &lt;a href=&quot;#fr-but not really-1&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;section&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Packaging Crystal Software for openSUSE</title>
+        <published>2023-07-31T00:00:00+00:00</published>
+        <updated>2023-07-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/how-to-package-crystal-software-in-opensuse/"/>
+        <id>https://uncomfyhalomacro.pl/blog/how-to-package-crystal-software-in-opensuse/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/how-to-package-crystal-software-in-opensuse/">&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;a class=&quot;zola-anchor&quot; href=&quot;#prerequisites&quot; aria-label=&quot;Anchor link for: prerequisites&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;You will need the following:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;osc&lt;&#x2F;code&gt; and &lt;code&gt;obs-service-download_files&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;your editor of choice e.g. emacs, helix&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;tar&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;familiarity of how to use &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;&lt;&#x2F;a&gt;. See &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;en.opensuse.org&#x2F;Portal:Packaging&quot;&gt;https:&#x2F;&#x2F;en.opensuse.org&#x2F;Portal:Packaging&lt;&#x2F;a&gt; for guides. Fedora has one too, see &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.fedoraproject.org&#x2F;en-US&#x2F;packaging-guidelines&quot;&gt;https:&#x2F;&#x2F;docs.fedoraproject.org&#x2F;en-US&#x2F;packaging-guidelines&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;crystal&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Check with zypper if &lt;code&gt;osc&lt;&#x2F;code&gt; is installed.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Tip&lt;&#x2F;strong&gt;: Use the &lt;code&gt;cnf&lt;&#x2F;code&gt; command to check which package &lt;code&gt;osc&lt;&#x2F;code&gt; comes from.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;cnf&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; osc&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;recipe&quot;&gt;Recipe&lt;a class=&quot;zola-anchor&quot; href=&quot;#recipe&quot; aria-label=&quot;Anchor link for: recipe&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The following subtopics explain how to package crystal software step-by-step. Adjust accordingly based on your setup.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;create-a-new-package&quot;&gt;Create a new package&lt;a class=&quot;zola-anchor&quot; href=&quot;#create-a-new-package&quot; aria-label=&quot;Anchor link for: create-a-new-package&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;You can do it at &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;&lt;&#x2F;a&gt; but if you prefer the commandline,
+you can do for example&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;osc&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; mkpac&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; blahaj&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#AF3A03, #FE8019);&quot;&gt;cd&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; blahaj&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this tutorial, we will try to package &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&quot;&gt;BLAHAJ&lt;&#x2F;a&gt; using the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;crystal-lang&#x2F;shards&quot;&gt;shards&lt;&#x2F;a&gt; project and dependency manager for
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;crystal-lang.org&quot;&gt;Crystal&lt;&#x2F;a&gt; and &lt;code&gt;tar&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;package-without-a-dependency&quot;&gt;Package without a dependency&lt;a class=&quot;zola-anchor&quot; href=&quot;#package-without-a-dependency&quot; aria-label=&quot;Anchor link for: package-without-a-dependency&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;write-the-specfile&quot;&gt;Write the specfile&lt;a class=&quot;zola-anchor&quot; href=&quot;#write-the-specfile&quot; aria-label=&quot;Anchor link for: write-the-specfile&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Using your preferred editor, create a file named &lt;code&gt;blahaj.spec&lt;&#x2F;code&gt;. The following prelude should be enough for the specfile:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Name: blahaj&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Version: 2.1.0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;License: BSD-2-Clause&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Summary: Gay sharks at your local terminal&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Url: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Source0: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&#x2F;archive&#x2F;refs&#x2F;tags&#x2F;v2.1.0.tar.gz#&#x2F;%{name}-%{version}.tar.gz&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Source1: vendor.tar.zst&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;BuildRequires: crystal&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;BuildRequires: shards&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;BuildRequires: make&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;How do I have &lt;code&gt;shards&lt;&#x2F;code&gt; and &lt;code&gt;crystal&lt;&#x2F;code&gt;?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;You can branch packages from my home project at Open Build Service - &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;project&#x2F;show&#x2F;home:uncomfyhalomacro&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;project&#x2F;show&#x2F;home:uncomfyhalomacro&lt;&#x2F;a&gt;. Or even just add an repository
+image of that project. I have &lt;code&gt;shards&lt;&#x2F;code&gt; and &lt;code&gt;crystal&lt;&#x2F;code&gt; there. The latter can also be found at &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;devel:languages:crystal&#x2F;crystal&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;devel:languages:crystal&#x2F;crystal&lt;&#x2F;a&gt; if
+you want that too.&lt;&#x2F;p&gt;
+&lt;p&gt;For the sake of simplicity, we will assume that we are going to use &lt;code&gt;crystal&lt;&#x2F;code&gt;, &lt;code&gt;shards&lt;&#x2F;code&gt;, and &lt;code&gt;make&lt;&#x2F;code&gt; at your home project in Open Build Service.&lt;&#x2F;p&gt;
+&lt;p&gt;Add the following sections: description, prep, build, install, files and changelog section.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Name: blahaj&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Version: 2.1.0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Release: 0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;License: BSD-2-Clause&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Summary: Colorize your terminal with gay sharks&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Url: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Source0: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&#x2F;archive&#x2F;refs&#x2F;tags&#x2F;v2.1.0.tar.gz#&#x2F;%{name}-%{version}.tar.gz&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;BuildRequires: crystal&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;BuildRequires: shards&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;BuildRequires: make&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%description&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Apart from a cute cuddly shark plushie from IKEA, BLÅHAJ is a lolcat-like CLI tool&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;that colorizes your input, shows flags and prints colorful sharks!&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;It has a wide variety of flags&#x2F;colors to choose from and many options from flag size&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;to whether to colorize by line, word or character.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%prep&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%build&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%install&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%files&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%changelog&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;At the root of your project package e.g. &lt;code&gt;home:yourusername&#x2F;blahaj&lt;&#x2F;code&gt;, run &lt;code&gt;osc service localrun download_files&lt;&#x2F;code&gt;. You will get a file called &lt;code&gt;blahaj-2.1.0.tar.gz&lt;&#x2F;code&gt;.
+Extracting the file gets us the directory &lt;code&gt;BLAHAJ-2.1.0&#x2F;&lt;&#x2F;code&gt;. This means that in our &lt;code&gt;%prep&lt;&#x2F;code&gt; section, we need to add &lt;code&gt;%setup -qa1 -n BLAHAJ-%{version}&lt;&#x2F;code&gt;. This is to
+redirect the rpm macros that building should be at &lt;code&gt;RPM_BUILDDIR&#x2F;BLAHAJ-2.1.0&#x2F;&lt;&#x2F;code&gt; since by default, it is &lt;code&gt;RPM_BUILDDIR&#x2F;nameofpackage-version&#x2F;&lt;&#x2F;code&gt;
+based on the &lt;code&gt;Name:&lt;&#x2F;code&gt; and &lt;code&gt;Version:&lt;&#x2F;code&gt; RPM specfile prelude.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;building-and-installing-the-package&quot;&gt;Building and Installing the package&lt;a class=&quot;zola-anchor&quot; href=&quot;#building-and-installing-the-package&quot; aria-label=&quot;Anchor link for: building-and-installing-the-package&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;The following sections should be easy here since &lt;code&gt;make&lt;&#x2F;code&gt; as build dependency has convenient macros such as &lt;code&gt;%make_build&lt;&#x2F;code&gt; and &lt;code&gt;%make_install&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Name: blahaj&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Version: 2.1.0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Release: 0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Summary: Colorize your terminal with gay sharks&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;License: BSD-2-Clause&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Url: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Source0: https:&#x2F;&#x2F;github.com&#x2F;GeopJr&#x2F;BLAHAJ&#x2F;archive&#x2F;refs&#x2F;tags&#x2F;v2.1.0.tar.gz#&#x2F;%{name}-%{version}.tar.gz&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;BuildRequires: crystal&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;BuildRequires: shards&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;BuildRequires: make&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%description&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Apart from a cute cuddly shark plushie from IKEA, BLÅHAJ is a lolcat-like CLI tool&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;that colorizes your input, shows flags and prints colorful sharks!&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;It has a wide variety of flags&#x2F;colors to choose from and many options from flag size&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;to whether to colorize by line, word or character.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%prep&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%setup -q -n BLAHAJ-%{version}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%build&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%make_build&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%install&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%make_install&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%files&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%{_bindir}&#x2F;blahaj&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%doc README.md CODE_OF_CONDUCT.md&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%license LICENSE&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;%changelog&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As for &lt;code&gt;%files&lt;&#x2F;code&gt;, you can just do a &quot;best guess&quot; or &quot;best observation&quot; approach. Here, we based it from the &lt;code&gt;Makefile&lt;&#x2F;code&gt; and for documentation and license, those are
+self-explanatory.&lt;&#x2F;p&gt;
+&lt;p&gt;Changelog can be left as is since we are not Fedora 😘. We use &lt;code&gt;blahaj.changes&lt;&#x2F;code&gt; for that generated with &lt;code&gt;osc vc&lt;&#x2F;code&gt;. It creates a temporary file you can edit
+from like below&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;-------------------------------------------------------------------&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Mon Jul 31 12:34:07 UTC 2023 - Your Name &amp;lt;youremail@example.com&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;- Initial spec for blahaj 2.1.0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;add-the-files&quot;&gt;Add the files&lt;a class=&quot;zola-anchor&quot; href=&quot;#add-the-files&quot; aria-label=&quot;Anchor link for: add-the-files&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Add the files by running the command&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;osc&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; add&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; blahaj.spec&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; blahaj-2.1.0.tar.gz&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; blahaj.changes&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And then push it to your home project at Open Build Service with &lt;code&gt;osc ci&lt;&#x2F;code&gt;, which allows you to check the diff and see what was changed based from the
+&lt;code&gt;blahaj.changes&lt;&#x2F;code&gt; file.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;check-if-it-builds-correctly&quot;&gt;Check if it builds correctly&lt;a class=&quot;zola-anchor&quot; href=&quot;#check-if-it-builds-correctly&quot; aria-label=&quot;Anchor link for: check-if-it-builds-correctly&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Now check your new blahaj package at your home project. If it fails, investigate what went wrong! Check mine at
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;home:uncomfyhalomacro&#x2F;blahaj&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;home:uncomfyhalomacro&#x2F;blahaj&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;&#x2F;strong&gt;
+It seems at the time of writing, I missed some dependencies or optional dependencies for
+crystal! Anyway, &lt;em&gt;I am confident&lt;&#x2F;em&gt; it will build this correctly after that&#x27;s fixed.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;package-with-dependencies&quot;&gt;Package With dependencies&lt;a class=&quot;zola-anchor&quot; href=&quot;#package-with-dependencies&quot; aria-label=&quot;Anchor link for: package-with-dependencies&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;This is where &lt;code&gt;tar&lt;&#x2F;code&gt; and &lt;code&gt;shards&lt;&#x2F;code&gt; comes in. An example of this is &lt;code&gt;shards&lt;&#x2F;code&gt; itself. See &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;home:uncomfyhalomacro&#x2F;shards&quot;&gt;https:&#x2F;&#x2F;build.opensuse.org&#x2F;package&#x2F;show&#x2F;home:uncomfyhalomacro&#x2F;shards&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;What I did here is at the root of the project e.g. home:yourname&#x2F;shards, I extracted the shards source tarball, &lt;code&gt;tar xvf shards-0.17.3.tar.gz&lt;&#x2F;code&gt;. Changed directory
+to the extracted directory, &lt;code&gt;shards-0.17.3&#x2F;&lt;&#x2F;code&gt; and then ran &lt;code&gt;shards check&lt;&#x2F;code&gt; and &lt;code&gt;shards install&lt;&#x2F;code&gt;. You will get a new directory called &lt;code&gt;lib&#x2F;&lt;&#x2F;code&gt;. This is where you
+&lt;em&gt;vendor&lt;&#x2F;em&gt; your dependencies like how Rust and Go do.&lt;&#x2F;p&gt;
+&lt;p&gt;To &lt;em&gt;vendor&lt;&#x2F;em&gt; it, it&#x27;s simple. Just run&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;tar&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;-zstd&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt; -&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #D3869B);&quot;&gt;cvf&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; vendor.tar.zst&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; lib&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Copy &lt;code&gt;vendor.tar.zst&lt;&#x2F;code&gt; to the root of the project package folder. Add it to one of the sources of your project and adjust your &lt;code&gt;%setup&lt;&#x2F;code&gt; with flags &lt;code&gt;-qa1&lt;&#x2F;code&gt;
+which &lt;code&gt;a1&lt;&#x2F;code&gt; means extract &lt;code&gt;Source1: vendor.tar.zst&lt;&#x2F;code&gt; to the root of &lt;code&gt;RPM_BUILDDIR&#x2F;shards-0.17.3&lt;&#x2F;code&gt; including the root folder of the archive &lt;code&gt;lib&#x2F;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This will create a new directory called &lt;code&gt;lib&#x2F;&lt;&#x2F;code&gt;, and contains other crystal packages that are dependencies of that project.&lt;&#x2F;p&gt;
+&lt;p&gt;Then I just used &lt;code&gt;crystal&lt;&#x2F;code&gt; to build &lt;code&gt;shards&lt;&#x2F;code&gt; as seen from the build section and do a manual install with &lt;code&gt;install&lt;&#x2F;code&gt; command at the install section.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;other-possibilities&quot;&gt;Other possibilities&lt;a class=&quot;zola-anchor&quot; href=&quot;#other-possibilities&quot; aria-label=&quot;Anchor link for: other-possibilities&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;You can also remove &lt;code&gt;make&lt;&#x2F;code&gt; or &lt;code&gt;shards&lt;&#x2F;code&gt; as well if you prefer just using &lt;code&gt;crystal&lt;&#x2F;code&gt; on the build section.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
