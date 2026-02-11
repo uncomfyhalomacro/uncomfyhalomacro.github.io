@@ -37,3 +37,5 @@ To contact me, you can email me at `contact@uncomfyhalomacro.pl`.
 - [obs-service-cargo](https://github.com/openSUSE-Rust/obs-service-cargo)
 - [twenty-five-and-five](https://codeberg.org/uncomfyhalomacro/twenty-five-and-five)
 
+# Other links
+
