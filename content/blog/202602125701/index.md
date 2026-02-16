@@ -2,10 +2,14 @@
 title = "Part 2: So I am building a fullstack project"
 description = "Taking it slow"
 date = "2026-02-16"
+updated = "2026-02-16T07:03:33Z"
 authors = ["Soc Virnyl Estela"]
 [taxonomies]
 tags = ["mercado-series", "rust", "typescript", "deno", "fresh", "fullstack"]
 +++
+
+**Update**: I moved the project to [codeberg](https://codeberg.org/uncomfyhalomacro/mercado) because I don't want my personal projects to exist there
+except for work related and other open source stuff that aren't mine (with also some exceptions of the exceptions).
 
 Still a work in progress and I am kind of slow when planning.
 
