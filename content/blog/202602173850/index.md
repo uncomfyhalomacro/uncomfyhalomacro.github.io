@@ -76,7 +76,7 @@ is for the community, by the community, to the world.
 
 My only concern now is I have no history of being involved in discussions, especially as a newcomer
 and from Asia and no experience in being a steward of a community. But that's something I'll know
-once
+once I am elected.
 
 # Answering the bonus question
 
