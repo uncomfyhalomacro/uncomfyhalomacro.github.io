@@ -29,7 +29,7 @@ links:
 - <https://uncomfyhalomacro.pl/tech-cv.pdf>
 
 
-To contact me, you can email me at `contact@uncomfyhalomacro.pl`.
+To contact me, you can email me at <mailto:contact@uncomfyhalomacro.pl>.
 
 ### Software
 
