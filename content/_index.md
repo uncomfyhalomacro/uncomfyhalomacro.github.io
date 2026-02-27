@@ -28,8 +28,10 @@ links:
 - <https://uncomfyhalomacro.pl>
 - <https://uncomfyhalomacro.pl/tech-cv.pdf>
 
-
-To contact me, you can email me at <mailto:contact@uncomfyhalomacro.pl>.
+To contact me, you can email me at
+[contact@uncomfyhalomacro.pl](mailto:contact@uncomfyhalomacro.pl) or
+[socvirnylsestela@gmail.com](mailto:socvirnylsestela@gmail.com) if you prefer
+using Google's GMAIL.
 
 ### Software
 
