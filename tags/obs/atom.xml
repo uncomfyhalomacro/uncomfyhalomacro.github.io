@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - obs</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/obs/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-05-15T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/obs/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Why I stopped maintaining Julia in openSUSE</title>
+        <published>2025-05-15T00:00:00+00:00</published>
+        <updated>2025-05-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202505151925/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202505151925/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202505151925/">&lt;p&gt;So recently, I noticed that I have a lot of emails about some build problems in openSUSE, specifically,
+the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;julialang.org&quot;&gt;Julia&lt;&#x2F;a&gt; package. I attempted to package this software for openSUSE in hopes that
+I can help out bring the programming language to the Linux distribution. However, it was kind of hairy,
+not to mention, a lot of workarounds... like a lot — imagine you have to patch and create a lot of patches
+for the patches to patch the patches.&lt;&#x2F;p&gt;
+&lt;p&gt;So I have ignored it for a very long while, thinking that I can do it in the future. But as of writing?
+I gave up. It&#x27;s a tiresome software to package, and it is incompatible most of the time with OpenBuildService&#x27;s
+policies.&lt;&#x2F;p&gt;
+&lt;p&gt;But if you still want to use Julia in openSUSE, you can always use the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;JuliaLang&#x2F;juliaup&quot;&gt;juliaup&lt;&#x2F;a&gt;
+package. It is a version multiplexer for Julia similar to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;rustup.rs&quot;&gt;rustup&lt;&#x2F;a&gt;. Just run the following
+command on your terminal if you are using openSUSE.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #FABD2F);&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; zypper&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; install&lt;&#x2F;span&gt;&lt;span style=&quot;color: light-dark(#79740E, #B8BB26);&quot;&gt; juliaup&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Nothing much I can say further as this is just a small update. Bye!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
