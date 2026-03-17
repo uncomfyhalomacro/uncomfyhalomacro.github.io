@@ -32,7 +32,7 @@ links:
 
 I am available in the following platforms:
 
-- <https://sr.ht/~uncomfy>
+- <https://git.sr.ht/~uncomfy>
 - <https://github.com/uncomfyhalomacro>
 - <https://codeberg.org/uncomfyhalomacro>
 
