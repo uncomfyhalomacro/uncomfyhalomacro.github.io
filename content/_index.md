@@ -28,6 +28,14 @@ links:
 - <https://uncomfyhalomacro.pl>
 - <https://uncomfyhalomacro.pl/tech-cv.pdf>
 
+### Developer Profiles
+
+I am available in the following platforms:
+
+- <https://sr.ht/~uncomfy>
+- <https://github.com/uncomfyhalomacro>
+- <https://codeberg.org/uncomfyhalomacro>
+
 To contact me, you can email me at
 [contact@uncomfyhalomacro.pl](mailto:contact@uncomfyhalomacro.pl) or
 [socvirnylsestela@gmail.com](mailto:socvirnylsestela@gmail.com) if you prefer
