@@ -2,7 +2,6 @@
 title = "Part 7: So I am building a fullstack project"
 authors = ["Soc Virnyl Estela"]
 date = 2026-04-07T05:06:31Z
-description = "applying builder pattern and progressing towards auth crate"
 [taxonomies]
 tags = ["mercado-series", "rust", "typescript", "deno", "fresh", "fullstack"]
 +++
