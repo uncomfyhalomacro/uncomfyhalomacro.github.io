@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - security</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/security/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-02-06T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/security/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Reproducible Builds Does Not Prevent Threats</title>
+        <published>2026-02-06T00:00:00+00:00</published>
+        <updated>2026-02-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202602003620/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202602003620/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202602003620/">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer&lt;&#x2F;strong&gt;: I am not a security researcher or a cybersecurity expert.
+I am sharing my stance based on my understanding and limited research on the topic.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I remembered in my project &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&quot;&gt;obs-service-cargo&lt;&#x2F;a&gt; that there
+were some opened issues &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&#x2F;issues&#x2F;64&quot;&gt;#64&lt;&#x2F;a&gt; and &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&#x2F;issues&#x2F;73&quot;&gt;#72&lt;&#x2F;a&gt;. These two issues told that the
+project does not produce &lt;strong&gt;idempotent&lt;&#x2F;strong&gt; or &lt;strong&gt;deterministic&lt;&#x2F;strong&gt; build outputs yet
+it &lt;em&gt;passed &lt;strong&gt;audits&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Honestly, at that time, I don&#x27;t know much about reproducible builds but I do know that
+it is an attempt to build a project from different builder sources and &lt;strong&gt;hopefully&lt;&#x2F;strong&gt;,
+it matches the checksum of their build outputs.&lt;&#x2F;p&gt;
+&lt;p&gt;PR &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&#x2F;pull&#x2F;78&quot;&gt;#78&lt;&#x2F;a&gt; actually &quot;fixed&quot; the bug. But I still have doubts. And after
+learning it from William Brown, aka, &lt;em&gt;firstyear&lt;&#x2F;em&gt;, from his &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;fy.blackhats.net.au&#x2F;blog&#x2F;2021-05-12-compiler-bootstrapping-can-we-trust-rust&#x2F;&quot;&gt;blog&lt;&#x2F;a&gt; and
+from &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;web.archive.org&#x2F;web&#x2F;20200805120504&#x2F;https:&#x2F;&#x2F;blog.cmpxchg8b.com&#x2F;2020&#x2F;07&#x2F;you-dont-need-reproducible-builds.html&quot;&gt;Taviso&#x27;s blog&lt;&#x2F;a&gt;, I realised that reproducible builds does not
+take account the social engineering in risk modelling when it comes to human behaviour.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You might wonder if Taviso has changed his stance since it is on web archive (or wayback machine) now but I did
+email him and he replied that he didn&#x27;t change his stance on the matter.
+&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202602003620&#x2F;.&#x2F;IMG_2283.jpg&quot; alt=&quot;taviso email&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Yes, this post was overdue and was supposed to be written 3 years ago but I can&#x27;t sleep and
+I am bored so while I still have this in mind, why not write a new post?&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;an-example-of-an-upstream-and-downstream-build&quot;&gt;An example of an upstream and downstream build&lt;a class=&quot;zola-anchor&quot; href=&quot;#an-example-of-an-upstream-and-downstream-build&quot; aria-label=&quot;Anchor link for: an-example-of-an-upstream-and-downstream-build&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;This might not be the best excalidraw + mermaid diagram but I hope it shows an overview of
+how a downstream and upstream builds their own sources. Let&#x27;s call this project, Project UWU.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202602003620&#x2F;.&#x2F;example-vanilla.png&quot; alt=&quot;vanilla build&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;As you can see here, if we take this literally like how the flowchart looks like, under
+no circumstances that sources and built sources from both upstream and downstream contains
+any malicious intent (well... there is no mention of it yet). But that&#x27;s from an ideal world,
+and we are living in one where there are also evil people (&lt;em&gt;I am one of them&lt;&#x2F;em&gt; 😈).&lt;&#x2F;p&gt;
+&lt;p&gt;Joking aside, let&#x27;s assume that the sources from upstream built the same
+checksum following reproducible build principles.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;source has checksum &amp;#39;abcd&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;built source has checksum &amp;#39;uwuwu&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Of course, the downstream one
+has a different checksum for its built sources than the upstream one. But both will
+have the checksum for the &lt;em&gt;unbuilt sources&lt;&#x2F;em&gt; themselves, usually a tarball or zip archive.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #EBDBB2); background-color: light-dark(#F9F5D7, #1D2021);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;source has checksum &amp;#39;abcd&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;built source after patches has checksum &amp;#39;notuwuenough&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The benefit of this is that if let&#x27;s say a distribution have to rebuilt its sources since other packages
+have updated but the underlying compiler tool necessary to build Project UWU still has unchanged version
+and is the same across all updated machines. Therefore, we can skip building the downstream variant of
+Project UWU.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;do-not-ever-forget-the-evil-people&quot;&gt;Do not ever forget the evil people&lt;a class=&quot;zola-anchor&quot; href=&quot;#do-not-ever-forget-the-evil-people&quot; aria-label=&quot;Anchor link for: do-not-ever-forget-the-evil-people&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Remember what I said about social engineering and evil people? Yes, they exist.
+What can you even do about them? Nothing. They can do whatever the hell they
+want.&lt;&#x2F;p&gt;
+&lt;p&gt;The keyword we should talk about here is &lt;em&gt;&lt;strong&gt;Trust&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;, (&lt;em&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;trust.ph&#x2F;methods&#x2F;condoms&#x2F;&quot;&gt;not the Filipino brand&lt;&#x2F;a&gt;&lt;&#x2F;em&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s update our flowchart again so you can see what I mean.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202602003620&#x2F;.&#x2F;example-threatened.png&quot; alt=&quot;threatened build&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;As you can see from the flowchart above (&lt;em&gt;please zoom or open it in a new tab huhu&lt;&#x2F;em&gt;), &lt;strong&gt;IT ONLY TAKES 1 CHANGE OF MAINTAINER
+FOR UPSTREAM TO ACTUALLY BECOME A THREAT&lt;&#x2F;strong&gt;. &lt;em&gt;The same thing could be said to the downstream maintainer&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In the case of the upstream, this would affect the whole supply chain since&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Downstream relies on it&lt;&#x2F;li&gt;
+&lt;li&gt;It&#x27;s the only thing that exists&lt;&#x2F;li&gt;
+&lt;li&gt;Because there is no other person or persons to maintain this so YOLO?&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;In the case of the downstream, this would affect the partial (and sometimes whole) supply chain since&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;They can provide &quot;innocent&quot; patches to both downstream and upstream&lt;&#x2F;li&gt;
+&lt;li&gt;Consumers are using it on the downstream distribution because they trust the downstream maintainer&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Yeah, Project UWU can un-cute itself because of evil people 😝&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h1 id=&quot;so-how-can-reproducible-builds-not-protect-us&quot;&gt;So how can reproducible builds not protect us&lt;a class=&quot;zola-anchor&quot; href=&quot;#so-how-can-reproducible-builds-not-protect-us&quot; aria-label=&quot;Anchor link for: so-how-can-reproducible-builds-not-protect-us&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;What I can see from here is that reproducible builds cannot protect us from these kinds of threats because&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;It only takes 1 evil person to fuck up the supply chain&lt;&#x2F;li&gt;
+&lt;li&gt;Trusting is hard and in this kind of scenario, your only option is to trust that the
+maintainer&#x2F;contributor is not a psychopath.&lt;&#x2F;li&gt;
+&lt;li&gt;The checksums do not matter when you are already compromised. However, &lt;em&gt;you can keep a record of the
+checksum of a malicious source&lt;&#x2F;em&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The only way reproducible builds can mitigate threats, from what I can
+understand, is &lt;em&gt;&lt;strong&gt;after the threats has happened&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;. &lt;em&gt;&lt;strong&gt;But it does not protect
+us from any present event a compromised source&#x2F;build has happened until it is noticed&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;but-what-about-being-reproducible&quot;&gt;But what about being reproducible?&lt;a class=&quot;zola-anchor&quot; href=&quot;#but-what-about-being-reproducible&quot; aria-label=&quot;Anchor link for: but-what-about-being-reproducible&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Well, it does help with build times, but eh... that&#x27;s the only benefit it can give—to save energy and compute.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I know I know I am repeating words, I haven&#x27;t even looked at the blog posts just
+to see if I can remember what I understand about why reproducible builds cannot
+protect us from present threats. I am not a cybersecurity expert either. But I
+have a big imagination.&lt;&#x2F;p&gt;
+&lt;p&gt;The only benefit I can imagine from reproducible builds is a record of checksums of
+malicious sources as well as the record of checksums of malicious built sources.&lt;&#x2F;p&gt;
+&lt;p&gt;But it is a fact that many are passionate in building infrastructure around it
+just to prove that it works. However, it still fails to address the social
+engineering which is a big factor in security.&lt;&#x2F;p&gt;
+&lt;p&gt;Anyway, goodnight. I think it&#x27;s 2AM now around my timezone. I need to fix my sleep schedule.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Using SSH keys with TPM and Git</title>
+        <published>2024-05-05T00:00:00+00:00</published>
+        <updated>2024-05-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/using-ssh-keys-with-tpm-and-git/"/>
+        <id>https://uncomfyhalomacro.pl/blog/using-ssh-keys-with-tpm-and-git/</id>
+        
+        <summary type="html">&lt;p&gt;So my mentor has already made a
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;fy.blackhats.net.au&#x2F;blog&#x2F;2023-04-20-using-a-tpm-for-ssh-keys-on-opensuse-tumbleweed&#x2F;&quot;&gt;post&lt;&#x2F;a&gt;
+about how to use TPMs in openSUSE.&lt;&#x2F;p&gt;
+&lt;p&gt;I followed a bit, did some weird stuff because it doesn&#x27;t work at first. It turns out I made a typo and missed a flag
+🥴&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>
