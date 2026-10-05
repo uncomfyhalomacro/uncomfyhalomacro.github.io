@@ -13,12 +13,12 @@ jobs:
       uses: actions/checkout@v6
     - name: Install dependencies and Rust
       run: |
-        zypper --non-interactive in just cargo openssl-devel clang git zola
+        zypper --non-interactive in just cargo openssl-devel clang git
     - name: Install openring-rs and zola
       run: |
         export CC=clang
         cargo install --git https://github.com/lukehsiao/openring-rs
-        # cargo install --locked --git https://github.com/getzola/zola
+        cargo install --git https://github.com/getzola/zola --tag v0.21.0 --locked zola
     - name: Generate openring
       run: |
         export PATH="${PATH}:${HOME}/.cargo/bin"
