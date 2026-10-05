@@ -1,0 +1,158 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1" name=viewport><meta content="uncomfy uh... i have a website? Part 2: So I am building a fullstack project Taking it slow" name=description><title>Part 2: So I am building a fullstack project</title><link href=/favicon.png rel=icon><link href="https://uncomfyhalomacro.pl/style.css?h=b3ea0c6ca2d4276c7a3b" rel=stylesheet><link media="(prefers-color-scheme: dark)" href=/syntax-theme-dark.css rel=stylesheet><link media="(prefers-color-scheme: light)" href=/syntax-theme-light.css rel=stylesheet><link href="https://uncomfyhalomacro.pl/color/auto.css?h=c9e3a532fd9af99660b2" rel=stylesheet><link href=https://uncomfyhalomacro.pl/atom.xml rel=alternate title=RSS type=application/atom+xml><script crossorigin src=https://kit.fontawesome.com/51d55b4c7d.js></script><script>function resize() {
+    var x = document.getElementById("myLinks");
+    // var y = document.getElementsByClassName("subcontainer")[0];
+    // var nav = document.getElementsByClassName("topnav")[0];
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+  try {
+    const bannedReferrers = [/news\.ycombinator\.com/i, /reddit\.com/i];
+    if (document.referrer) {
+      const ref = new URL(document.referrer);
+      if (
+        !/bad-networks/i.test(window.location.href) &&
+        bannedReferrers.some((r) => r.test(ref.host))
+      ) {
+        window.location.href = "https://www.pcloadletter.dev/blog/bad-networks";
+      }
+    }
+  } catch (e) {console.log(e)}</script><body><div class=main-grid><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a></div></div><div class=sub-grid><div class=content-grid><div class=info><h1>Part 2: So I am building a fullstack project<span> <a href=https://uncomfyhalomacro.pl/atom.xml><i class="fa-sharp fa-solid fa-rss"></i></a> </span></h1><p><span><a href=https://uncomfyhalomacro.pl/tags/mercado-series>#mercado-series</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/rust>#rust</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/typescript>#typescript</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/deno>#deno</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/fresh>#fresh</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/fullstack>#fullstack</a></span> <br><br> <span class=author> Soc Virnyl Estela </span>| <span class=dates>2026-02-16</span> | <span class=dates>updated: 2026-02-16T07:03:33Z</span> |<span class=readtime>reading time: ~2min</span></div><div class=toc><h1>Contents</h1><div class=toc-container><ul><li><a href=https://uncomfyhalomacro.pl/blog/202602125701/#restructure>Restructure</a><li><a href=https://uncomfyhalomacro.pl/blog/202602125701/#on-migrations>On migrations</a></ul></div></div><div class=content-body><article><section class=content><p><strong>Update</strong>: I moved the project to <a href=https://codeberg.org/uncomfyhalomacro/mercado>codeberg</a> because I don't want my personal projects to exist there except for work related and other open source stuff that aren't mine (with also some exceptions of the exceptions).<p>Still a work in progress and I am kind of slow when planning.<h1 id=restructure>Restructure<a aria-label="Anchor link for: restructure" class=zola-anchor href=#restructure>§</a></h1><p>After doing some cleanup while also doing volunteering over the weekend, I finally decided on the final structure of the project.<details><summary>Current project structure</summary> <pre><code>.
+├── backend
+│   ├── Cargo.toml
+│   └── src
+│       └── main.rs
+├── Cargo.lock
+├── Cargo.toml
+├── crates
+│   ├── api
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       └── lib.rs
+│   ├── auth
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       └── lib.rs
+│   ├── database
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       ├── bin
+│   │       │   └── migrations
+│   │       │       ├── down
+│   │       │       │   └── 0001_users.rs
+│   │       │       └── up
+│   │       │           └── 0001_users.rs
+│   │       ├── core.rs
+│   │       ├── lib.rs
+│   │       ├── migrations
+│   │       │   ├── down
+│   │       │   │   ├── mod.rs
+│   │       │   │   └── users.rs
+│   │       │   ├── mod.rs
+│   │       │   └── up
+│   │       │       ├── mod.rs
+│   │       │       └── users.rs
+│   │       ├── models
+│   │       │   ├── mod.rs
+│   │       │   ├── products.rs
+│   │       │   └── users.rs
+│   │       ├── prelude.rs
+│   │       └── utils
+│   │           └── mod.rs
+│   └── payments
+│       ├── Cargo.toml
+│       └── src
+│           └── lib.rs
+├── frontend
+│   ├── assets
+│   │   └── styles.css
+│   ├── client.ts
+│   ├── components
+│   │   └── Button.tsx
+│   ├── deno.json
+│   ├── deno.lock
+│   ├── islands
+│   │   └── Counter.tsx
+│   ├── main.ts
+│   ├── README.md
+│   ├── routes
+│   │   ├── _app.tsx
+│   │   ├── api
+│   │   │   └── [name].tsx
+│   │   └── index.tsx
+│   ├── static
+│   │   ├── favicon.ico
+│   │   └── logo.svg
+│   ├── utils.ts
+│   └── vite.config.ts
+├── justfile
+├── LICENCE
+└── README.md
+
+28 directories, 43 files
+</code></pre></details><p>This project structure is still in the works but it is very effective in managing "which is which", especially after I realised that it's more efficient to use <code>[workspace.dependencies]</code> in the virtual root manifest <code>Cargo.toml</code>.<pre class=language-toml data-lang=toml><code class=language-toml data-lang=toml>[workspace]
+members = [
+        "backend",
+        "crates/api",
+        "crates/auth",
+        "crates/database",
+        "crates/payments",
+]
+resolver = "3"
+
+[workspace.dependencies]
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.149"
+anyhow = "1.0.101"
+argon2 = { version = "0.5.3", features = ["std"] }
+chrono = { version = "0.4.43", features = ["serde"] }
+config = "0.15.19"
+deadpool-postgres = { version = "0.14.1", features = ["serde"] }
+dotenvy = "0.15.7"
+terminfo = "0.9.0"
+tokio = { version = "1.49.0", features = ["full"] }
+tokio-postgres = { version = "0.7.16", features = ["with-uuid-1", "with-serde_json-1", "with-chrono-0_4"] }
+tracing = { version = "0.1.44", features = ["release_max_level_debug", "max_level_trace"] }
+tracing-subscriber = { version = "0.3.22", features = ["env-filter"] }
+uuid = { version = "1.21.0", features = ["serde", "v4"] }
+utoipa = "5.4.0"
+utoipa-axum = "0.2.0"
+utoipa-swagger-ui = { version = "9.0.2", features = ["axum"] }
+axum = "0.8.8"
+tower-http = { version = "0.6.8", features = ["full"] }
+</code></pre><p>It ensures that I can pin 1 version of the same dependency or dependencies across the workspace members instead of running <code>cargo add</code> not knowing it's a version that contains a breaking change.<h1 id=on-migrations>On migrations<a aria-label="Anchor link for: on-migrations" class=zola-anchor href=#on-migrations>§</a></h1><p>I was thinking of using SeaORM for migrations but decided against it because I want to try vanilla before tasting other flavours, especially convenient ones like SeaORM. I was very much enticed to try SeaORM out when I read their documentation.<p>But for the sake of learning, I made my own migration script or more accurately, migration executables. I was able to do this because I was planning to make the <code>database</code> crate the entry point for where database functions are called, so it's a library and where the migration logic are defined, so it also contains binaries:<pre class=language-toml data-lang=toml><code class=language-toml data-lang=toml>[package]
+name = "database"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "up_0001_users"
+path = "src/bin/migrations/up/0001_users.rs"
+
+[[bin]]
+name = "down_0001_users"
+path = "src/bin/migrations/down/0001_users.rs"
+
+[dependencies]
+anyhow.workspace = true
+argon2.workspace = true
+chrono.workspace = true
+config.workspace = true
+deadpool-postgres.workspace = true
+dotenvy.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+terminfo.workspace = true
+tokio.workspace = true
+tokio-postgres.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+uuid.workspace = true
+</code></pre><p>Then I created a <code>just</code> recipe for <code>migrate-up</code> and <code>migrate-down</code> to test them out.<pre class=language-just data-lang=just><code class=language-just data-lang=just>migrate-up:
+	cargo run --bin up_0001_users
+
+migrate-down:
+	cargo run --bin down_0001_users
+</code></pre><p><img alt="migrate-up result" src=https://uncomfyhalomacro.pl/blog/202602125701/./1.png> <img alt="migrate-down result" src=https://uncomfyhalomacro.pl/blog/202602125701/./2.png><p>This is just a short update. I am still currently thinking on how to structure the api and I was thinking of using tower-http for convenience for middlewares.</section></article></div><footer>follow <a href=https://fosstodon.org/@uncomfyhalomacro rel=me target=_blank>uncomfyhalomacro@fosstodon.org</a> ⋅ © 2024 <a href=https://codeberg.org/uncomfyhalomacro/gruvbox-v target=_blank>gruvbox-v</a> ⋅ powered by <a href=https://getzola.org target=_blank>zola</a> ⋅ theme by <a href=https://codeberg.org/uncomfyhalomacro target=_blank>uncomfyhalomacro</a> ⋅ Content <a href=https://creativecommons.org/licenses/by-sa/4.0/ target=_blank>CC-BY-4.0</a></footer></div><div class=right-grid><div class=toc><h1>Contents</h1><div class=toc-container><ul><li><a href=https://uncomfyhalomacro.pl/blog/202602125701/#restructure>Restructure</a><li><a href=https://uncomfyhalomacro.pl/blog/202602125701/#on-migrations>On migrations</a></ul></div></div></div></div><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a></div></div></div>

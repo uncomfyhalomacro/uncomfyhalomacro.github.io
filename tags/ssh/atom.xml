@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - ssh</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/ssh/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-10-05T01:53:43+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/ssh/atom.xml</id>
+    <entry xml:lang="en">
+        <title>tpm ssh with macos</title>
+        <published>2026-10-05T01:53:43+00:00</published>
+        <updated>2026-10-05T01:53:43+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202610095336/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202610095336/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202610095336/">&lt;p&gt;while looking for a way to find an equivalent for https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;using-ssh-keys-with-tpm-and-git&#x2F;, i finally figured it out.&lt;&#x2F;p&gt;
+&lt;p&gt;you can use any package manager for this as long as you can install the following&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;https:&#x2F;&#x2F;www.softhsm.org&#x2F;&lt;&#x2F;li&gt;
+&lt;li&gt;https:&#x2F;&#x2F;github.com&#x2F;Mastercard&#x2F;pkcs11-tools&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;i am using homebrew so the commands to install them are&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;brew install softhsm pkcs11-tools
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;to initialize, you must create a virtual smartcard via softhsm&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;softhsm2-util --init-token --slot 0 --label &amp;quot;ssh&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;you are then prompted to fill in the Security Officer PIN (so-pin) and the PIN (user PIN). do not lose and forget
+the so-pin as it&#x27;s important for passphrase reset if you ever forgot the user PIN.&lt;&#x2F;p&gt;
+&lt;p&gt;next is to initialize a keypair via p11tool&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;p11tool --provider &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so --login --generate-privkey=ed25519 --label &amp;quot;ssh-tpm-sign&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;it should give you a similar output like&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;warning: no --outfile was specified and the generated public key will be printed on screen.
+Generating an EdDSA (Ed25519) key...
+Token &amp;#x27;ssh&amp;#x27; with URL &amp;#x27;pkcs11:model=SoftHSM%20v2;manufacturer=SoftHSM%20project;serial=3bc38ba308914d10;token=ssh&amp;#x27; requires user PIN
+Enter PIN:
+-----BEGIN PUBLIC KEY-----
+MCowBQYDK2VwAyEA+t1Su91K3WkkcQo3NB6xFX4up9w56AWVqg3NVd2hpnQ=
+-----END PUBLIC KEY-----
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;you can test that it works via ssh-keygen&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; ssh-keygen -D &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPrdUrvdSt1pJHEKNzQesRV+LqfcOegFlaoNzVXdoaZ0 ssh-tpm-sign
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;but there is a problem. your ssh-agent does not know how to resolve this if it&#x27;s looking for its private key. to do that, you must
+run another ssh-agent in the background (or possibly, edit the launchd config for the ssh-agent but i will not cover that cause this one&#x27;s simpler).&lt;&#x2F;p&gt;
+&lt;p&gt;add this in your shell rc i.e. &lt;code&gt;~&#x2F;.bashrc&lt;&#x2F;code&gt; or &lt;code&gt;~&#x2F;.zshrc&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;export PKCS11LIB=&amp;quot;&amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so&amp;quot;
+SSH_ENV=&amp;quot;$HOME&amp;#x2F;.ssh&amp;#x2F;custom_agent_env&amp;quot;
+
+start_custom_agent() {
+    echo &amp;quot;Starting new custom ssh-agent...&amp;quot;
+    ssh-agent -s -P &amp;#x27;&amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;*&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;*&amp;#x27; | sed &amp;#x27;s&amp;#x2F;^echo&amp;#x2F;#echo&amp;#x2F;&amp;#x27; &amp;gt; &amp;quot;$SSH_ENV&amp;quot;
+    chmod 600 &amp;quot;$SSH_ENV&amp;quot;
+    source &amp;quot;$SSH_ENV&amp;quot;
+}
+
+if [ -f &amp;quot;$SSH_ENV&amp;quot; ]; then
+    source &amp;quot;$SSH_ENV&amp;quot; &amp;gt; &amp;#x2F;dev&amp;#x2F;null
+    if ! ps -p $SSH_AGENT_PID &amp;gt; &amp;#x2F;dev&amp;#x2F;null; then
+        start_custom_agent
+    fi
+else
+    start_custom_agent
+fi
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;take note of the &lt;code&gt;PKCS11LIB&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;if you don&#x27;t add that, you&#x27;ll be met by something like this when you run the following&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; killall ssh-agent
+&amp;gt; eval $(ssh-agent)
+Agent pid 50918
+&amp;gt; touch newfile
+&amp;gt; ssh-add -l
+The agent has no identities.
+&amp;gt; ssh-add -s &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so
+Enter passphrase for PKCS#11:
+Could not add card &amp;quot;&amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so&amp;quot;: agent refused operation
+&amp;gt; git commit --signoff -m &amp;#x27;add newfile&amp;#x27;
+error: No private key found for public key &amp;quot;&amp;#x2F;Users&amp;#x2F;socwork&amp;#x2F;.ssh&amp;#x2F;id_tpm_sign.pub&amp;quot;?
+
+fatal: failed to write commit object
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;once you added that new script to your shell rc, open a new terminal window and you can add the ssh private key via ssh-add&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Starting new custom ssh-agent...
+2026 Mon Oct 05 10:27:47 socwork@sentient-slated-air:~&amp;#x2F;tpmgittest (main)
+&amp;gt; ssh-add -l
+The agent has no identities.
+2026 Mon Oct 05 10:27:53 socwork@sentient-slated-air:~&amp;#x2F;tpmgittest (main)
+&amp;gt; ssh-add -s &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so
+Enter passphrase for PKCS#11:
+Card added: &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so
+2026 Mon Oct 05 10:28:29 socwork@sentient-slated-air:~&amp;#x2F;tpmgittest (main)
+&amp;gt; git commit --signoff -m &amp;#x27;tpm signed commit&amp;#x27;
+[main 8742c10] tpm signed commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 newfile
+2026 Mon Oct 05 10:28:47 socwork@sentient-slated-air:~&amp;#x2F;tpmgittest (main)
+&amp;gt; ssh-add -l
+256 SHA256:mbqoAd5QghCSaofE8&amp;#x2F;SeH71hcpn6jch4sk3CAdaO1zM ssh-tpm-sign (ED25519)
+2026 Mon Oct 05 10:28:53 socwork@sentient-slated-air:~&amp;#x2F;tpmgittest (main)
+&amp;gt; git log -1 --show-signature
+commit 8742c10d44f90674f4831fb6d4a7fa67e8738e7d (HEAD -&amp;gt; main)
+Good &amp;quot;git&amp;quot; signature with ED25519 key SHA256:mbqoAd5QghCSaofE8&amp;#x2F;SeH71hcpn6jch4sk3CAdaO1zM
+No principal matched.
+Author: Soc Virnyl Estela &amp;lt;contact@uncomfyhalomacro.pl&amp;gt;
+Date:   Mon Oct 5 10:28:47 2026 +0800
+
+    tpm signed commit
+
+    Signed-off-by: Soc Virnyl Estela &amp;lt;contact@uncomfyhalomacro.pl&amp;gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;feel free to export the ssh public key to your github, gitlab, or any git forge instance like codeberg, bitbucket and personal git forges using hitea or forgejo. to do it, just run&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;ssh-keygen -D $PKCS11LIB
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Using SSH keys with TPM and Git</title>
+        <published>2024-05-05T00:00:00+00:00</published>
+        <updated>2024-05-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/using-ssh-keys-with-tpm-and-git/"/>
+        <id>https://uncomfyhalomacro.pl/blog/using-ssh-keys-with-tpm-and-git/</id>
+        
+        <summary type="html">&lt;p&gt;So my mentor has already made a
+&lt;a href=&quot;https:&#x2F;&#x2F;fy.blackhats.net.au&#x2F;blog&#x2F;2023-04-20-using-a-tpm-for-ssh-keys-on-opensuse-tumbleweed&#x2F;&quot;&gt;post&lt;&#x2F;a&gt;
+about how to use TPMs in openSUSE.&lt;&#x2F;p&gt;
+&lt;p&gt;I followed a bit, did some weird stuff because it doesn&#x27;t work at first. It turns out I made a typo and missed a flag
+🥴&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

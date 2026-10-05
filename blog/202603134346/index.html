@@ -1,0 +1,100 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1" name=viewport><meta content="uncomfy uh... i have a website? Part 5: So I am building a fullstack project a new fresh experience 🍋 no pun intended" name=description><title>Part 5: So I am building a fullstack project</title><link href=/favicon.png rel=icon><link href="https://uncomfyhalomacro.pl/style.css?h=b3ea0c6ca2d4276c7a3b" rel=stylesheet><link media="(prefers-color-scheme: dark)" href=/syntax-theme-dark.css rel=stylesheet><link media="(prefers-color-scheme: light)" href=/syntax-theme-light.css rel=stylesheet><link href="https://uncomfyhalomacro.pl/color/auto.css?h=c9e3a532fd9af99660b2" rel=stylesheet><link href=https://uncomfyhalomacro.pl/atom.xml rel=alternate title=RSS type=application/atom+xml><script crossorigin src=https://kit.fontawesome.com/51d55b4c7d.js></script><script>function resize() {
+    var x = document.getElementById("myLinks");
+    // var y = document.getElementsByClassName("subcontainer")[0];
+    // var nav = document.getElementsByClassName("topnav")[0];
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+  try {
+    const bannedReferrers = [/news\.ycombinator\.com/i, /reddit\.com/i];
+    if (document.referrer) {
+      const ref = new URL(document.referrer);
+      if (
+        !/bad-networks/i.test(window.location.href) &&
+        bannedReferrers.some((r) => r.test(ref.host))
+      ) {
+        window.location.href = "https://www.pcloadletter.dev/blog/bad-networks";
+      }
+    }
+  } catch (e) {console.log(e)}</script><body><div class=main-grid><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a></div></div><div class=sub-grid><div class=content-grid><div class=info><h1>Part 5: So I am building a fullstack project<span> <a href=https://uncomfyhalomacro.pl/atom.xml><i class="fa-sharp fa-solid fa-rss"></i></a> </span></h1><p><span><a href=https://uncomfyhalomacro.pl/tags/mercado-series>#mercado-series</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/rust>#rust</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/typescript>#typescript</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/deno>#deno</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/fresh>#fresh</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/fullstack>#fullstack</a></span> <br><br> <span class=author> Soc Virnyl Estela </span>| <span class=dates>2026-03-15T07:07:34Z</span> | <span class=readtime>reading time: ~3min</span></div><div class=toc><h1>Contents</h1><div class=toc-container><ul><li><a href=https://uncomfyhalomacro.pl/blog/202603134346/#what-the-hell-even-are-signals>What the Hell Even Are Signals?</a><li><a href=https://uncomfyhalomacro.pl/blog/202603134346/#how-about-the-backend>How About the Backend?</a></ul></div></div><div class=content-body><article><section class=content><p>So I made some various experimentations with Fresh and Preact.<p>Nothing really big but just some surface-level crap that I've been doing.<h1 id=what-the-hell-even-are-signals>What the Hell Even Are Signals?<a aria-label="Anchor link for: what-the-hell-even-are-signals" class=zola-anchor href=#what-the-hell-even-are-signals>§</a></h1><p>I was trying to experiment with Tailwind CSS built into the frontend template like for empty input or a status code that isn't 201 or 200, specifically for the register and login modals.<p>From my understanding, Signals looks similar to React's <code>useState</code>.<p>The usage is similar as well, but I am not sure what the differences are.<p>Preact describes signals as an efficient way to update UI states.<blockquote><p>In Preact, when a signal is passed down through a tree as props or context, <em>we're only passing around references to the signal</em>.</blockquote><p>This means that signals are efficient because they avoid reinitialisation and only update the value <em>to the reference of the signal</em>.<p>This means we can also do some minor optimisations like avoiding rerendering of the DOM.<p>At first, I didn't get it because it was an entirely new thing to me. After a bit of reading, I think I get the idea now if combined with <code>useComputed</code>. To localise the state into only a component, Preact suggests to use <code>useComputed</code> with <code>useSignal</code>.<p>For example, prior to the use of <code>useComputed</code>, I would access a value inside a JSX/TSX and compare it to another value to render a JSX/TSX element.<pre class=language-typescript data-lang=typescript><code class=language-typescript data-lang=typescript>    &lt;div>
+     {statuscode.value !== 200 && (
+      &lt;a
+        class="text-center rounded-md bg-white hover:bg-gray-100 text-black py-2 focus:outline-2 focus:outline-offset-2 focus:outline-white-500 "
+        href="/signup"
+      >
+        Create Account
+      &lt;/a>}
+      &lt;/div>
+
+</code></pre><p>After I knew about <code>useComputed</code>, I just put it inside a <code>useComputed</code> declaration<pre class=language-typescript data-lang=typescript><code class=language-typescript data-lang=typescript>  const showSignup = useComputed(() =>
+    statuscode.value !== 200 && (
+      &lt;a
+        class="text-center rounded-md bg-white hover:bg-gray-100 text-black py-2 focus:outline-2 focus:outline-offset-2 focus:outline-white-500 "
+        href="/signup"
+      >
+        Create Account
+      &lt;/a>
+    )
+  );
+</code></pre><p>I won't claim that it actually does optimisations but this is what Preact said when accessing a signal's value inside a JSX.<blockquote><p>In Preact, accessing a signal's .value property from within a component automatically re-renders the component when that signal's value changes.</blockquote><p>Accessing the signal's value in an event handler does not cause a re-render.<p>Once the value changes, only that part of the component updates, and not the whole component itself.<p>Here is an ASMR of the login and register. Of course I will use the template's background gradient 🤣</p><video controls width=640><source src=./sc1.mp4 type=video/mp4></video><h1 id=how-about-the-backend>How About the Backend?<a aria-label="Anchor link for: how-about-the-backend" class=zola-anchor href=#how-about-the-backend>§</a></h1><p>I have to adjust some changes to the backend when experimenting the frontend.<p>I noticed that I have to handle empty inputs as well which sends a <code>422 UNPROCESSABLE ENTITY</code> (looks like it's called <code>UNPROCESSABLE CONTENT</code> in the <a href=https://httpwg.org/specs/rfc9110.html#rfc.section.15.5.21>https://httpwg.org/specs/rfc9110.html#rfc.section.15.5.21</a> hmmmm).<p>Other errors or status codes returned are <code>401 UNAUTHORIZED</code>, <code>500 INTERNAL SERVER ERROR</code>, <code>409 CONFLICT</code> and <code>400 BAD REQUEST</code>.<p>I also made an API endpoint <code>/api/auth/profile</code> to check if the session token is still valid or not with the following code below.<pre class=language-rust data-lang=rust><code class=language-rust data-lang=rust>pub async fn profile(
+    jar: CookieJar,
+) -> anyhow::Result&lt;(StatusCode, Json&lt;UserInfoResponse>), StatusCode> {
+    tracing::info!(?jar);
+    let Some(token) = jar
+        .get("session_token")
+        .map(|cookie| cookie.value().to_owned())
+    else {
+        return Err(StatusCode::UNAUTHORIZED);
+    };
+    let jwt_service = JwtService::new("some-secret", None);
+    let claims = jwt_service
+        .verify(&token, None, None, None, None)
+        .map_err(|err| {
+            tracing::error!(%err);
+            StatusCode::UNAUTHORIZED
+        })?;
+
+    let Some(id) = claims.sub else {
+        return Err(StatusCode::UNAUTHORIZED);
+    };
+    let Some(email) = claims.iss else {
+        return Err(StatusCode::UNAUTHORIZED);
+    };
+
+    let mut user_info = UserInfoResponse {
+        id,
+        email,
+        roles: Vec::new(),
+        first_name: None,
+        last_name: None,
+    };
+
+    if let Some(extras) = &claims.extras {
+        let first_name = extras.get("first_name");
+        let last_name = extras.get("last_name");
+        let roles_s = extras.get("roles");
+
+        user_info.first_name = first_name.cloned();
+        user_info.last_name = last_name.cloned();
+
+        if let Some(roles) = roles_s {
+            let role_str: Vec&lt;&str> = roles.split(',').collect();
+            let roles: Vec&lt;i32> = role_str
+                .iter()
+                .map(|x| x.parse::&lt;i32>())
+                .collect::&lt;Result&lt;Vec&lt;i32>, ParseIntError>>()
+                .map_err(|err| {
+                    tracing::error!(%err);
+                    StatusCode::UNAUTHORIZED
+                })?;
+            user_info.roles = roles;
+        }
+    };
+    tracing::info!("Passed validation ✅");
+
+    Ok((StatusCode::OK, Json(user_info)))
+}
+</code></pre><p>I am pretty sure the logic can be reused as middleware for handling routes that require a valid session token.<p>Security-wise, I would probably ask an expert or do research because I believe if someone has the token string taken from the cookie, it would be so problematic. The only protection it has is the signature verification of which I am unsure if it is very protective enough.<p>That's all. I'll continue building the database crate again for the products schema.</section></article></div><footer>follow <a href=https://fosstodon.org/@uncomfyhalomacro rel=me target=_blank>uncomfyhalomacro@fosstodon.org</a> ⋅ © 2024 <a href=https://codeberg.org/uncomfyhalomacro/gruvbox-v target=_blank>gruvbox-v</a> ⋅ powered by <a href=https://getzola.org target=_blank>zola</a> ⋅ theme by <a href=https://codeberg.org/uncomfyhalomacro target=_blank>uncomfyhalomacro</a> ⋅ Content <a href=https://creativecommons.org/licenses/by-sa/4.0/ target=_blank>CC-BY-4.0</a></footer></div><div class=right-grid><div class=toc><h1>Contents</h1><div class=toc-container><ul><li><a href=https://uncomfyhalomacro.pl/blog/202603134346/#what-the-hell-even-are-signals>What the Hell Even Are Signals?</a><li><a href=https://uncomfyhalomacro.pl/blog/202603134346/#how-about-the-backend>How About the Backend?</a></ul></div></div></div></div><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a></div></div></div>

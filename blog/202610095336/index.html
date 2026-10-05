@@ -1,0 +1,93 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1" name=viewport><meta content="uncomfy uh... i have a website? tpm ssh with macos " name=description><title>tpm ssh with macos</title><link href=/favicon.png rel=icon><link href="https://uncomfyhalomacro.pl/style.css?h=b3ea0c6ca2d4276c7a3b" rel=stylesheet><link media="(prefers-color-scheme: dark)" href=/syntax-theme-dark.css rel=stylesheet><link media="(prefers-color-scheme: light)" href=/syntax-theme-light.css rel=stylesheet><link href="https://uncomfyhalomacro.pl/color/auto.css?h=c9e3a532fd9af99660b2" rel=stylesheet><link href=https://uncomfyhalomacro.pl/atom.xml rel=alternate title=RSS type=application/atom+xml><script crossorigin src=https://kit.fontawesome.com/51d55b4c7d.js></script><script>function resize() {
+    var x = document.getElementById("myLinks");
+    // var y = document.getElementsByClassName("subcontainer")[0];
+    // var nav = document.getElementsByClassName("topnav")[0];
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+  try {
+    const bannedReferrers = [/news\.ycombinator\.com/i, /reddit\.com/i];
+    if (document.referrer) {
+      const ref = new URL(document.referrer);
+      if (
+        !/bad-networks/i.test(window.location.href) &&
+        bannedReferrers.some((r) => r.test(ref.host))
+      ) {
+        window.location.href = "https://www.pcloadletter.dev/blog/bad-networks";
+      }
+    }
+  } catch (e) {console.log(e)}</script><body><div class=main-grid><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a></div></div><div class=sub-grid><div class=content-grid><div class=info><h1>tpm ssh with macos<span> <a href=https://uncomfyhalomacro.pl/atom.xml><i class="fa-sharp fa-solid fa-rss"></i></a> </span></h1><p><span><a href=https://uncomfyhalomacro.pl/tags/ssh>#ssh</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/git>#git</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/security>#security</a></span> <br><br> <span class=author> Soc Virnyl Estela </span>| <span class=dates>2026-10-05T01:53:43Z</span> | <span class=readtime>reading time: ~2min</span></div><div class=notoc></div><div class=content-body><article><section class=content><p>while looking for a way to find an equivalent for https://uncomfyhalomacro.pl/blog/using-ssh-keys-with-tpm-and-git/, i finally figured it out.<p>you can use any package manager for this as long as you can install the following<ul><li>https://www.softhsm.org/<li>https://github.com/Mastercard/pkcs11-tools</ul><p>i am using homebrew so the commands to install them are<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>brew install softhsm pkcs11-tools
+</code></pre><p>to initialize, you must create a virtual smartcard via softhsm<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>softhsm2-util --init-token --slot 0 --label "ssh"
+</code></pre><p>you are then prompted to fill in the Security Officer PIN (so-pin) and the PIN (user PIN). do not lose and forget the so-pin as it's important for passphrase reset if you ever forgot the user PIN.<p>next is to initialize a keypair via p11tool<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>p11tool --provider /opt/homebrew/Cellar/softhsm/2.7.0/lib/softhsm/libsofthsm2.so --login --generate-privkey=ed25519 --label "ssh-tpm-sign"
+</code></pre><p>it should give you a similar output like<pre><code>warning: no --outfile was specified and the generated public key will be printed on screen.
+Generating an EdDSA (Ed25519) key...
+Token 'ssh' with URL 'pkcs11:model=SoftHSM%20v2;manufacturer=SoftHSM%20project;serial=3bc38ba308914d10;token=ssh' requires user PIN
+Enter PIN:
+-----BEGIN PUBLIC KEY-----
+MCowBQYDK2VwAyEA+t1Su91K3WkkcQo3NB6xFX4up9w56AWVqg3NVd2hpnQ=
+-----END PUBLIC KEY-----
+</code></pre><p>you can test that it works via ssh-keygen<pre><code>> ssh-keygen -D /opt/homebrew/Cellar/softhsm/2.7.0/lib/softhsm/libsofthsm2.so
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPrdUrvdSt1pJHEKNzQesRV+LqfcOegFlaoNzVXdoaZ0 ssh-tpm-sign
+</code></pre><p>but there is a problem. your ssh-agent does not know how to resolve this if it's looking for its private key. to do that, you must run another ssh-agent in the background (or possibly, edit the launchd config for the ssh-agent but i will not cover that cause this one's simpler).<p>add this in your shell rc i.e. <code>~/.bashrc</code> or <code>~/.zshrc</code><pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>export PKCS11LIB="/opt/homebrew/lib/softhsm/libsofthsm2.so"
+SSH_ENV="$HOME/.ssh/custom_agent_env"
+
+start_custom_agent() {
+    echo "Starting new custom ssh-agent..."
+    ssh-agent -s -P '/opt/homebrew/Cellar/softhsm/*/lib/softhsm/*' | sed 's/^echo/#echo/' > "$SSH_ENV"
+    chmod 600 "$SSH_ENV"
+    source "$SSH_ENV"
+}
+
+if [ -f "$SSH_ENV" ]; then
+    source "$SSH_ENV" > /dev/null
+    if ! ps -p $SSH_AGENT_PID > /dev/null; then
+        start_custom_agent
+    fi
+else
+    start_custom_agent
+fi
+</code></pre><p><strong>take note of the <code>PKCS11LIB</code></strong><p>if you don't add that, you'll be met by something like this when you run the following<pre><code>> killall ssh-agent
+> eval $(ssh-agent)
+Agent pid 50918
+> touch newfile
+> ssh-add -l
+The agent has no identities.
+> ssh-add -s /opt/homebrew/Cellar/softhsm/2.7.0/lib/softhsm/libsofthsm2.so
+Enter passphrase for PKCS#11:
+Could not add card "/opt/homebrew/Cellar/softhsm/2.7.0/lib/softhsm/libsofthsm2.so": agent refused operation
+> git commit --signoff -m 'add newfile'
+error: No private key found for public key "/Users/socwork/.ssh/id_tpm_sign.pub"?
+
+fatal: failed to write commit object
+</code></pre><p>once you added that new script to your shell rc, open a new terminal window and you can add the ssh private key via ssh-add<pre><code>Starting new custom ssh-agent...
+2026 Mon Oct 05 10:27:47 socwork@sentient-slated-air:~/tpmgittest (main)
+> ssh-add -l
+The agent has no identities.
+2026 Mon Oct 05 10:27:53 socwork@sentient-slated-air:~/tpmgittest (main)
+> ssh-add -s /opt/homebrew/Cellar/softhsm/2.7.0/lib/softhsm/libsofthsm2.so
+Enter passphrase for PKCS#11:
+Card added: /opt/homebrew/Cellar/softhsm/2.7.0/lib/softhsm/libsofthsm2.so
+2026 Mon Oct 05 10:28:29 socwork@sentient-slated-air:~/tpmgittest (main)
+> git commit --signoff -m 'tpm signed commit'
+[main 8742c10] tpm signed commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 newfile
+2026 Mon Oct 05 10:28:47 socwork@sentient-slated-air:~/tpmgittest (main)
+> ssh-add -l
+256 SHA256:mbqoAd5QghCSaofE8/SeH71hcpn6jch4sk3CAdaO1zM ssh-tpm-sign (ED25519)
+2026 Mon Oct 05 10:28:53 socwork@sentient-slated-air:~/tpmgittest (main)
+> git log -1 --show-signature
+commit 8742c10d44f90674f4831fb6d4a7fa67e8738e7d (HEAD -> main)
+Good "git" signature with ED25519 key SHA256:mbqoAd5QghCSaofE8/SeH71hcpn6jch4sk3CAdaO1zM
+No principal matched.
+Author: Soc Virnyl Estela &lt;contact@uncomfyhalomacro.pl>
+Date:   Mon Oct 5 10:28:47 2026 +0800
+
+    tpm signed commit
+
+    Signed-off-by: Soc Virnyl Estela &lt;contact@uncomfyhalomacro.pl>
+</code></pre><p>feel free to export the ssh public key to your github, gitlab, or any git forge instance like codeberg, bitbucket and personal git forges using hitea or forgejo. to do it, just run<pre><code>ssh-keygen -D $PKCS11LIB
+</code></pre></section></article></div><footer>follow <a href=https://fosstodon.org/@uncomfyhalomacro rel=me target=_blank>uncomfyhalomacro@fosstodon.org</a> ⋅ © 2024 <a href=https://codeberg.org/uncomfyhalomacro/gruvbox-v target=_blank>gruvbox-v</a> ⋅ powered by <a href=https://getzola.org target=_blank>zola</a> ⋅ theme by <a href=https://codeberg.org/uncomfyhalomacro target=_blank>uncomfyhalomacro</a> ⋅ Content <a href=https://creativecommons.org/licenses/by-sa/4.0/ target=_blank>CC-BY-4.0</a></footer></div><div class=right-grid><div class=notoc></div></div></div><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a></div></div></div>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - agriculture</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/agriculture/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-05-29T00:00:00+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/agriculture/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Genetically Modified Organisms</title>
+        <published>2023-05-29T00:00:00+00:00</published>
+        <updated>2023-05-29T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/lecture/sts1-genetically-modified-organisms/"/>
+        <id>https://uncomfyhalomacro.pl/lecture/sts1-genetically-modified-organisms/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/lecture/sts1-genetically-modified-organisms/">&lt;h1 id=&quot;natural-selection&quot;&gt;Natural Selection&lt;a class=&quot;zola-anchor&quot; href=&quot;#natural-selection&quot; aria-label=&quot;Anchor link for: natural-selection&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Natural selection is a known concept in the field of biology and life sciences. It talks about
+how the environment change the organisms living in it to adapt and thrive in that environment. Otherwise,
+these organisms are forced to move to other environments (e.g. habitats and ecosystems) or become extinct.&lt;&#x2F;p&gt;
+&lt;p&gt;This concept was first recognized by Charles Darwin during his voyage to the Galapagos Islands
+and co-discovered by Alfred Russel Wallace who was exploring Malaysia, Singapore, Indonesia,
+which &lt;em&gt;&lt;strong&gt;were&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt; known as the &lt;em&gt;East Indies&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;in-relation-to-evolution&quot;&gt;In relation to evolution&lt;a class=&quot;zola-anchor&quot; href=&quot;#in-relation-to-evolution&quot; aria-label=&quot;Anchor link for: in-relation-to-evolution&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Natural selection is the actual driving force in &lt;em&gt;evolution&lt;&#x2F;em&gt;, where a new species or sub-species arises
+from the changes through various &lt;em&gt;adaptations&lt;&#x2F;em&gt;. Simply put, with enough time and luck, a species
+may become another species if it wants to &lt;em&gt;adapt&lt;&#x2F;em&gt; in that environment. A new species may or may not
+be able to breed with its ancestral species, and if it can, it is usually sterile or infertile e.g.
+a cross between a donkey and a horse produces a sterile hinny or mule.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;confusions-about-evolution&quot;&gt;Confusions about evolution&lt;a class=&quot;zola-anchor&quot; href=&quot;#confusions-about-evolution&quot; aria-label=&quot;Anchor link for: confusions-about-evolution&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;There is a confusion caused by many traditional biologists about &quot;missing links&quot; and &quot;transitional forms&quot;
+in regards to evolution. The confusion is caused by the misinformation such as &quot;humans came from
+chimpanzees&quot; and whatnot. The truth is, every species is actually a transitional form. There is no
+actual specific point when it comes to evolution. It&#x27;s always dynamic. Each of us may become an ancestor
+or a predecessor of some species we will never know. We can only define ourselves as &quot;closest relatives&quot;
+with chimpanzees but no such thing as a &quot;common ancestor&quot;, just the &quot;closest ancestor&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;This is not the fault of scientists. It&#x27;s just that scientific communication sometimes simplify concepts a
+bit that it may cause confusion.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;evidence&quot;&gt;Evidence&lt;a class=&quot;zola-anchor&quot; href=&quot;#evidence&quot; aria-label=&quot;Anchor link for: evidence&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Evolution is not that clear to see at first because our perception time is not the same as evolutionary
+time. The effects of natural selection takes thousands to millions of years for it to be noticeable.&lt;&#x2F;p&gt;
+&lt;p&gt;The only way we can observe this is through &lt;em&gt;fossils&lt;&#x2F;em&gt;. Fossils are petrified remains of dead organisms
+that can span even millions of years.&lt;&#x2F;p&gt;
+&lt;p&gt;Fortunately, we can observe natural selection in &lt;em&gt;microorganisms as they reproduce fast&lt;&#x2F;em&gt;. In the modern
+age, we can observe this by reading articles about antimicrobial resistance in some species of
+bacteria or even experimenting it inside the laboratory.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;artificial-selection&quot;&gt;Artificial Selection&lt;a class=&quot;zola-anchor&quot; href=&quot;#artificial-selection&quot; aria-label=&quot;Anchor link for: artificial-selection&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Artificial selection is one of the greatest evidence of natural selection. Except it&#x27;s not caused by
+nature, but through careful selection of traits from us, human beings. We have practiced this concept
+without knowing it for thousands of years from domestication to agriculture. Dogs, cows, and corn
+are such examples of artificial selection. Through selective breeding, we achieved the desired traits
+we want from these organisms. Another such good example would be the &lt;em&gt;Brassica oleracea&lt;&#x2F;em&gt; species because
+people will not expect that cabbage, broccoli and cauliflower are actually the same species!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;cdn.vox-cdn.com&#x2F;thumbor&#x2F;7Oq_1Wc8Uy6QocLEvHHSbhaCLKs=&#x2F;0x0:640x399&#x2F;720x0&#x2F;filters:focal(0x0:640x399):format(webp):no_upscale()&#x2F;cdn.vox-cdn.com&#x2F;uploads&#x2F;chorus_asset&#x2F;file&#x2F;3395076&#x2F;brassica-oleracea.0.jpg&quot; alt=&quot;brassica oleracea&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;genetically-modified-organisms&quot;&gt;Genetically Modified Organisms&lt;a class=&quot;zola-anchor&quot; href=&quot;#genetically-modified-organisms&quot; aria-label=&quot;Anchor link for: genetically-modified-organisms&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;As we achieved the ability to modify and select genes, the field of &lt;em&gt;bioengineering&lt;&#x2F;em&gt; and &lt;em&gt;genetic
+engineering&lt;&#x2F;em&gt; has paved the way of accelerating our ability to quickly select the traits we want from
+different organisms for food, raw materials, and medicine or drugs. These organisms are so-called
+&lt;em&gt;genetically modified organisms&lt;&#x2F;em&gt; or GMOs.&lt;&#x2F;p&gt;
+&lt;p&gt;Related links! Please watch them all. The last one is actually the best for me.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;lT3xvugz7SU&quot;&gt;Why do we have GMOs?&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;7TmcXYp8xu4&quot;&gt;Are GMOs Good or Bad?&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;wZ2TF8-PGQ4&quot;&gt;Pamela Ronald: The case of engineering our food&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;food-security-and-safety-and-agriculture&quot;&gt;Food Security and Safety, and Agriculture&lt;a class=&quot;zola-anchor&quot; href=&quot;#food-security-and-safety-and-agriculture&quot; aria-label=&quot;Anchor link for: food-security-and-safety-and-agriculture&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;As the world population grows exponentially, there is also an increasing demand of food production
+and also an increase chance of a new disease affecting those that consume and those that are consumed.&lt;&#x2F;p&gt;
+&lt;p&gt;Genetically modified organisms with the power of genetic engineering can mitigate or even remove
+those threats to food security and safety. Genetic engineers and geneticists can look for the gene
+that increases food production or increases resilience against disease. Sometimes even add another
+trait of that GMO to have a specific nutrient or nutrients to fight malnutrition in poverty-stricken
+regions. Some crops can be even modified to be resilient to the effects of climate change such as flood
+resilient rice or salt resilient fruit trees.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;medicine&quot;&gt;Medicine&lt;a class=&quot;zola-anchor&quot; href=&quot;#medicine&quot; aria-label=&quot;Anchor link for: medicine&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;GMOs can help us produce or increase the quality of our medicine. It may also help us find new ways
+or new kinds of medicine to produce. Insulin for example were already produced by genetically modified
+bacteria, specifically, &lt;em&gt;E. coli&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;GMOs are more consistent and don&#x27;t carry the same risks than traditional medicine because they can be
+lab produced, therefore, has more of a controlled setting. We can genetically modify organisms to be
+resilient or produce the drugs for us such as insulin, or even vitamins that are commonly deficient
+in young people.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;review&quot;&gt;Review&lt;a class=&quot;zola-anchor&quot; href=&quot;#review&quot; aria-label=&quot;Anchor link for: review&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;ol&gt;
+&lt;li&gt;List 5 things that are the result or product of GMOs.&lt;&#x2F;li&gt;
+&lt;li&gt;Are GMOs bad or good? Explain.&lt;&#x2F;li&gt;
+&lt;li&gt;How does genetic engineering help us mitigate the effects of climate change?&lt;&#x2F;li&gt;
+&lt;li&gt;List down at least one species of plant that was saved from extinction
+through genetic engineering.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h1 id=&quot;list-of-terms-and-definitions&quot;&gt;List of terms and definitions&lt;a class=&quot;zola-anchor&quot; href=&quot;#list-of-terms-and-definitions&quot; aria-label=&quot;Anchor link for: list-of-terms-and-definitions&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Genetically Modified Organism (GMO): An organism whose genetic material has been altered using genetic engineering techniques. GMOs are created by introducing genes from one species into another to confer specific traits or characteristics.&lt;&#x2F;p&gt;
+&lt;p&gt;Genetic Engineering: The manipulation and alteration of an organism&#x27;s genetic material to introduce or modify specific traits. It involves isolating, modifying, and reintroducing DNA sequences into an organism to produce desired characteristics.&lt;&#x2F;p&gt;
+&lt;p&gt;Transgene: A gene that has been transferred from one organism to another through genetic engineering. The transgene can be from the same or a different species and is typically used to confer specific traits or characteristics to the recipient organism.&lt;&#x2F;p&gt;
+&lt;p&gt;Recombinant DNA (rDNA): DNA molecules formed by combining DNA sequences from different sources or species. Recombinant DNA technology is a key tool in genetic engineering, allowing the creation of transgenic organisms.&lt;&#x2F;p&gt;
+&lt;p&gt;Gene Splicing: The process of cutting and recombining DNA sequences from different sources, typically performed in the laboratory to create new combinations of genes. Gene splicing is used to insert foreign genes into an organism&#x27;s genome.&lt;&#x2F;p&gt;
+&lt;p&gt;Biotechnology: The application of biological and genetic engineering techniques to develop products and solutions that improve living organisms, industrial processes, and medical treatments. It encompasses a wide range of practices, including genetic engineering and the use of GMOs.&lt;&#x2F;p&gt;
+&lt;p&gt;Selective Breeding: The traditional method of breeding plants or animals with desirable traits to create offspring with those same traits. Selective breeding is not considered genetic engineering because it involves the selection of naturally occurring genetic variation rather than the introduction of foreign genes.&lt;&#x2F;p&gt;
+&lt;p&gt;Herbicide Resistance: The ability of a plant to withstand the application of specific herbicides without being damaged. Herbicide-resistant GMOs are created by introducing genes that produce enzymes or proteins that break down or deactivate the herbicide.&lt;&#x2F;p&gt;
+&lt;p&gt;Pest Resistance: The ability of a plant to resist damage caused by pests, such as insects, viruses, or fungi. Pest-resistant GMOs are created by introducing genes that produce toxins harmful to pests or genes that enhance the plant&#x27;s own defense mechanisms.&lt;&#x2F;p&gt;
+&lt;p&gt;Gene Editing: A set of techniques used to modify an organism&#x27;s genome by precisely altering its DNA sequence. Gene editing tools like CRISPR (Clustered Regularly Interspaced Short Palindromic Repeats) allow scientists to make targeted changes in an organism&#x27;s genes without necessarily introducing foreign genes.&lt;&#x2F;p&gt;
+&lt;p&gt;Genome: The complete set of genetic material (DNA) of an organism, including all of its genes. The genome contains the instructions for building and maintaining an organism.&lt;&#x2F;p&gt;
+&lt;p&gt;Gene Transfer: The process of transferring genes from one organism to another. It can occur naturally through processes like sexual reproduction or artificially through genetic engineering techniques.&lt;&#x2F;p&gt;
+&lt;p&gt;Marker Gene: A gene introduced into an organism&#x27;s genome during genetic engineering to serve as a selectable or observable marker. Marker genes are used to identify and track the presence of the desired transgene in the recipient organism.&lt;&#x2F;p&gt;
+&lt;p&gt;Antibiotic Resistance Marker: A common type of marker gene used in genetic engineering. It provides resistance to antibiotics, allowing researchers to selectively identify and cultivate cells or organisms that have successfully incorporated the desired transgene.&lt;&#x2F;p&gt;
+&lt;p&gt;Molecular Farming: The use of genetically modified plants or animals to produce valuable substances, such as pharmaceuticals, vaccines, or industrial enzymes. These organisms act as &quot;factories&quot; for the production of high-value compounds.&lt;&#x2F;p&gt;
+&lt;p&gt;Synthetic Biology: An interdisciplinary field that combines biology, engineering, and computer science to design and construct new biological parts, devices, and systems. It involves the creation of synthetic DNA sequences and the engineering of novel biological functions.&lt;&#x2F;p&gt;
+&lt;p&gt;Genetic Modification Techniques: Various methods used to introduce foreign genes or modify an organism&#x27;s DNA. These techniques include gene splicing, gene editing, and RNA interference (RNAi), among others.&lt;&#x2F;p&gt;
+&lt;p&gt;Biofortification: The process of enhancing the nutritional content of food crops through genetic engineering. Biofortified crops are designed to contain higher levels of specific vitamins, minerals, or other beneficial compounds.&lt;&#x2F;p&gt;
+&lt;p&gt;Environmental Impact Assessment: A process to evaluate the potential environmental risks and benefits associated with the release of GMOs into the environment. It helps identify and minimize any potential adverse effects on ecosystems, biodiversity, or human health.&lt;&#x2F;p&gt;
+&lt;p&gt;Coexistence: The simultaneous cultivation of genetically modified and non-genetically modified crops or the raising of genetically modified and non-genetically modified organisms in close proximity. Coexistence measures aim to ensure that GMOs and conventional crops can coexist without significant cross-pollination or other unintended effects.&lt;&#x2F;p&gt;
+&lt;p&gt;Biosafety: The discipline concerned with ensuring the safe handling, transport, use, and disposal of GMOs. Biosafety measures and regulations are in place to prevent potential risks to human health, animal health, and the environment.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

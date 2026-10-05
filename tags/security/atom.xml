@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - security</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/security/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-10-05T01:53:43+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/security/atom.xml</id>
+    <entry xml:lang="en">
+        <title>tpm ssh with macos</title>
+        <published>2026-10-05T01:53:43+00:00</published>
+        <updated>2026-10-05T01:53:43+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202610095336/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202610095336/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202610095336/">&lt;p&gt;while looking for a way to find an equivalent for https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;using-ssh-keys-with-tpm-and-git&#x2F;, i finally figured it out.&lt;&#x2F;p&gt;
+&lt;p&gt;you can use any package manager for this as long as you can install the following&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;https:&#x2F;&#x2F;www.softhsm.org&#x2F;&lt;&#x2F;li&gt;
+&lt;li&gt;https:&#x2F;&#x2F;github.com&#x2F;Mastercard&#x2F;pkcs11-tools&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;i am using homebrew so the commands to install them are&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;brew install softhsm pkcs11-tools
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;to initialize, you must create a virtual smartcard via softhsm&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;softhsm2-util --init-token --slot 0 --label &amp;quot;ssh&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;you are then prompted to fill in the Security Officer PIN (so-pin) and the PIN (user PIN). do not lose and forget
+the so-pin as it&#x27;s important for passphrase reset if you ever forgot the user PIN.&lt;&#x2F;p&gt;
+&lt;p&gt;next is to initialize a keypair via p11tool&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;p11tool --provider &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so --login --generate-privkey=ed25519 --label &amp;quot;ssh-tpm-sign&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;it should give you a similar output like&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;warning: no --outfile was specified and the generated public key will be printed on screen.
+Generating an EdDSA (Ed25519) key...
+Token &amp;#x27;ssh&amp;#x27; with URL &amp;#x27;pkcs11:model=SoftHSM%20v2;manufacturer=SoftHSM%20project;serial=3bc38ba308914d10;token=ssh&amp;#x27; requires user PIN
+Enter PIN:
+-----BEGIN PUBLIC KEY-----
+MCowBQYDK2VwAyEA+t1Su91K3WkkcQo3NB6xFX4up9w56AWVqg3NVd2hpnQ=
+-----END PUBLIC KEY-----
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;you can test that it works via ssh-keygen&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; ssh-keygen -D &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPrdUrvdSt1pJHEKNzQesRV+LqfcOegFlaoNzVXdoaZ0 ssh-tpm-sign
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;but there is a problem. your ssh-agent does not know how to resolve this if it&#x27;s looking for its private key. to do that, you must
+run another ssh-agent in the background (or possibly, edit the launchd config for the ssh-agent but i will not cover that cause this one&#x27;s simpler).&lt;&#x2F;p&gt;
+&lt;p&gt;add this in your shell rc i.e. &lt;code&gt;~&#x2F;.bashrc&lt;&#x2F;code&gt; or &lt;code&gt;~&#x2F;.zshrc&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;export PKCS11LIB=&amp;quot;&amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so&amp;quot;
+SSH_ENV=&amp;quot;$HOME&amp;#x2F;.ssh&amp;#x2F;custom_agent_env&amp;quot;
+
+start_custom_agent() {
+    echo &amp;quot;Starting new custom ssh-agent...&amp;quot;
+    ssh-agent -s -P &amp;#x27;&amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;*&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;*&amp;#x27; | sed &amp;#x27;s&amp;#x2F;^echo&amp;#x2F;#echo&amp;#x2F;&amp;#x27; &amp;gt; &amp;quot;$SSH_ENV&amp;quot;
+    chmod 600 &amp;quot;$SSH_ENV&amp;quot;
+    source &amp;quot;$SSH_ENV&amp;quot;
+}
+
+if [ -f &amp;quot;$SSH_ENV&amp;quot; ]; then
+    source &amp;quot;$SSH_ENV&amp;quot; &amp;gt; &amp;#x2F;dev&amp;#x2F;null
+    if ! ps -p $SSH_AGENT_PID &amp;gt; &amp;#x2F;dev&amp;#x2F;null; then
+        start_custom_agent
+    fi
+else
+    start_custom_agent
+fi
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;take note of the &lt;code&gt;PKCS11LIB&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;if you don&#x27;t add that, you&#x27;ll be met by something like this when you run the following&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; killall ssh-agent
+&amp;gt; eval $(ssh-agent)
+Agent pid 50918
+&amp;gt; touch newfile
+&amp;gt; ssh-add -l
+The agent has no identities.
+&amp;gt; ssh-add -s &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so
+Enter passphrase for PKCS#11:
+Could not add card &amp;quot;&amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so&amp;quot;: agent refused operation
+&amp;gt; git commit --signoff -m &amp;#x27;add newfile&amp;#x27;
+error: No private key found for public key &amp;quot;&amp;#x2F;Users&amp;#x2F;socwork&amp;#x2F;.ssh&amp;#x2F;id_tpm_sign.pub&amp;quot;?
+
+fatal: failed to write commit object
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;once you added that new script to your shell rc, open a new terminal window and you can add the ssh private key via ssh-add&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Starting new custom ssh-agent...
+2026 Mon Oct 05 10:27:47 socwork@sentient-slated-air:~&amp;#x2F;tpmgittest (main)
+&amp;gt; ssh-add -l
+The agent has no identities.
+2026 Mon Oct 05 10:27:53 socwork@sentient-slated-air:~&amp;#x2F;tpmgittest (main)
+&amp;gt; ssh-add -s &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so
+Enter passphrase for PKCS#11:
+Card added: &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;Cellar&amp;#x2F;softhsm&amp;#x2F;2.7.0&amp;#x2F;lib&amp;#x2F;softhsm&amp;#x2F;libsofthsm2.so
+2026 Mon Oct 05 10:28:29 socwork@sentient-slated-air:~&amp;#x2F;tpmgittest (main)
+&amp;gt; git commit --signoff -m &amp;#x27;tpm signed commit&amp;#x27;
+[main 8742c10] tpm signed commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 newfile
+2026 Mon Oct 05 10:28:47 socwork@sentient-slated-air:~&amp;#x2F;tpmgittest (main)
+&amp;gt; ssh-add -l
+256 SHA256:mbqoAd5QghCSaofE8&amp;#x2F;SeH71hcpn6jch4sk3CAdaO1zM ssh-tpm-sign (ED25519)
+2026 Mon Oct 05 10:28:53 socwork@sentient-slated-air:~&amp;#x2F;tpmgittest (main)
+&amp;gt; git log -1 --show-signature
+commit 8742c10d44f90674f4831fb6d4a7fa67e8738e7d (HEAD -&amp;gt; main)
+Good &amp;quot;git&amp;quot; signature with ED25519 key SHA256:mbqoAd5QghCSaofE8&amp;#x2F;SeH71hcpn6jch4sk3CAdaO1zM
+No principal matched.
+Author: Soc Virnyl Estela &amp;lt;contact@uncomfyhalomacro.pl&amp;gt;
+Date:   Mon Oct 5 10:28:47 2026 +0800
+
+    tpm signed commit
+
+    Signed-off-by: Soc Virnyl Estela &amp;lt;contact@uncomfyhalomacro.pl&amp;gt;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;feel free to export the ssh public key to your github, gitlab, or any git forge instance like codeberg, bitbucket and personal git forges using hitea or forgejo. to do it, just run&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;ssh-keygen -D $PKCS11LIB
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Reproducible Builds Does Not Prevent Threats</title>
+        <published>2026-02-06T00:00:00+00:00</published>
+        <updated>2026-02-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202602003620/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202602003620/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202602003620/">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer&lt;&#x2F;strong&gt;: I am not a security researcher or a cybersecurity expert.
+I am sharing my stance based on my understanding and limited research on the topic.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I remembered in my project &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&quot;&gt;obs-service-cargo&lt;&#x2F;a&gt; that there
+were some opened issues &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&#x2F;issues&#x2F;64&quot;&gt;#64&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&#x2F;issues&#x2F;73&quot;&gt;#72&lt;&#x2F;a&gt;. These two issues told that the
+project does not produce &lt;strong&gt;idempotent&lt;&#x2F;strong&gt; or &lt;strong&gt;deterministic&lt;&#x2F;strong&gt; build outputs yet
+it &lt;em&gt;passed &lt;strong&gt;audits&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Honestly, at that time, I don&#x27;t know much about reproducible builds but I do know that
+it is an attempt to build a project from different builder sources and &lt;strong&gt;hopefully&lt;&#x2F;strong&gt;,
+it matches the checksum of their build outputs.&lt;&#x2F;p&gt;
+&lt;p&gt;PR &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;openSUSE-Rust&#x2F;obs-service-cargo&#x2F;pull&#x2F;78&quot;&gt;#78&lt;&#x2F;a&gt; actually &quot;fixed&quot; the bug. But I still have doubts. And after
+learning it from William Brown, aka, &lt;em&gt;firstyear&lt;&#x2F;em&gt;, from his &lt;a href=&quot;https:&#x2F;&#x2F;fy.blackhats.net.au&#x2F;blog&#x2F;2021-05-12-compiler-bootstrapping-can-we-trust-rust&#x2F;&quot;&gt;blog&lt;&#x2F;a&gt; and
+from &lt;a href=&quot;https:&#x2F;&#x2F;web.archive.org&#x2F;web&#x2F;20200805120504&#x2F;https:&#x2F;&#x2F;blog.cmpxchg8b.com&#x2F;2020&#x2F;07&#x2F;you-dont-need-reproducible-builds.html&quot;&gt;Taviso&#x27;s blog&lt;&#x2F;a&gt;, I realised that reproducible builds does not
+take account the social engineering in risk modelling when it comes to human behaviour.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You might wonder if Taviso has changed his stance since it is on web archive (or wayback machine) now but I did
+email him and he replied that he didn&#x27;t change his stance on the matter.
+&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202602003620&#x2F;.&#x2F;IMG_2283.jpg&quot; alt=&quot;taviso email&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Yes, this post was overdue and was supposed to be written 3 years ago but I can&#x27;t sleep and
+I am bored so while I still have this in mind, why not write a new post?&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;an-example-of-an-upstream-and-downstream-build&quot;&gt;An example of an upstream and downstream build&lt;a class=&quot;zola-anchor&quot; href=&quot;#an-example-of-an-upstream-and-downstream-build&quot; aria-label=&quot;Anchor link for: an-example-of-an-upstream-and-downstream-build&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;This might not be the best excalidraw + mermaid diagram but I hope it shows an overview of
+how a downstream and upstream builds their own sources. Let&#x27;s call this project, Project UWU.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202602003620&#x2F;.&#x2F;example-vanilla.png&quot; alt=&quot;vanilla build&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;As you can see here, if we take this literally like how the flowchart looks like, under
+no circumstances that sources and built sources from both upstream and downstream contains
+any malicious intent (well... there is no mention of it yet). But that&#x27;s from an ideal world,
+and we are living in one where there are also evil people (&lt;em&gt;I am one of them&lt;&#x2F;em&gt; 😈).&lt;&#x2F;p&gt;
+&lt;p&gt;Joking aside, let&#x27;s assume that the sources from upstream built the same
+checksum following reproducible build principles.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;source has checksum &amp;#x27;abcd&amp;#x27;
+built source has checksum &amp;#x27;uwuwu&amp;#x27;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Of course, the downstream one
+has a different checksum for its built sources than the upstream one. But both will
+have the checksum for the &lt;em&gt;unbuilt sources&lt;&#x2F;em&gt; themselves, usually a tarball or zip archive.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;source has checksum &amp;#x27;abcd&amp;#x27;
+built source after patches has checksum &amp;#x27;notuwuenough&amp;#x27;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The benefit of this is that if let&#x27;s say a distribution have to rebuilt its sources since other packages
+have updated but the underlying compiler tool necessary to build Project UWU still has unchanged version
+and is the same across all updated machines. Therefore, we can skip building the downstream variant of
+Project UWU.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;do-not-ever-forget-the-evil-people&quot;&gt;Do not ever forget the evil people&lt;a class=&quot;zola-anchor&quot; href=&quot;#do-not-ever-forget-the-evil-people&quot; aria-label=&quot;Anchor link for: do-not-ever-forget-the-evil-people&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Remember what I said about social engineering and evil people? Yes, they exist.
+What can you even do about them? Nothing. They can do whatever the hell they
+want.&lt;&#x2F;p&gt;
+&lt;p&gt;The keyword we should talk about here is &lt;em&gt;&lt;strong&gt;Trust&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;, (&lt;em&gt;&lt;a href=&quot;https:&#x2F;&#x2F;trust.ph&#x2F;methods&#x2F;condoms&#x2F;&quot;&gt;not the Filipino brand&lt;&#x2F;a&gt;&lt;&#x2F;em&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s update our flowchart again so you can see what I mean.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202602003620&#x2F;.&#x2F;example-threatened.png&quot; alt=&quot;threatened build&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;As you can see from the flowchart above (&lt;em&gt;please zoom or open it in a new tab huhu&lt;&#x2F;em&gt;), &lt;strong&gt;IT ONLY TAKES 1 CHANGE OF MAINTAINER
+FOR UPSTREAM TO ACTUALLY BECOME A THREAT&lt;&#x2F;strong&gt;. &lt;em&gt;The same thing could be said to the downstream maintainer&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In the case of the upstream, this would affect the whole supply chain since&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Downstream relies on it&lt;&#x2F;li&gt;
+&lt;li&gt;It&#x27;s the only thing that exists&lt;&#x2F;li&gt;
+&lt;li&gt;Because there is no other person or persons to maintain this so YOLO?&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;In the case of the downstream, this would affect the partial (and sometimes whole) supply chain since&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;They can provide &quot;innocent&quot; patches to both downstream and upstream&lt;&#x2F;li&gt;
+&lt;li&gt;Consumers are using it on the downstream distribution because they trust the downstream maintainer&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Yeah, Project UWU can un-cute itself because of evil people 😝&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h1 id=&quot;so-how-can-reproducible-builds-not-protect-us&quot;&gt;So how can reproducible builds not protect us&lt;a class=&quot;zola-anchor&quot; href=&quot;#so-how-can-reproducible-builds-not-protect-us&quot; aria-label=&quot;Anchor link for: so-how-can-reproducible-builds-not-protect-us&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;What I can see from here is that reproducible builds cannot protect us from these kinds of threats because&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;It only takes 1 evil person to fuck up the supply chain&lt;&#x2F;li&gt;
+&lt;li&gt;Trusting is hard and in this kind of scenario, your only option is to trust that the
+maintainer&#x2F;contributor is not a psychopath.&lt;&#x2F;li&gt;
+&lt;li&gt;The checksums do not matter when you are already compromised. However, &lt;em&gt;you can keep a record of the
+checksum of a malicious source&lt;&#x2F;em&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The only way reproducible builds can mitigate threats, from what I can
+understand, is &lt;em&gt;&lt;strong&gt;after the threats has happened&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;. &lt;em&gt;&lt;strong&gt;But it does not protect
+us from any present event a compromised source&#x2F;build has happened until it is noticed&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;but-what-about-being-reproducible&quot;&gt;But what about being reproducible?&lt;a class=&quot;zola-anchor&quot; href=&quot;#but-what-about-being-reproducible&quot; aria-label=&quot;Anchor link for: but-what-about-being-reproducible&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Well, it does help with build times, but eh... that&#x27;s the only benefit it can give—to save energy and compute.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I know I know I am repeating words, I haven&#x27;t even looked at the blog posts just
+to see if I can remember what I understand about why reproducible builds cannot
+protect us from present threats. I am not a cybersecurity expert either. But I
+have a big imagination.&lt;&#x2F;p&gt;
+&lt;p&gt;The only benefit I can imagine from reproducible builds is a record of checksums of
+malicious sources as well as the record of checksums of malicious built sources.&lt;&#x2F;p&gt;
+&lt;p&gt;But it is a fact that many are passionate in building infrastructure around it
+just to prove that it works. However, it still fails to address the social
+engineering which is a big factor in security.&lt;&#x2F;p&gt;
+&lt;p&gt;Anyway, goodnight. I think it&#x27;s 2AM now around my timezone. I need to fix my sleep schedule.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Using SSH keys with TPM and Git</title>
+        <published>2024-05-05T00:00:00+00:00</published>
+        <updated>2024-05-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/using-ssh-keys-with-tpm-and-git/"/>
+        <id>https://uncomfyhalomacro.pl/blog/using-ssh-keys-with-tpm-and-git/</id>
+        
+        <summary type="html">&lt;p&gt;So my mentor has already made a
+&lt;a href=&quot;https:&#x2F;&#x2F;fy.blackhats.net.au&#x2F;blog&#x2F;2023-04-20-using-a-tpm-for-ssh-keys-on-opensuse-tumbleweed&#x2F;&quot;&gt;post&lt;&#x2F;a&gt;
+about how to use TPMs in openSUSE.&lt;&#x2F;p&gt;
+&lt;p&gt;I followed a bit, did some weird stuff because it doesn&#x27;t work at first. It turns out I made a typo and missed a flag
+🥴&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

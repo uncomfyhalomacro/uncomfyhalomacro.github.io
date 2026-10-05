@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>uncomfy - fullstack</title>
+    <subtitle>uh... i have a website?</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://uncomfyhalomacro.pl/tags/fullstack/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-04-07T05:06:31+00:00</updated>
+    <id>https://uncomfyhalomacro.pl/tags/fullstack/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Part 7: So I am building a fullstack project</title>
+        <published>2026-04-07T05:06:31+00:00</published>
+        <updated>2026-04-07T05:06:31+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202604130543/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202604130543/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202604130543/">&lt;p&gt;It&#x27;s been a while, so I kind of forgot to write this series.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;removed-deno-fresh&quot;&gt;Removed Deno Fresh&lt;a class=&quot;zola-anchor&quot; href=&quot;#removed-deno-fresh&quot; aria-label=&quot;Anchor link for: removed-deno-fresh&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;While developing the project, I&#x27;ve noticed a disadvantage of using Deno Fresh.&lt;&#x2F;p&gt;
+&lt;p&gt;The disadvantage is Deno Fresh is not well-maintained. The &lt;em&gt;only developer&lt;&#x2F;em&gt; that
+was supposed to maintain it resigned.&lt;&#x2F;p&gt;
+&lt;p&gt;Hence, it&#x27;s not really a good idea for me to write something in Fresh. Sadly, it is what it is.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;branching-out-for-a-new-project&quot;&gt;Branching out for a new project&lt;a class=&quot;zola-anchor&quot; href=&quot;#branching-out-for-a-new-project&quot; aria-label=&quot;Anchor link for: branching-out-for-a-new-project&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I&#x27;ve noticed some pattern I&#x27;ve been doing repetitively—writing migrations.&lt;&#x2F;p&gt;
+&lt;p&gt;I was thinking of writing a project similar to alembic. I know SeaORM might
+already have it but I was curious what the thought process be like in building
+similar to alembic and SeaORM.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;recent-changes&quot;&gt;Recent changes&lt;a class=&quot;zola-anchor&quot; href=&quot;#recent-changes&quot; aria-label=&quot;Anchor link for: recent-changes&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I recently fixed some issues on how I handle cookies in axum between backend and client. I&#x27;ve
+been using private cookies over signed or plain cookies.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;another-similar-project&quot;&gt;Another similar project&lt;a class=&quot;zola-anchor&quot; href=&quot;#another-similar-project&quot; aria-label=&quot;Anchor link for: another-similar-project&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I also am refreshing my FastAPI knowledge in
+&lt;a href=&quot;https:&#x2F;&#x2F;codeberg.org&#x2F;uncomfyhalomacro&#x2F;news-portal&quot;&gt;news-portal&lt;&#x2F;a&gt; and
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;mgmt&quot;&gt;mgmt&lt;&#x2F;a&gt;.
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;mgmt&quot;&gt;mgmt&lt;&#x2F;a&gt; is the basis for my
+&lt;a href=&quot;https:&#x2F;&#x2F;codeberg.org&#x2F;uncomfyhalomacro&#x2F;fullstack-fastapi-template&quot;&gt;fullstack-fastapi-template&lt;&#x2F;a&gt;.
+I separated the projects, mgmt in GitHub and the template in Codeberg, cause
+mgmt is LLM assisted, specifically, the frontend is generated with LLM to
+experiment with the backend responses. Not my cup of tea but well, it is what it
+is as recruiters are looking for AI experience.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;ah-what-are-you-doing-now&quot;&gt;Ah what are you doing now?&lt;a class=&quot;zola-anchor&quot; href=&quot;#ah-what-are-you-doing-now&quot; aria-label=&quot;Anchor link for: ah-what-are-you-doing-now&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I don&#x27;t know much. Currently, I&#x27;ve been looking for work, and it seems it&#x27;s not
+really working out for me despite my experience in Rust and Python. The job
+market is pretty saturated with LLMs as part of the development process right
+now, and my degree and background might be a problem. I even got silently
+rejected by a local company in my city. But it is what it is. I&#x27;m confident that
+I will get a job but not around this month. Not even sure if May is a good month
+too.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Part 6: So I am building a fullstack project</title>
+        <published>2026-03-23T00:19:10+00:00</published>
+        <updated>2026-03-23T00:19:10+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202603081856/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202603081856/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202603081856/">&lt;p&gt;For the past few days of improving backend and experimenting axum with utoipa, I
+came to a conclusion that you can offload core logic to regular functions
+for reuse.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Here is a Rust pseudocode of what I mean&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub fn login(
+	State(state): State&amp;lt;Arc&amp;lt;AppState&amp;gt;&amp;gt;,
+	Json(login_details): Json&amp;lt;UserLoginRequest&amp;gt;
+) -&amp;gt; Result&amp;lt;axum::response::Response, StatusCode&amp;gt; {
+	let user = login_service(login_details).await.map_err(|err| {
+		tracing::error!(?err);
+		StatusCode::INTERNAL_SERVER_ERROR
+	})?;
+	Ok(Json(user).into_response())
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Currently, my code smell is actually passing the functions that process form data
+to a function that process json data when I was experimenting form based logins
+with reverse-proxy and it hit me—I should separate core business logic when handling
+data. Oh well, I&#x27;ll be on a huge refactor, mostly separating similar logic into a services
+module so I won&#x27;t repeat myself.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I also encountered a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;juhaku&#x2F;utoipa&#x2F;issues&#x2F;1190&quot;&gt;bug&lt;&#x2F;a&gt; in utoipa
+of which is not very obvious at first. The workaround is ensuring that functions with
+the same paths have different namings.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, if you have function in &lt;code&gt;public&lt;&#x2F;code&gt; and &lt;code&gt;admin&lt;&#x2F;code&gt; modules that handle
+logins, instead of naming them both as &lt;code&gt;login&lt;&#x2F;code&gt;, name them separately as
+&lt;code&gt;public_login&lt;&#x2F;code&gt; and &lt;code&gt;admin_login&lt;&#x2F;code&gt;. Another workaround I have was hard-coding the
+paths.&lt;&#x2F;p&gt;
+&lt;p&gt;I actually combined both and I think I rather do the former since I think
+nesting should be reused here.&lt;&#x2F;p&gt;
+&lt;p&gt;However, the latter is still problematic as it is affected by the same bug if
+you accidentally rename the functions to the same name so &lt;code&gt;&#x2F;admin&#x2F;login&lt;&#x2F;code&gt; and
+&lt;code&gt;&#x2F;api&#x2F;login&lt;&#x2F;code&gt; are merged as either &lt;code&gt;&#x2F;admin&#x2F;login&lt;&#x2F;code&gt; or &lt;code&gt;&#x2F;api&#x2F;login&lt;&#x2F;code&gt; whichever comes
+first when generating the openapi data.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So why talk about &lt;strong&gt;form data&lt;&#x2F;strong&gt;?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I recently came across the usage of the &lt;code&gt;formaction&lt;&#x2F;code&gt; attribute. It&#x27;s basically &lt;code&gt;href&lt;&#x2F;code&gt; but
+sends a form data request to the target path. Hence, I&#x27;ve been experimenting using &lt;code&gt;caddy&lt;&#x2F;code&gt;
+to reverse-proxy both my frontend and backend to a common URL e.g. &lt;code&gt;https:&#x2F;&#x2F;localhost:8888&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The downside is that, I won&#x27;t be doing manual &lt;code&gt;fetch&lt;&#x2F;code&gt; in the frontend client, meaning,
+this approach is unable to use JSON as a request body for requests in the backend.&lt;&#x2F;p&gt;
+&lt;p&gt;Another downside is I am not able to use the routes that use JSON as the request body.&lt;&#x2F;p&gt;
+&lt;p&gt;However, I believe that the upsides far outweigh the downsides because we can always
+create a toggle for the frontend to use the JSON based routes. Another upside
+is the refactor, which means it&#x27;s easy to swap &lt;code&gt;Form&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; to &lt;code&gt;JSON&amp;lt;T&amp;gt;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all for this project&#x27;s update. I think I&#x27;ll be taking a 1 day break from it. Too tired since
+yesterday.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Part 5: So I am building a fullstack project</title>
+        <published>2026-03-15T07:07:34+00:00</published>
+        <updated>2026-03-15T07:07:34+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202603134346/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202603134346/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202603134346/">&lt;p&gt;So I made some various experimentations with Fresh and Preact.&lt;&#x2F;p&gt;
+&lt;p&gt;Nothing really big but just some surface-level crap that I&#x27;ve been doing.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;what-the-hell-even-are-signals&quot;&gt;What the Hell Even Are Signals?&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-the-hell-even-are-signals&quot; aria-label=&quot;Anchor link for: what-the-hell-even-are-signals&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I was trying to experiment with Tailwind CSS built into the
+frontend template like for empty input or a status code that isn&#x27;t
+201 or 200, specifically for the register and login modals.&lt;&#x2F;p&gt;
+&lt;p&gt;From my understanding, Signals looks similar to React&#x27;s &lt;code&gt;useState&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The usage is similar as well, but I am not sure what the differences are.&lt;&#x2F;p&gt;
+&lt;p&gt;Preact describes signals as an efficient way to update UI states.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In Preact, when a signal is passed down through a tree as props or context,
+&lt;em&gt;we&#x27;re only passing around references to the signal&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;This means that signals are efficient because they avoid reinitialisation and
+only update the value &lt;em&gt;to the reference of the signal&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This means we can also do some minor optimisations like avoiding rerendering
+of the DOM.&lt;&#x2F;p&gt;
+&lt;p&gt;At first, I didn&#x27;t get it because it was an entirely new thing to me. After a bit
+of reading, I think I get the idea now if combined with &lt;code&gt;useComputed&lt;&#x2F;code&gt;. To localise
+the state into only a component, Preact suggests to use &lt;code&gt;useComputed&lt;&#x2F;code&gt; with &lt;code&gt;useSignal&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, prior to the use of &lt;code&gt;useComputed&lt;&#x2F;code&gt;, I would access a value
+inside a JSX&#x2F;TSX and compare it to another value to render a JSX&#x2F;TSX element.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;typescript&quot; class=&quot;language-typescript &quot;&gt;&lt;code class=&quot;language-typescript&quot; data-lang=&quot;typescript&quot;&gt;    &amp;lt;div&amp;gt;
+     {statuscode.value !== 200 &amp;amp;&amp;amp; (
+      &amp;lt;a
+        class=&amp;quot;text-center rounded-md bg-white hover:bg-gray-100 text-black py-2 focus:outline-2 focus:outline-offset-2 focus:outline-white-500 &amp;quot;
+        href=&amp;quot;&amp;#x2F;signup&amp;quot;
+      &amp;gt;
+        Create Account
+      &amp;lt;&amp;#x2F;a&amp;gt;}
+      &amp;lt;&amp;#x2F;div&amp;gt;
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;After I knew about &lt;code&gt;useComputed&lt;&#x2F;code&gt;, I just put it inside a &lt;code&gt;useComputed&lt;&#x2F;code&gt; declaration&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;typescript&quot; class=&quot;language-typescript &quot;&gt;&lt;code class=&quot;language-typescript&quot; data-lang=&quot;typescript&quot;&gt;  const showSignup = useComputed(() =&amp;gt;
+    statuscode.value !== 200 &amp;amp;&amp;amp; (
+      &amp;lt;a
+        class=&amp;quot;text-center rounded-md bg-white hover:bg-gray-100 text-black py-2 focus:outline-2 focus:outline-offset-2 focus:outline-white-500 &amp;quot;
+        href=&amp;quot;&amp;#x2F;signup&amp;quot;
+      &amp;gt;
+        Create Account
+      &amp;lt;&amp;#x2F;a&amp;gt;
+    )
+  );
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I won&#x27;t claim that it actually does optimisations but this is what Preact said
+when accessing a signal&#x27;s value inside a JSX.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In Preact, accessing a signal&#x27;s .value property from within a component
+automatically re-renders the component when that signal&#x27;s value changes.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Accessing the signal&#x27;s value in an event handler does not cause a re-render.&lt;&#x2F;p&gt;
+&lt;p&gt;Once the value changes, only that part of the component updates, and not the
+whole component itself.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is an ASMR of the login and register. Of course I will use the
+template&#x27;s background gradient 🤣&lt;&#x2F;p&gt;
+&lt;video width=&quot;640&quot; controls&gt;
+  &lt;source src=&quot;.&#x2F;sc1.mp4&quot; type=&quot;video&#x2F;mp4&quot;&gt;
+&lt;&#x2F;video&gt;
+&lt;h1 id=&quot;how-about-the-backend&quot;&gt;How About the Backend?&lt;a class=&quot;zola-anchor&quot; href=&quot;#how-about-the-backend&quot; aria-label=&quot;Anchor link for: how-about-the-backend&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I have to adjust some changes to the backend when experimenting the frontend.&lt;&#x2F;p&gt;
+&lt;p&gt;I noticed that I have to handle empty inputs as well which sends a &lt;code&gt;422 UNPROCESSABLE ENTITY&lt;&#x2F;code&gt; (looks
+like it&#x27;s called &lt;code&gt;UNPROCESSABLE CONTENT&lt;&#x2F;code&gt; in the &lt;a href=&quot;https:&#x2F;&#x2F;httpwg.org&#x2F;specs&#x2F;rfc9110.html#rfc.section.15.5.21&quot;&gt;https:&#x2F;&#x2F;httpwg.org&#x2F;specs&#x2F;rfc9110.html#rfc.section.15.5.21&lt;&#x2F;a&gt; hmmmm).&lt;&#x2F;p&gt;
+&lt;p&gt;Other errors or status codes returned are &lt;code&gt;401 UNAUTHORIZED&lt;&#x2F;code&gt;, &lt;code&gt;500 INTERNAL SERVER ERROR&lt;&#x2F;code&gt;, &lt;code&gt;409 CONFLICT&lt;&#x2F;code&gt; and &lt;code&gt;400 BAD REQUEST&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I also made an API endpoint &lt;code&gt;&#x2F;api&#x2F;auth&#x2F;profile&lt;&#x2F;code&gt; to check if the session token is still valid or not with the following code
+below.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;pub async fn profile(
+    jar: CookieJar,
+) -&amp;gt; anyhow::Result&amp;lt;(StatusCode, Json&amp;lt;UserInfoResponse&amp;gt;), StatusCode&amp;gt; {
+    tracing::info!(?jar);
+    let Some(token) = jar
+        .get(&amp;quot;session_token&amp;quot;)
+        .map(|cookie| cookie.value().to_owned())
+    else {
+        return Err(StatusCode::UNAUTHORIZED);
+    };
+    let jwt_service = JwtService::new(&amp;quot;some-secret&amp;quot;, None);
+    let claims = jwt_service
+        .verify(&amp;amp;token, None, None, None, None)
+        .map_err(|err| {
+            tracing::error!(%err);
+            StatusCode::UNAUTHORIZED
+        })?;
+
+    let Some(id) = claims.sub else {
+        return Err(StatusCode::UNAUTHORIZED);
+    };
+    let Some(email) = claims.iss else {
+        return Err(StatusCode::UNAUTHORIZED);
+    };
+
+    let mut user_info = UserInfoResponse {
+        id,
+        email,
+        roles: Vec::new(),
+        first_name: None,
+        last_name: None,
+    };
+
+    if let Some(extras) = &amp;amp;claims.extras {
+        let first_name = extras.get(&amp;quot;first_name&amp;quot;);
+        let last_name = extras.get(&amp;quot;last_name&amp;quot;);
+        let roles_s = extras.get(&amp;quot;roles&amp;quot;);
+
+        user_info.first_name = first_name.cloned();
+        user_info.last_name = last_name.cloned();
+
+        if let Some(roles) = roles_s {
+            let role_str: Vec&amp;lt;&amp;amp;str&amp;gt; = roles.split(&amp;#x27;,&amp;#x27;).collect();
+            let roles: Vec&amp;lt;i32&amp;gt; = role_str
+                .iter()
+                .map(|x| x.parse::&amp;lt;i32&amp;gt;())
+                .collect::&amp;lt;Result&amp;lt;Vec&amp;lt;i32&amp;gt;, ParseIntError&amp;gt;&amp;gt;()
+                .map_err(|err| {
+                    tracing::error!(%err);
+                    StatusCode::UNAUTHORIZED
+                })?;
+            user_info.roles = roles;
+        }
+    };
+    tracing::info!(&amp;quot;Passed validation ✅&amp;quot;);
+
+    Ok((StatusCode::OK, Json(user_info)))
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I am pretty sure the logic can be reused as middleware for
+handling routes that require a valid session token.&lt;&#x2F;p&gt;
+&lt;p&gt;Security-wise, I would probably ask an expert or do research
+because I believe if someone has the token string taken from
+the cookie, it would be so problematic. The only protection it
+has is the signature verification of which I am unsure if it
+is very protective enough.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all. I&#x27;ll continue building the database crate again
+for the products schema.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Part 4: So I am building a fullstack project</title>
+        <published>2026-03-12T01:55:47+00:00</published>
+        <updated>2026-03-12T01:55:47+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202603095442/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202603095442/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202603095442/">&lt;p&gt;Another project update for our &lt;a href=&quot;&#x2F;tags&#x2F;mercado-series&quot;&gt;mercado-series&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;what-was-done-so-far&quot;&gt;What Was Done So Far?&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-was-done-so-far&quot; aria-label=&quot;Anchor link for: what-was-done-so-far&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I have implemented the initial JSON Web Token logic for the &lt;code&gt;auth&lt;&#x2F;code&gt; crate.&lt;&#x2F;p&gt;
+&lt;p&gt;Using the builder pattern, I came up with the following builder struct and its
+associated Claims struct to generate claims (or payload) for generating the
+token.&lt;&#x2F;p&gt;
+&lt;p&gt;You can see how it was used here in the &lt;a href=&quot;https:&#x2F;&#x2F;codeberg.org&#x2F;uncomfyhalomacro&#x2F;mercado&#x2F;src&#x2F;commit&#x2F;5d31a5361faeda729a9b0efe7dcb24b5ca768242&#x2F;crates&#x2F;auth&#x2F;src&#x2F;jwt&#x2F;service.rs#L55-L152&quot;&gt;following lines of
+code, alongside the JwtService struct&lt;&#x2F;a&gt;
+from our &lt;code&gt;service.rs&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s flexible enough that I can basically tell it&#x27;s just a wrapper around the &lt;code&gt;jsonwebtoken&lt;&#x2F;code&gt; crate that it is using.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;    fn test_correct_signature() {
+        let secret = &amp;quot;dumb_secret&amp;quot;;
+        let builder = ClaimsBuilder::new(5 * 60, secret.to_string());
+        let claims = builder.build();
+        let jwt_service = JwtService::new(secret, None);
+        let token_res = jwt_service.sign(&amp;amp;claims);
+        assert!(token_res.is_ok());
+        let token = token_res.unwrap();
+        assert!(jwt_service.verify(&amp;amp;token, None, None, None, None).is_ok());
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;fixing-some-sql-schema-and-logic&quot;&gt;Fixing Some SQL Schema and Logic&lt;a class=&quot;zola-anchor&quot; href=&quot;#fixing-some-sql-schema-and-logic&quot; aria-label=&quot;Anchor link for: fixing-some-sql-schema-and-logic&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;So far the &lt;code&gt;just&lt;&#x2F;code&gt; recipes for running the tests are problematic (and they still are)
+because I find bugs here and there.&lt;&#x2F;p&gt;
+&lt;p&gt;What I realise is because the migrations to create the tables should have &lt;code&gt;IF NOT EXISTS&lt;&#x2F;code&gt;
+so it would only create the tables if they do not exist.&lt;&#x2F;p&gt;
+&lt;p&gt;Another issue is the lack of variables that are related to the tests themselves. For now,
+the current solution is just a band-aide. I am pretty surer there is a better way to
+structure the tests like putting a separate justfile script in a separate directory.&lt;&#x2F;p&gt;
+&lt;p&gt;But for now, I&#x27;ll just let it be.&lt;&#x2F;p&gt;
+&lt;p&gt;The next step is adding Oath2.0 logic using &lt;code&gt;openidconnect&lt;&#x2F;code&gt; crate to the &lt;code&gt;auth&lt;&#x2F;code&gt; crate.&lt;&#x2F;p&gt;
+&lt;p&gt;Once that&#x27;s done, I&#x27;ll try implementing the &lt;code&gt;payments&lt;&#x2F;code&gt; crate. I believe there is already
+client libraries for Payrex and Stripe payments. Not sure about Wise, I can try Wise too
+since I already have a Wise card.&lt;&#x2F;p&gt;
+&lt;p&gt;So far so good. No progress on the frontend yet.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Part 3: So I am building a fullstack project</title>
+        <published>2026-03-10T00:51:55+00:00</published>
+        <updated>2026-03-10T00:51:55+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202603085047/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202603085047/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202603085047/">&lt;p&gt;Now back to the progress. I was busy with other personal stuff lately.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve decided to rework some of the SQL schemas of the tables.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sql&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;CREATE TABLE users (
+    id uuid PRIMARY KEY,
+    roles INTEGER[] NOT NULL,
+    first_name TEXT DEFAULT NULL,
+    last_name TEXT DEFAULT NULL,
+    email TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    CONSTRAINT unique_email UNIQUE (email)
+);
+
+CREATE TABLE user_passwords (
+    id uuid PRIMARY KEY,
+    user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    password_hash TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    CONSTRAINT FK_userId FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT unique_user_id UNIQUE (user_id)
+);
+
+CREATE TABLE audit_logs (
+    id UUID NOT NULL,
+    table_oid OID, -- pertains to the oid of the table in the information schema. aliased to a u32 integer
+    entity_id UUID NOT NULL, -- this pertains to the table row&amp;#x27;s id
+    event_type TEXT NOT NULL, -- actions that happened such as adding products in stock. Removing them will remove this row as well
+    data JSONB,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE TABLE products (
+    id UUID PRIMARY KEY,
+    seller_id UUID NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT,
+    item_type TEXT NOT NULL, -- product, service
+    unit_price NUMERIC(12,2),
+    currency CHAR(3),
+    metadata JSONB, -- extra metadata the seller or us wants to include without changing the table
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMPTZ DEFAULT now(),
+    updated_at TIMESTAMPTZ DEFAULT now()
+);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I already made some migration scripts as well, except for products (I actually
+have forgotten I didn&#x27;t implement a migration for products).&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;switching-over-to-nix-for-development-environment-management&quot;&gt;Switching over to Nix for Development Environment Management&lt;a class=&quot;zola-anchor&quot; href=&quot;#switching-over-to-nix-for-development-environment-management&quot; aria-label=&quot;Anchor link for: switching-over-to-nix-for-development-environment-management&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I made some changes as well on how I manage my development environment. I am
+using &lt;code&gt;nix&lt;&#x2F;code&gt;, specifically the one made by &lt;a href=&quot;https:&#x2F;&#x2F;determinate.systems&quot;&gt;https:&#x2F;&#x2F;determinate.systems&lt;&#x2F;a&gt; since
+they have the best configuration on a macOS environment as far as I know. Since
+I don&#x27;t have time to relearn the Nix language, I decided to use what I can
+remember plus with the help of LLMs like ChatGPT and Gemini.&lt;&#x2F;p&gt;
+&lt;p&gt;I also adjusted my shell environment with the help of &lt;code&gt;direnv&lt;&#x2F;code&gt;. &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mmfallacy&quot;&gt;Mmfallacy&lt;&#x2F;a&gt; suggested
+to add some sort of indicator to my shell prompt that I am inside a Nix environment, so I came up with
+modifying the following lines to my &lt;code&gt;~&#x2F;.zshrc&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;zsh&quot; class=&quot;language-zsh &quot;&gt;&lt;code class=&quot;language-zsh&quot; data-lang=&quot;zsh&quot;&gt;export PROMPT=$&amp;#x27;\$vcs_info_msg_0_%F{010} %B%F{blue}%n%b%f in %F{black}%K{7}&amp;lt;%3~&amp;gt;%k%f %F{yellow}[%y] %F{green}@ %B%U%F{white}%M%u%b %F{red}%T %F{white}%D{%b %d %Y (%A)}
+%{\x1b[0m%}%(?.%F{green} .%F{red}%? )%%%F{none} &amp;#x27;
+export PROMPT=&amp;#x27;%F{#2685bd}${DIRENV_PROMPT_PREFIX:+$DIRENV_PROMPT_PREFIX}%f&amp;#x27;$PROMPT
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To get the &lt;code&gt;DIRENV_PROMPT_PREFIX&lt;&#x2F;code&gt; environment variable, I adjusted the project&#x27;s &lt;code&gt;.envrc&lt;&#x2F;code&gt; that &lt;code&gt;direnv&lt;&#x2F;code&gt; uses&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;use flake
+
+description=$(nix flake metadata --json | jq &amp;#x27;.description&amp;#x27; | tr -d &amp;#x27;&amp;quot;&amp;#x27;)
+fingerprint=$(nix flake metadata --json | jq &amp;#x27;.fingerprint&amp;#x27; | tr -d &amp;#x27;&amp;quot;&amp;#x27; | cut -c1-6)
+export DIRENV_PROMPT_PREFIX=&amp;quot;❄️(nix-${description}-${fingerprint})
+&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This way, &lt;code&gt;direnv&lt;&#x2F;code&gt; will inject new environmental variables to my shell&#x27;s RC. Now, my prompt looks like
+the screenshot below.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202603085047&#x2F;.&#x2F;alacritty-1.png&quot; alt=&quot;screenshot of tmux with four split panes with new prompt in the second pane&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I am not sure how useful &lt;code&gt;description&lt;&#x2F;code&gt; and &lt;code&gt;fingerprint&lt;&#x2F;code&gt; fields are but I guess
+that&#x27;s fine because I can determine which environment using their uniqueness whenever if I have multiple
+projects managed by flakes in the future.&lt;&#x2F;p&gt;
+&lt;p&gt;Because of this, even I tested that it&#x27;s possible to use PostgreSQL outside homebrew so I uninstalled it and
+adjusted my &lt;code&gt;justfile&lt;&#x2F;code&gt; now to look like this&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;just&quot; class=&quot;language-just &quot;&gt;&lt;code class=&quot;language-just&quot; data-lang=&quot;just&quot;&gt;set shell := [&amp;quot;bash&amp;quot;, &amp;quot;-cu&amp;quot;]
+set dotenv-load
+
+serve: serve
+test-user-models:
+	just migrate-down || true
+	just migrate-up || true
+	cargo test
+
+migrate-up:
+	cargo run --bin up_0001_users || true
+	cargo run --bin up_0002_audit_logs
+
+migrate-down:
+	cargo run --bin down_0001_users || true
+	cargo run --bin down_0002_audit_logs
+
+
+build-backend:
+	cargo build
+
+serve-backend: build-backend
+	cargo run
+
+build-frontend:
+	cd frontend &amp;amp;&amp;amp; deno task build
+
+serve-frontend:
+	cd frontend &amp;amp;&amp;amp; deno task dev
+
+start-db:
+	if [ ! -d &amp;quot;${PGDATA}&amp;quot; ]; then initdb -D ${PGDATA}; fi
+	pg_ctl -o &amp;quot;${INIT_DB_OPTIONS}&amp;quot; -D ${PGDATA} start
+
+stop-db:
+	pg_ctl -D ${PGDATA} stop
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;using-something-similar-to-builder-pattern&quot;&gt;Using Something Similar to Builder Pattern&lt;a class=&quot;zola-anchor&quot; href=&quot;#using-something-similar-to-builder-pattern&quot; aria-label=&quot;Anchor link for: using-something-similar-to-builder-pattern&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I am also using the builder pattern when I am creating new methods for each of my model structs.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, I made a separate method for &lt;code&gt;save_to_db&lt;&#x2F;code&gt; because I believe that it should be a separate concern.&lt;&#x2F;p&gt;
+&lt;p&gt;As demonstration, here is the &lt;code&gt;Users&lt;&#x2F;code&gt; model&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;impl Users {
+    pub fn new(first_name: Option&amp;lt;String&amp;gt;, last_name: Option&amp;lt;String&amp;gt;, email: String) -&amp;gt; Self {
+        Self {
+            id: Uuid::new_v4(),
+            roles: Vec::new(),
+            first_name,
+            last_name,
+            email,
+            created_at: Utc::now(),
+            updated_at: Utc::now(),
+        }
+    }
+
+    pub async fn save_to_db(&amp;amp;self, pool: &amp;amp;Pool) -&amp;gt; Result&amp;lt;Row, PoolError&amp;gt; {
+        let client = pool.get().await?;
+        let stmt = client.prepare_cached(&amp;quot;INSERT INTO users (id, roles, first_name, last_name, email, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *&amp;quot;).await?;
+        let roles: Vec&amp;lt;i32&amp;gt; = self.roles.iter().map(|&amp;amp;x| x as i32).collect();
+        let row = client
+            .query_one(
+                &amp;amp;stmt,
+                &amp;amp;[
+                    &amp;amp;self.id,
+                    &amp;amp;roles,
+                    &amp;amp;self.first_name,
+                    &amp;amp;self.last_name,
+                    &amp;amp;self.email,
+                    &amp;amp;self.created_at,
+                    &amp;amp;self.updated_at,
+                ],
+            )
+            .await?;
+        Ok(row)
+    }
+
+    pub fn hash_password(
+        &amp;amp;self,
+        plain_text_password: &amp;amp;str,
+    ) -&amp;gt; Result&amp;lt;UserPasswords, password_hash::Error&amp;gt; {
+        let salt = SaltString::generate(&amp;amp;mut OsRng);
+        let password = plain_text_password.as_bytes();
+        let argon2 = Argon2::default();
+        let password_hash = argon2.hash_password(password, &amp;amp;salt)?.to_string();
+        let id = Uuid::new_v4();
+        Ok(UserPasswords {
+            id,
+            user_id: self.id,
+            password_hash,
+            created_at: Utc::now(),
+            updated_at: Utc::now(),
+        })
+    }
+
+    pub async fn get_user_password_hash(&amp;amp;self, pool: &amp;amp;Pool) -&amp;gt; Result&amp;lt;UserPasswords, PoolError&amp;gt; {
+        UserPasswords::from_user_id(pool, &amp;amp;self.id).await
+    }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And the tests that go alongside it.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&amp;#x2F;&amp;#x2F; snipped...
+    #[tokio::test]
+    async fn add_user() {
+        dotenv().ok();
+        let cfg = Config::from_env().unwrap();
+        let pool = cfg.pg.create_pool(Some(Runtime::Tokio1), NoTls).unwrap();
+        assert!(table_exists(&amp;amp;pool, &amp;quot;users&amp;quot;).await.unwrap());
+        let new_user = Users::new(
+            Some(&amp;quot;David&amp;quot;.to_string()),
+            Some(&amp;quot;Attenborough&amp;quot;.to_string()),
+            &amp;quot;contact@david_attenborough.com&amp;quot;.to_string(),
+        );
+        let secure_password = &amp;quot;very_secure&amp;quot;;
+
+        new_user.save_to_db(&amp;amp;pool).await.unwrap();
+        let password = new_user.hash_password(secure_password).unwrap();
+        assert!(password.save_to_db(&amp;amp;pool).await.is_ok());
+    }
+
+    #[tokio::test]
+    async fn verify_password() {
+        dotenv().ok();
+        let cfg = Config::from_env().unwrap();
+        let pool = cfg.pg.create_pool(Some(Runtime::Tokio1), NoTls).unwrap();
+        assert!(table_exists(&amp;amp;pool, &amp;quot;users&amp;quot;).await.unwrap());
+        let new_user = Users::new(
+            Some(&amp;quot;Fred&amp;quot;.to_string()),
+            Some(&amp;quot;Adila&amp;quot;.to_string()),
+            &amp;quot;contact@fredadila.com&amp;quot;.to_string(),
+        );
+        let secure_password = &amp;quot;very_secure&amp;quot;;
+
+        new_user.save_to_db(&amp;amp;pool).await.unwrap();
+        let password = new_user.hash_password(secure_password).unwrap();
+        assert!(password.save_to_db(&amp;amp;pool).await.is_ok());
+        assert!(password.verify_password(&amp;quot;incorrect&amp;quot;).is_err());
+        assert!(password.verify_password(&amp;quot;very_secure&amp;quot;).is_ok());
+    }
+&amp;#x2F;&amp;#x2F; snipped...
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;That means if we ever write something from initializing new data to saving it to a database, it would look like&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;let password_plain = &amp;quot;verysecure_password&amp;quot;;
+let user = Users::new(somedata);  &amp;#x2F;&amp;#x2F; somedata is just placeholder
+let user_password = user.hash_password(password_plain);
+user.save_to_db(&amp;amp;pool).await.unwrap();
+user_password.save_to_db(&amp;amp;pool).await.unwrap();
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I believe I can wrap &lt;code&gt;deadpool_postgres::Pool&lt;&#x2F;code&gt; with a &lt;code&gt;Mutex&lt;&#x2F;code&gt; or &lt;code&gt;Arc&lt;&#x2F;code&gt; because I
+feel like I am repeating myself whenever I am passing a &lt;code&gt;Pool&lt;&#x2F;code&gt; to the method.&lt;&#x2F;p&gt;
+&lt;p&gt;The reason that I am against it is because of the nature of the struct fields
+themselves.&lt;&#x2F;p&gt;
+&lt;p&gt;They are clearly mirrored to the SQL schema that I made so if I
+will add a &lt;code&gt;pool&lt;&#x2F;code&gt; field, it would lose its representation and that will likely
+not communicate well with the model I made.&lt;&#x2F;p&gt;
+&lt;p&gt;Hence, I am leaving it at that, to ensure they don&#x27;t lose what they represent. &lt;em&gt;But I think I can wrap the &lt;code&gt;pool&lt;&#x2F;code&gt; outside the structs themselves&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;what-s-next&quot;&gt;What&#x27;s next&lt;a class=&quot;zola-anchor&quot; href=&quot;#what-s-next&quot; aria-label=&quot;Anchor link for: what-s-next&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I will continue adding the migration logic for products and proceed building the &lt;code&gt;auth&lt;&#x2F;code&gt; crate. The &lt;code&gt;auth&lt;&#x2F;code&gt; crate should have the following&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;JWT attestation logic&lt;&#x2F;li&gt;
+&lt;li&gt;Basic Auth logic&lt;&#x2F;li&gt;
+&lt;li&gt;OAuth2.0 logic&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;That&#x27;s all for now. I&#x27;ll go continue reading a new manhwa again. Binging never ends.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Part 2: So I am building a fullstack project</title>
+        <published>2026-02-16T00:00:00+00:00</published>
+        <updated>2026-02-16T07:03:33+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202602125701/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202602125701/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202602125701/">&lt;p&gt;&lt;strong&gt;Update&lt;&#x2F;strong&gt;: I moved the project to &lt;a href=&quot;https:&#x2F;&#x2F;codeberg.org&#x2F;uncomfyhalomacro&#x2F;mercado&quot;&gt;codeberg&lt;&#x2F;a&gt; because I don&#x27;t want my personal projects to exist there
+except for work related and other open source stuff that aren&#x27;t mine (with also some exceptions of the exceptions).&lt;&#x2F;p&gt;
+&lt;p&gt;Still a work in progress and I am kind of slow when planning.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;restructure&quot;&gt;Restructure&lt;a class=&quot;zola-anchor&quot; href=&quot;#restructure&quot; aria-label=&quot;Anchor link for: restructure&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;After doing some cleanup while also doing volunteering over the weekend, I finally decided on the
+final structure of the project.&lt;&#x2F;p&gt;
+&lt;details&gt;
+&lt;summary&gt;Current project structure&lt;&#x2F;summary&gt;
+&lt;pre&gt;&lt;code&gt;.
+├── backend
+│   ├── Cargo.toml
+│   └── src
+│       └── main.rs
+├── Cargo.lock
+├── Cargo.toml
+├── crates
+│   ├── api
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       └── lib.rs
+│   ├── auth
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       └── lib.rs
+│   ├── database
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       ├── bin
+│   │       │   └── migrations
+│   │       │       ├── down
+│   │       │       │   └── 0001_users.rs
+│   │       │       └── up
+│   │       │           └── 0001_users.rs
+│   │       ├── core.rs
+│   │       ├── lib.rs
+│   │       ├── migrations
+│   │       │   ├── down
+│   │       │   │   ├── mod.rs
+│   │       │   │   └── users.rs
+│   │       │   ├── mod.rs
+│   │       │   └── up
+│   │       │       ├── mod.rs
+│   │       │       └── users.rs
+│   │       ├── models
+│   │       │   ├── mod.rs
+│   │       │   ├── products.rs
+│   │       │   └── users.rs
+│   │       ├── prelude.rs
+│   │       └── utils
+│   │           └── mod.rs
+│   └── payments
+│       ├── Cargo.toml
+│       └── src
+│           └── lib.rs
+├── frontend
+│   ├── assets
+│   │   └── styles.css
+│   ├── client.ts
+│   ├── components
+│   │   └── Button.tsx
+│   ├── deno.json
+│   ├── deno.lock
+│   ├── islands
+│   │   └── Counter.tsx
+│   ├── main.ts
+│   ├── README.md
+│   ├── routes
+│   │   ├── _app.tsx
+│   │   ├── api
+│   │   │   └── [name].tsx
+│   │   └── index.tsx
+│   ├── static
+│   │   ├── favicon.ico
+│   │   └── logo.svg
+│   ├── utils.ts
+│   └── vite.config.ts
+├── justfile
+├── LICENCE
+└── README.md
+
+28 directories, 43 files
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;details&gt;
+&lt;p&gt;This project structure is still in the works but it is very effective in managing &quot;which is which&quot;, especially after I realised
+that it&#x27;s more efficient to use &lt;code&gt;[workspace.dependencies]&lt;&#x2F;code&gt; in the virtual root manifest &lt;code&gt;Cargo.toml&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;[workspace]
+members = [
+        &amp;quot;backend&amp;quot;,
+        &amp;quot;crates&amp;#x2F;api&amp;quot;,
+        &amp;quot;crates&amp;#x2F;auth&amp;quot;,
+        &amp;quot;crates&amp;#x2F;database&amp;quot;,
+        &amp;quot;crates&amp;#x2F;payments&amp;quot;,
+]
+resolver = &amp;quot;3&amp;quot;
+
+[workspace.dependencies]
+serde = { version = &amp;quot;1.0.228&amp;quot;, features = [&amp;quot;derive&amp;quot;] }
+serde_json = &amp;quot;1.0.149&amp;quot;
+anyhow = &amp;quot;1.0.101&amp;quot;
+argon2 = { version = &amp;quot;0.5.3&amp;quot;, features = [&amp;quot;std&amp;quot;] }
+chrono = { version = &amp;quot;0.4.43&amp;quot;, features = [&amp;quot;serde&amp;quot;] }
+config = &amp;quot;0.15.19&amp;quot;
+deadpool-postgres = { version = &amp;quot;0.14.1&amp;quot;, features = [&amp;quot;serde&amp;quot;] }
+dotenvy = &amp;quot;0.15.7&amp;quot;
+terminfo = &amp;quot;0.9.0&amp;quot;
+tokio = { version = &amp;quot;1.49.0&amp;quot;, features = [&amp;quot;full&amp;quot;] }
+tokio-postgres = { version = &amp;quot;0.7.16&amp;quot;, features = [&amp;quot;with-uuid-1&amp;quot;, &amp;quot;with-serde_json-1&amp;quot;, &amp;quot;with-chrono-0_4&amp;quot;] }
+tracing = { version = &amp;quot;0.1.44&amp;quot;, features = [&amp;quot;release_max_level_debug&amp;quot;, &amp;quot;max_level_trace&amp;quot;] }
+tracing-subscriber = { version = &amp;quot;0.3.22&amp;quot;, features = [&amp;quot;env-filter&amp;quot;] }
+uuid = { version = &amp;quot;1.21.0&amp;quot;, features = [&amp;quot;serde&amp;quot;, &amp;quot;v4&amp;quot;] }
+utoipa = &amp;quot;5.4.0&amp;quot;
+utoipa-axum = &amp;quot;0.2.0&amp;quot;
+utoipa-swagger-ui = { version = &amp;quot;9.0.2&amp;quot;, features = [&amp;quot;axum&amp;quot;] }
+axum = &amp;quot;0.8.8&amp;quot;
+tower-http = { version = &amp;quot;0.6.8&amp;quot;, features = [&amp;quot;full&amp;quot;] }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It ensures that I can pin 1 version of the same dependency or dependencies across the workspace members instead of
+running &lt;code&gt;cargo add&lt;&#x2F;code&gt; not knowing it&#x27;s a version that contains a breaking change.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;on-migrations&quot;&gt;On migrations&lt;a class=&quot;zola-anchor&quot; href=&quot;#on-migrations&quot; aria-label=&quot;Anchor link for: on-migrations&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I was thinking of using SeaORM for migrations but decided against it because I want to try vanilla before tasting other
+flavours, especially convenient ones like SeaORM. I was very much enticed to try SeaORM out when I read their documentation.&lt;&#x2F;p&gt;
+&lt;p&gt;But for the sake of learning, I made my own migration script or more accurately, migration executables. I was able to do this
+because I was planning to make the &lt;code&gt;database&lt;&#x2F;code&gt; crate the entry point for where database functions are called, so it&#x27;s a library
+and where the migration logic are defined, so it also contains binaries:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;[package]
+name = &amp;quot;database&amp;quot;
+version = &amp;quot;0.1.0&amp;quot;
+edition = &amp;quot;2024&amp;quot;
+
+[[bin]]
+name = &amp;quot;up_0001_users&amp;quot;
+path = &amp;quot;src&amp;#x2F;bin&amp;#x2F;migrations&amp;#x2F;up&amp;#x2F;0001_users.rs&amp;quot;
+
+[[bin]]
+name = &amp;quot;down_0001_users&amp;quot;
+path = &amp;quot;src&amp;#x2F;bin&amp;#x2F;migrations&amp;#x2F;down&amp;#x2F;0001_users.rs&amp;quot;
+
+[dependencies]
+anyhow.workspace = true
+argon2.workspace = true
+chrono.workspace = true
+config.workspace = true
+deadpool-postgres.workspace = true
+dotenvy.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+terminfo.workspace = true
+tokio.workspace = true
+tokio-postgres.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+uuid.workspace = true
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then I created a &lt;code&gt;just&lt;&#x2F;code&gt; recipe for &lt;code&gt;migrate-up&lt;&#x2F;code&gt; and &lt;code&gt;migrate-down&lt;&#x2F;code&gt; to test them out.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;just&quot; class=&quot;language-just &quot;&gt;&lt;code class=&quot;language-just&quot; data-lang=&quot;just&quot;&gt;migrate-up:
+	cargo run --bin up_0001_users
+
+migrate-down:
+	cargo run --bin down_0001_users
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202602125701&#x2F;.&#x2F;1.png&quot; alt=&quot;migrate-up result&quot; &#x2F;&gt;
+&lt;img src=&quot;https:&#x2F;&#x2F;uncomfyhalomacro.pl&#x2F;blog&#x2F;202602125701&#x2F;.&#x2F;2.png&quot; alt=&quot;migrate-down result&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This is just a short update. I am still currently thinking on how to structure the api and I was thinking of using tower-http for convenience
+for middlewares.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Part 1: So I am building a fullstack project</title>
+        <published>2026-02-12T00:00:00+00:00</published>
+        <updated>2026-02-12T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Soc Virnyl Estela
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://uncomfyhalomacro.pl/blog/202602130803/"/>
+        <id>https://uncomfyhalomacro.pl/blog/202602130803/</id>
+        
+        <content type="html" xml:base="https://uncomfyhalomacro.pl/blog/202602130803/">&lt;p&gt;I noticed that I haven&#x27;t challenged myself in building a fullstack project,
+let alone I have any experience integrating third-party payment APIs such as Stripe,
+and OAuth2.&lt;&#x2F;p&gt;
+&lt;p&gt;So in this project, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;uncomfyhalomacro&#x2F;mercado&quot;&gt;mercado&lt;&#x2F;a&gt;. We will not be using
+LLMs or any coding agents in this endeavour. The only time I&#x27;ll be using is maybe for repetitive tasks
+and for documentation.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;this-is-a-series&quot;&gt;&quot;This is a series&quot;&lt;a class=&quot;zola-anchor&quot; href=&quot;#this-is-a-series&quot; aria-label=&quot;Anchor link for: this-is-a-series&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Yes, writing this as a full blog post will take a while because I&#x27;ll be scaffolding and building this project &lt;em&gt;and might
+even refactor many times&lt;&#x2F;em&gt;. Instead, I will write a separate posts from Part 1 until I consider it completed. I call this series
+as &lt;strong&gt;&quot;So I am building a fullstack project&quot;&lt;&#x2F;strong&gt;, also known as &lt;strong&gt;Mercado Series&lt;&#x2F;strong&gt; because it&#x27;s the name of the repo and project.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-are-you-doing-this&quot;&gt;Why are you doing this?&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-are-you-doing-this&quot; aria-label=&quot;Anchor link for: why-are-you-doing-this&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Cause, I noticed that I&#x27;ve been stagnating as well? I mean, I have learnt many things from my last jobs and I think it&#x27;s high time
+to test out my skills again that I&#x27;ve gained and also challenge myself to build different projects for a &lt;strong&gt;Full Stack Developer&lt;&#x2F;strong&gt;
+skill.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;chosen-technologies&quot;&gt;Chosen technologies&lt;a class=&quot;zola-anchor&quot; href=&quot;#chosen-technologies&quot; aria-label=&quot;Anchor link for: chosen-technologies&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;In this project, I&#x27;ll be using Rust for the backend and Deno+Fresh for the frontend. Why not React? Because I already have
+experience writing with React. Not saying I am a master of it, but I can definitely write React and learn anything from
+blogs or YouTube. However, I am quite curious about &lt;a href=&quot;https:&#x2F;&#x2F;fresh.deno.dev&#x2F;&quot;&gt;Fresh&lt;&#x2F;a&gt; and why the Deno team made it when
+there are already existing solutions.&lt;&#x2F;p&gt;
+&lt;p&gt;I could have used Golang, but that would be for another fullstack project series.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;initial-project-structure&quot;&gt;Initial project structure&lt;a class=&quot;zola-anchor&quot; href=&quot;#initial-project-structure&quot; aria-label=&quot;Anchor link for: initial-project-structure&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;I am following a monorepo style with the initial project structure below (dropdown)&lt;&#x2F;p&gt;
+&lt;details&gt;
+&lt;summary&gt;&lt;b&gt;Initial project structure&lt;&#x2F;b&gt;&lt;&#x2F;summary&gt;
+&lt;pre&gt;&lt;code&gt;.
+├── backend
+│   ├── Cargo.toml
+│   └── src
+│       └── main.rs
+├── Cargo.lock
+├── Cargo.toml
+├── crates
+│   ├── api
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       └── lib.rs
+│   ├── auth
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       └── lib.rs
+│   ├── database
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       └── lib.rs
+│   └── payments
+│       ├── Cargo.toml
+│       └── src
+│           └── lib.rs
+├── frontend
+│   ├── assets
+│   │   └── styles.css
+│   ├── client.ts
+│   ├── components
+│   │   └── Button.tsx
+│   ├── deno.json
+│   ├── deno.lock
+│   ├── islands
+│   │   └── Counter.tsx
+│   ├── main.ts
+│   ├── README.md
+│   ├── routes
+│   │   ├── _app.tsx
+│   │   ├── api
+│   │   │   └── [name].tsx
+│   │   └── index.tsx
+│   ├── static
+│   │   ├── favicon.ico
+│   │   └── logo.svg
+│   ├── utils.ts
+│   └── vite.config.ts
+├── justfile
+├── LICENCE
+└── README.md
+
+19 directories, 30 files
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;details&gt;
+&lt;h1 id=&quot;defining-the-project&quot;&gt;Defining the project&lt;a class=&quot;zola-anchor&quot; href=&quot;#defining-the-project&quot; aria-label=&quot;Anchor link for: defining-the-project&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;Since this project is about some webapp that can be deployed over the internet,
+I need to determine the goals and intention of the project. Obviously, one is
+for learning. But the rest are unknown.&lt;&#x2F;p&gt;
+&lt;p&gt;So it&#x27;s an ecommerce app. Therefore, we need to specify what kind of products we sell,
+and what kind of sellers we have on the platform. Given the name of the project, I guess
+I can think of&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;fashion
+&lt;ul&gt;
+&lt;li&gt;clothing&lt;&#x2F;li&gt;
+&lt;li&gt;shoes&lt;&#x2F;li&gt;
+&lt;li&gt;accessories&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;food
+&lt;ul&gt;
+&lt;li&gt;ingredients&lt;&#x2F;li&gt;
+&lt;li&gt;snacks&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;technology
+&lt;ul&gt;
+&lt;li&gt;computer parts&lt;&#x2F;li&gt;
+&lt;li&gt;prebuilt desktops&lt;&#x2F;li&gt;
+&lt;li&gt;laptops&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The categories can still be extended. But for now, let&#x27;s focus on those. Now I can imagine if
+I were to create a database table schema for these products then it would look like the SQL below&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sql&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;CREATE TABLE products (
+	product_id uuid PRIMARY KEY,
+	category INTEGER NOT NULL,
+	product_name TEXT NOT NULL,
+	currency VARCHAR(3) NOT NULL,
+	price NUMERIC(12, 2),
+	description TEXT DEFAULT NULL,
+	created_at TIMESTAMP DEFAULT NOW(),
+	updated_at TIMESTAMP DEFAULT NOW()
+)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For users, we need to have some sort of categorisation as well. They can be&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;sellers&lt;&#x2F;li&gt;
+&lt;li&gt;customers&#x2F;subscribers&lt;&#x2F;li&gt;
+&lt;li&gt;admins&lt;&#x2F;li&gt;
+&lt;li&gt;guests&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And the following tables can be created like this&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sql&quot; class=&quot;language-sql &quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;CREATE TABLE users (
+	id uuid PRIMARY KEY,
+	category INTEGER NOT NULL,
+	first_name TEXT DEFAULT NULL,
+	last_name TEXT DEFAULT NULL,
+	email TEXT NOT NULL,
+	created_at TIMESTAMP DEFAULT NOW(),
+	updated_at TIMESTAMP DEFAULT NOW()
+	CONSTRAINT unique_email UNIQUE (email)
+);
+
+CREATE TABLE user_passwords (
+    id uuid PRIMARY KEY,
+    user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    password_hash TEXT NOT NULL,
+    salt TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    UNIQUE(user_id)  -- ensures only one current password per user
+);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I was thinking of using &lt;code&gt;SERIAL&lt;&#x2F;code&gt; or &lt;code&gt;INTEGER&lt;&#x2F;code&gt; for ID generation but in this small application,
+I don&#x27;t think it&#x27;s that important. I have yet to read or understand the performance implications but
+for now, I am focusing on the fact that each ID is guaranteed to be unique.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;OAuth2?&lt;&#x2F;em&gt; Let&#x27;s focus for now the regular login. We&#x27;ll add OAuth2 later once almost everything has been finalised.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;How about usernames?&lt;&#x2F;em&gt; I don&#x27;t think they&#x27;re important. email addresses are already unique on their own.
+But I can add them if that&#x27;s really an impactful change.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;adding-the-database-dependencies&quot;&gt;Adding the database dependencies&lt;a class=&quot;zola-anchor&quot; href=&quot;#adding-the-database-dependencies&quot; aria-label=&quot;Anchor link for: adding-the-database-dependencies&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;The file at &lt;code&gt;crates&#x2F;database&#x2F;Cargo.toml&lt;&#x2F;code&gt; contains the following&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;[package]
+name = &amp;quot;database&amp;quot;
+version = &amp;quot;0.1.0&amp;quot;
+edition = &amp;quot;2024&amp;quot;
+
+[dependencies]
+deadpool-postgres = { version = &amp;quot;0.14.1&amp;quot;, features = [&amp;quot;serde&amp;quot;] }
+tokio = { version = &amp;quot;1.49.0&amp;quot;, features = [&amp;quot;full&amp;quot;] }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With the following initial structure&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;.
+├── Cargo.toml
+└── src
+    ├── core.rs
+    ├── lib.rs
+    ├── models
+    │   └── mod.rs
+    ├── prelude.rs
+    └── utils
+        └── mod.rs
+
+4 directories, 6 files
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The &lt;code&gt;models&lt;&#x2F;code&gt; will contain the table definitions, and &lt;code&gt;utils&lt;&#x2F;code&gt; will contain common functions that are used around.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;core&lt;&#x2F;code&gt; will encapsulate essential logic, and &lt;code&gt;prelude&lt;&#x2F;code&gt; will be used to import all commonly imported public namespaces.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;to-be-continued&quot;&gt;To be continued&lt;a class=&quot;zola-anchor&quot; href=&quot;#to-be-continued&quot; aria-label=&quot;Anchor link for: to-be-continued&quot;
+  &gt;§&lt;&#x2F;a
+&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;This post will be continued the following day or week as I have other things to attend called life. See you in the next post.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

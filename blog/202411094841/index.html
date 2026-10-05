@@ -1,0 +1,171 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1" name=viewport><meta content="uncomfy uh... i have a website? How To Deploy A Webpage to GitHub Pages " name=description><title>How To Deploy A Webpage to GitHub Pages</title><link href=/favicon.png rel=icon><link href="https://uncomfyhalomacro.pl/style.css?h=b3ea0c6ca2d4276c7a3b" rel=stylesheet><link media="(prefers-color-scheme: dark)" href=/syntax-theme-dark.css rel=stylesheet><link media="(prefers-color-scheme: light)" href=/syntax-theme-light.css rel=stylesheet><link href="https://uncomfyhalomacro.pl/color/auto.css?h=c9e3a532fd9af99660b2" rel=stylesheet><link href=https://uncomfyhalomacro.pl/atom.xml rel=alternate title=RSS type=application/atom+xml><script crossorigin src=https://kit.fontawesome.com/51d55b4c7d.js></script><script>function resize() {
+    var x = document.getElementById("myLinks");
+    // var y = document.getElementsByClassName("subcontainer")[0];
+    // var nav = document.getElementsByClassName("topnav")[0];
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+  try {
+    const bannedReferrers = [/news\.ycombinator\.com/i, /reddit\.com/i];
+    if (document.referrer) {
+      const ref = new URL(document.referrer);
+      if (
+        !/bad-networks/i.test(window.location.href) &&
+        bannedReferrers.some((r) => r.test(ref.host))
+      ) {
+        window.location.href = "https://www.pcloadletter.dev/blog/bad-networks";
+      }
+    }
+  } catch (e) {console.log(e)}</script><body><div class=main-grid><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a></div></div><div class=sub-grid><div class=content-grid><div class=info><h1>How To Deploy A Webpage to GitHub Pages<span> <a href=https://uncomfyhalomacro.pl/atom.xml><i class="fa-sharp fa-solid fa-rss"></i></a> </span></h1><p><span><a href=https://uncomfyhalomacro.pl/tags/webpages>#webpages</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/ci>#ci</a></span> <span><a href=https://uncomfyhalomacro.pl/tags/static-site-generators>#static-site-generators</a></span> <br><br> <span class=author>uncomfyhalomacro </span>| <span class=dates>2024-11-15</span> | <span class=readtime>reading time: ~8min</span></div><div class=toc><h1>Contents</h1><div class=toc-container><ul><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#deploying-a-small-html-file>Deploying a small HTML file</a> <ul><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#setting-up-your-personal-access-token>Setting Up Your PERSONAL ACCESS TOKEN</a><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#setting-up-github-workflows>Setting Up GitHub Workflows</a></ul><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#convenient-static-site-generators>Convenient Static Site Generators</a> <ul><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#initialising-zola>Initialising Zola</a><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#setting-up-zola-theme>Setting Up Zola Theme</a><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#adding-some-content>Adding some content</a><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#deploying-to-github-pages>Deploying to GitHub Pages</a></ul><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#faq>FAQ</a></ul></div></div><div class=content-body><article><section class=content><p>There are many existing documentation about deploying webpages to GitHub pages.<p>This guide is just a guide for those that are interested in a very manual setup.<p>There is already a <a href=https://docs.github.com/en/pages/quickstart>full documentation</a> for GitHub Pages if you want the full doc experience.<p>Also, readers are expected that they are competent enough to know basic Git commands.<p>Commands used here are for Bash shell.<hr><h1 id=deploying-a-small-html-file>Deploying a small HTML file<a aria-label="Anchor link for: deploying-a-small-html-file" class=zola-anchor href=#deploying-a-small-html-file>§</a></h1><p>If you are not yet familiar with how the CI works, do not worry as you will notice that writing CI workflows as basic as this is not that really difficult.<p>To start with, you have to do the following as prerequisites.<ol><li>Create a GitHub Account.<li>Create a repository.<li>Clone the new repository locally.</ol><p>The full commands starting for step 3 are<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>git clone https://github.com/uncomfyhalomacro/simple-site
+cd simple-site
+</code></pre><p>Adjust the URL to your repository. If you prefer SSH, the full commands are<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>git clone git@github.com:uncomfyhalomacro/simple-site.git
+cd simple-site
+</code></pre><p>One can check that the remote for the repository is set properly by running the following command.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>git remote -v
+</code></pre><p>By default, it's named as <code>origin</code>. Your output could look like this<pre><code>origin	git@github.com:uncomfyhalomacro/simple-site.git (fetch)
+origin	git@github.com:uncomfyhalomacro/simple-site.git (push)
+</code></pre><p>Now that everything is setup, let's create an <code>index.html</code> at the root directory of the project.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>touch index.html
+</code></pre><p>Open and edit it with your editor. I use <a href=https://github.com/mawww/kakoune>kakoune</a>.<p>Copy this simple HTML code below to your new file <code>index.html</code>.<pre class=language-html data-lang=html><code class=language-html data-lang=html>&lt;!DOCTYPE html>
+&lt;html lang="en">
+&lt;body>
+Hello World!
+&lt;/body>
+&lt;/html>
+</code></pre><p>This should suffice.<h2 id=setting-up-your-personal-access-token>Setting Up Your PERSONAL ACCESS TOKEN<a aria-label="Anchor link for: setting-up-your-personal-access-token" class=zola-anchor href=#setting-up-your-personal-access-token>§</a></h2><p>To setup your <strong>Personal Access Token</strong> (<strong>PAT</strong>), you must be logged in to your GitHub account. Then head over to <a href=https://github.com/settings/apps>https://github.com/settings/apps</a>.<p>You should see an option "Personal access tokens". Click that button.<p>You should get a drop down with some options. Click "Tokens (classic)".<p>In the upper-right, you can see the "Generate new token" button. Click that.<p>You should get a drop down with some options. Click "Generate new token (classic)".<p>You will be redirected to either enter your password or TOTP for 2FA. Please enter what was asked.<p>Name your TOKEN to whatever you want e.g. "simple-site". Feel free to set the expiration date of the TOKEN.<p>You will also see a lot of scopes. Just select the one with <code>[ ] repo Full control of private repositories</code>.<p>This will give full control for both private and public repositories that you have.<p>Now on the bottom-right, click the "Generate token" button. You will be redirected with a one time copy of the token. Copy or write it down somewhere safe.<p>⚠️ Be careful not to share your token once it's generated.<h2 id=setting-up-github-workflows>Setting Up GitHub Workflows<a aria-label="Anchor link for: setting-up-github-workflows" class=zola-anchor href=#setting-up-github-workflows>§</a></h2><p>Now, in your local repository, create a directory <code>.github/workflows/</code>.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>mkdir -p .github/workflows/
+</code></pre><p>Create a new file called <code>pubish.yml</code> at <code>.github/workflows/</code>.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>touch .github/workflows/publish.yml
+</code></pre><p>Copy the following code snippet to your <code>publish.yml</code>.<pre class=language-yaml data-lang=yaml><code class=language-yaml data-lang=yaml>name: Publish
+permissions: write-all
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TOKEN: ${{ secrets.TOKEN }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Publish static site
+      run: |
+        mkdir -p public
+        pushd public
+        cp ../index.html index.html
+        touch .nojekyll
+        git init
+        git branch -m gh-pages
+        git config --global user.email "youremail"
+        git config --global user.name "yourusername"
+        git remote add origin "https://yourusername:$TOKEN@github.com/yourusername/simple-site.git"
+        git add -A
+        git commit -m "update site page"
+        git push --force -u origin gh-pages
+</code></pre><p>Ensure you have replaced the following<ul><li>"youremail" should be your email address<li>"yourusername" should be your username e.g. username for GitHub account</ul><p>Be careful with the indentations as YAML can be quite confusing.<p>Now before pushing to your remote repository, you have to set your TOKEN as a GitHub secret in your repository. You should head to the link like<pre><code>https://github.com/yourusername/simple-site/settings/secrets/actions
+</code></pre><p>Replace first the "yourusername" with your username on GitHub before copying it and pasting it on your browser.<p>You will see two options once you head to the webpage<ul><li>Environment secrets<li>Repository secrets</ul><p>Choose the one with Repository secrets and click "New repository secret". You will be redirected to a page where you will input your TOKEN. Set the name as "TOKEN". Then paste the value of your PERSONAL ACCESS TOKEN.<p>Once set, click "Add secret" button.<p>Lastly, add and commit your local changes and push it to your remote repository.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>git add -A
+git commit -m 'initial commit'
+git push -u origin main
+</code></pre><p>Your site will now be at <code>https://yourgithubusername.github.io/simple-site</code> where <code>yourgithubusername</code> is your GitHub username. You should see a "Hello World!" on your browser.<p>See the source repository for how we did it at <a href=https://github.com/uncomfyhalomacro/simple-site>https://github.com/uncomfyhalomacro/simple-site</a>.<h1 id=convenient-static-site-generators>Convenient Static Site Generators<a aria-label="Anchor link for: convenient-static-site-generators" class=zola-anchor href=#convenient-static-site-generators>§</a></h1><p>At this point, you already know how to setup and deploy a webpage. However, writing a complex webpage with pure HTML can be tedious.<p>That's where <em>static site generators</em> come into the picture.<p>There are many popular static site generators to choose from such as<ul><li><a href=https://gohugo.io/getting-started/quick-start/>Hugo</a><li><a href=https://getzola.org>Zola</a><li><a href=https://docs.astro.build/en/getting-started/>Astro</a></ul><p>For this part of the tutorial, you are going to use zola, a simple static site generator written in Rust.<p>First create a new repository named "ssg-site".<p>Clone it locally and change directory into the <code>ssg-site</code> directory.<p>An example command will look like this. This uses SSH as the remote repository. Adjust to your configuration.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>git clone git@github.com:yourusername/ssg-site.git
+</code></pre><p>Replace "yourusername" with your GitHub username.<p>Then you must install zola. Follow installation instructions <a href=https://www.getzola.org/documentation/getting-started/installation/>here</a>.<h2 id=initialising-zola>Initialising Zola<a aria-label="Anchor link for: initialising-zola" class=zola-anchor href=#initialising-zola>§</a></h2><p>Run the following command at the root directory of the project.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>zola init .
+</code></pre><p>It will ask you the following questions.<p>For the first question<blockquote><p>What is the URL of your site? (https://example.com):</blockquote><p>You should input the following format <code>https://yourusername.github.io/ssg-site</code> where "yourusername" is your GitHub username.<p>The next question will be<blockquote><p>Do you want to enable Sass compilation?</blockquote><p>Type "Y" then press Enter.<p>The third question will be<blockquote><p>Do you want to enable syntax highlighting?</blockquote><p>Type "Y" then press Enter.<p>The last question will be<blockquote><p>Do you want to build a search index of the content?</blockquote><p>Feel free to type "Y" or "N". It does not matter yet, unless in the future, you want your site to have a search bar.<p>You have finally setup your Zola configuration. Now try running the command<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>zola serve
+</code></pre><p>It should serve your webpage locally at <a href=http://127.0.0.1:1111>http://127.0.0.1:1111</a>. It might change if another has already parked that port.<p>But our site is still bland. Let's proceed adding a theme.<h2 id=setting-up-zola-theme>Setting Up Zola Theme<a aria-label="Anchor link for: setting-up-zola-theme" class=zola-anchor href=#setting-up-zola-theme>§</a></h2><p>Zola has many cool themes. You can check the theme collection at <a href=https://www.getzola.org/themes/>https://www.getzola.org/themes/</a>.<p>Let's use <a href=https://www.getzola.org/themes/anemone/>anemone</a>, one of my favourite themes in Zola.<p>At the root directory of your project, run the following command.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>git submodule add "https://github.com/Speyll/anemone" themes/anemone
+</code></pre><p>This should create a git submodule in your project.<p>Now open and edit your <code>config.toml</code>. It should look like the following.<pre class=language-toml data-lang=toml><code class=language-toml data-lang=toml># The URL the site will be built for
+base_url = "https://yourusername.github.io/ssg-site"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+theme = "anemone"
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+[extra]
+# Put all your custom variables here
+toc = true
+display_author = true
+list_pages = true
+header_nav = [
+  { url = "/", name_en = "/home/"}
+]
+
+</code></pre><p>Replace "yourusername" with your GitHub username. Save the file.<p>Your webpage will reload and it will be an empty page with a footer. The colors are new as well because of the theme.<h2 id=adding-some-content>Adding some content<a aria-label="Anchor link for: adding-some-content" class=zola-anchor href=#adding-some-content>§</a></h2><p>Now that our theme is up, let's add some content. At the root directory of your project, head to <code>content</code> directory. Create a new markdown file <code>_index.md</code>. Now copy and paste this <em>Lorem ipsum</em> to <code>_index.md</code> file.<pre><code>+++
+title = "Lorem Ipsum"
++++
+
+# Lorem Ipsum
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## Dolor sit amet
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+### Consectetur adipiscing elit
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</code></pre><p>Then run the following commands.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>cp _index.md 1.md
+</code></pre><p>To understand what these files do, <code>_index.md</code> serves as the "home" page. It will list our posts such as <code>1.md</code>.<p>Now try to edit <code>_index.md</code> such as an introduction about yourself and what you do.<p>Then edit <code>1.md</code> with your new goals in life or tips and tricks.<p>Once satisfied, let's finally deploy your site to GitHub Pages.<h2 id=deploying-to-github-pages>Deploying to GitHub Pages<a aria-label="Anchor link for: deploying-to-github-pages" class=zola-anchor href=#deploying-to-github-pages>§</a></h2><p>At this point, you can either regenerate a new TOKEN or use the previous one you have created from <code>simple-site</code>. Let's just assume you already have a TOKEN.<p>First, run this command at the root directory of your project.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>echo "public" >> .gitignore
+</code></pre><p>This should ignore the generated <code>public</code> directory. You should always do this because otherwise, you will end up having duplicated files <em>unless you have other plans</em>. The <code>public</code> directory is only created when you run this command.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>zola build
+</code></pre><p>Next, add the new TOKEN as a <strong>Repository secret</strong>. You can repeat the steps you did on how to add a new TOKEN to your repository like in the <code>simple-site</code>.<p>Here is the fun part. Do the following commands.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>mkdir -p .github/workflows/
+touch .github/workflows/publish.yml
+</code></pre><p>Then edit your <code>publish.yml</code> file which is located at <code>.github/workflows/</code> with the following code.<pre class=language-yaml data-lang=yaml><code class=language-yaml data-lang=yaml>name: Publish
+permissions: write-all
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: opensuse/tumbleweed:latest
+    env:
+      TOKEN: ${{ secrets.TOKEN }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Install dependencies
+      run: |
+        zypper --non-interactive in zola git
+    - name: Generate static site
+      run: |
+        rm -rf themes/
+        mkdir -p themes/
+        pushd themes/
+        git clone --depth 1 https://github.com/Speyll/anemone
+        popd
+        zola build
+    - name: Publish static site
+      run: |
+        pushd public
+        touch .nojekyll
+        echo "uncomfyhalomacro.pl" >> CNAME
+        git init
+        git branch -m gh-pages
+        git config --global user.email "youremail"
+        git config --global user.name "yourusername"
+        git remote add origin "https://yourusername:$TOKEN@github.com/yourusername/ssg-site.git"
+        git add -A
+        git commit -m "update site page"
+        git push --force -u origin gh-pages
+</code></pre><p>Ensure you change "yourusername" to your GitHub username and "youremail" to the email you are using for your GitHub account.<p>Save the file. Now run the following command to add and commit your changes, then push.<pre class=language-bash data-lang=bash><code class=language-bash data-lang=bash>git add -A
+git commit -m 'my first blog'
+git push -u origin main
+</code></pre><p>Notice that in the YAML file, it uses a custom image. That's because that linux distribution image, Tumbleweed, already has an updated version of zola.<p>Once your site has been generated in the GitHub actions, you can head over to this link format <code>yourusername.github.io/ssg-site</code> where "yourusername" is your GitHub username.<p>Feel free to use this or learn and use other SSGs to prettify your blogs and web pages!<h1 id=faq>FAQ<a aria-label="Anchor link for: faq" class=zola-anchor href=#faq>§</a></h1><blockquote><p>I noticed that you didn't use a GitHub action plugin <code>shalzz/zola-deploy-action@master</code>. Why?</blockquote><p>If you know the process, then you can trust yourself more than some random plugin. Not saying they could not be trusted but you have to weigh your risks<ol><li>You already know how to deploy, then you are more sure that you can trust yourself.<li>Trust is a spectrum.</ol><p>Therefore, I don't need someone's tool if I already know how to do things. It's for the security side of things since GitHub actions can be a potential attack surface.<hr><p>Okay that's a wrap. Feel free to reach out to me in my preferred communication channels 🤪</section></article></div><footer>follow <a href=https://fosstodon.org/@uncomfyhalomacro rel=me target=_blank>uncomfyhalomacro@fosstodon.org</a> ⋅ © 2024 <a href=https://codeberg.org/uncomfyhalomacro/gruvbox-v target=_blank>gruvbox-v</a> ⋅ powered by <a href=https://getzola.org target=_blank>zola</a> ⋅ theme by <a href=https://codeberg.org/uncomfyhalomacro target=_blank>uncomfyhalomacro</a> ⋅ Content <a href=https://creativecommons.org/licenses/by-sa/4.0/ target=_blank>CC-BY-4.0</a></footer></div><div class=right-grid><div class=toc><h1>Contents</h1><div class=toc-container><ul><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#deploying-a-small-html-file>Deploying a small HTML file</a> <ul><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#setting-up-your-personal-access-token>Setting Up Your PERSONAL ACCESS TOKEN</a><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#setting-up-github-workflows>Setting Up GitHub Workflows</a></ul><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#convenient-static-site-generators>Convenient Static Site Generators</a> <ul><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#initialising-zola>Initialising Zola</a><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#setting-up-zola-theme>Setting Up Zola Theme</a><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#adding-some-content>Adding some content</a><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#deploying-to-github-pages>Deploying to GitHub Pages</a></ul><li><a href=https://uncomfyhalomacro.pl/blog/202411094841/#faq>FAQ</a></ul></div></div></div></div><div class=topnav><a class=icon href=javascript:void(0); onclick=resize()> <img alt="favicon here" class=icon_img src=/favicon.png> </a><a class=active href=https://uncomfyhalomacro.pl/>home</a><a href=https://uncomfyhalomacro.pl/tags>tags</a><a href=https://uncomfyhalomacro.pl/blog/>blog</a><a href=/microbio-cv.pdf>microbio cv</a><a href=/tech-cv.pdf>tech cv</a><a href=/public.txt>gpg keys</a><div id=myLinks><a href=https://uncomfyhalomacro.pl/scripts/>scripts</a><a href=https://uncomfyhalomacro.pl/lecture/>lecture</a><a href=https://uncomfyhalomacro.pl/poetry/>poetry</a></div></div></div>
